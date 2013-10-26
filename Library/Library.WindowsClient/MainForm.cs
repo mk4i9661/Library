@@ -10,10 +10,17 @@ using Library.DataContracts.Concrete;
 
 namespace Library.WindowsClient
 {
+<<<<<<< HEAD
     class MainForm : LibraryForm
     {
         public MainForm() {
 
+=======
+    partial class MainForm : LibraryForm
+    {
+        public MainForm() {
+            InitializeComponent();
+>>>>>>> origin/developer
         }
 
         protected override void InitHandlers() {
@@ -26,5 +33,10 @@ namespace Library.WindowsClient
                 GetAuthenticationProxy().LogOut(Ninject.Get<AuthenticationData>());
             }
         }
+<<<<<<< HEAD
+=======
+
+        
+>>>>>>> origin/developer
     }
 }
