@@ -26,7 +26,5 @@ namespace Library.WindowsClient
                 GetAuthenticationProxy().LogOut(Ninject.Get<AuthenticationData>());
             }
         }
-
-        
     }
 }
