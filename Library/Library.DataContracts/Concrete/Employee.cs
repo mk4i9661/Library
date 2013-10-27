@@ -12,7 +12,6 @@ namespace Library.DataContracts.Concrete
             set;
         }
 
-        [DataMember]
         public string Password {
             get;
             set;

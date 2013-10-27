@@ -28,7 +28,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                 Name = row.Field<string>("Employee_Name"),
                 Password = row.Field<string>("Employee_Password"),
                 Role = new Role() {
-                    Id = Convert.ToInt32(row.Field<decimal>("Employee_Role_ID")),
+                    Id = (RoleId)Convert.ToInt32(row.Field<decimal>("Employee_Role_ID")),
                     Name = row.Field<string>("role_name")
                 }
             };

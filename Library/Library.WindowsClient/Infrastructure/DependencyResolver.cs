@@ -23,6 +23,7 @@ namespace Library.WindowsClient.Infrastructure
         static IKernel GetKernel() {
             var kernel = new StandardKernel();
             kernel.Bind<IAuthentication>().To(typeof(AuthenticationProxy));
+            kernel.Bind<IBibliographer>().To(typeof(BibliographerProxy));
             return kernel;
         }
 

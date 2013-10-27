@@ -7,6 +7,7 @@ namespace Library.DataContracts.Concrete
     [DataContract]
     public class AuthenticationData : UniqueObjectGuid<AuthenticationData>
     {
+        [DataMember]
         public Employee Employee {
             get;
             set;

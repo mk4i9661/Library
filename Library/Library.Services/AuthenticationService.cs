@@ -10,6 +10,7 @@ using Library.DataAccess.DBInterop.Queries.Concrete;
 using Library.DataContracts;
 using Library.DataContracts.Concrete;
 using Library.Services.Abstract;
+using System.ServiceModel.Description;
 
 namespace Library.Services
 {
@@ -30,7 +31,7 @@ namespace Library.Services
             var employee = query.Execute().FirstOrDefault(e => e.Name == name && e.Password == hash);
             if (employee != null) {
                 var result = new AuthenticationData() {
-                    Id = new Guid(),
+                    Id = Guid.NewGuid(),
                     Employee = employee
                 };
                 Authorized[result.Id] = result;
@@ -38,6 +39,7 @@ namespace Library.Services
             }
             return null;
         }
+
 
         public bool IsAuthorized(AuthenticationData data) {
             return data == null ? false : Authorized.ContainsKey(data.Id);

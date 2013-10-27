@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,8 +47,17 @@
   <ItemGroup>
     <Compile Include="Abstract\AbstractService.cs" />
     <Compile Include="AuthenticationService.cs" />
+    <Compile Include="BibliographerService.cs" />
     <Compile Include="Helpers\ApplicationConfigurationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\Concrete\AdminRoleInspector.cs" />
+    <Compile Include="Validators\Concrete\BibliographerRoleInspector.cs" />
+    <Compile Include="Validators\Concrete\ChiefRoleInspector.cs" />
+    <Compile Include="Validators\Concrete\OperatorRoleInspector.cs" />
+    <Compile Include="Validators\Abstract\RoleInspector.cs" />
+    <Compile Include="Validators\InspectorFactories\Abstract\IRoleInspectorFactory.cs" />
+    <Compile Include="Validators\InspectorFactories\Concrete\BibliographerInspectorFactory.cs" />
+    <Compile Include="Validators\RoleValidationBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library.Contracts\Library.Contracts.csproj">

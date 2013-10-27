@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticableProxy.cs" />
     <Compile Include="AuthenticationProxy.cs" />
+    <Compile Include="BibliographerProxy.cs" />
     <Compile Include="DisposableProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

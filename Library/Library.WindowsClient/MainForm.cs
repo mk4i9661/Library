@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ninject;
 using Library.DataContracts.Concrete;
+using Library.Contracts;
 
 namespace Library.WindowsClient
 {
@@ -22,7 +23,7 @@ namespace Library.WindowsClient
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
-            if (e.Cancel = !DialogMessages.Question("Вы уверены, что хотите покинуть систему?")) {
+            if (!(e.Cancel = !DialogMessages.Question("Вы уверены, что хотите покинуть систему?"))) {
                 GetAuthenticationProxy().LogOut(Ninject.Get<AuthenticationData>());
             }
         }
