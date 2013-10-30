@@ -12,8 +12,6 @@ namespace Library.Services
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class BibliographerService : AbstractService, IBibliographer
     {
-        public void DoSomething() {
-            
-        }
+        
     }
 }

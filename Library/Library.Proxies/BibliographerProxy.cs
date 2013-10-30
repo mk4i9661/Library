@@ -14,9 +14,5 @@ namespace Library.Proxies
             : base(data) {
 
         }
-
-        public void DoSomething() {
-            ExecuteScoped(() => Channel.DoSomething());
-        }
     }
 }
