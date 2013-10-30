@@ -10,6 +10,7 @@ namespace Library.Contracts
     [ServiceContract]
     public interface IBibliographer
     {
-        
+        [OperationContract]
+        void DoSomething();
     }
 }
