@@ -11,6 +11,7 @@ using Library.DataContracts;
 using Library.DataContracts.Concrete;
 using Library.Services.Abstract;
 using System.ServiceModel.Description;
+using Ninject;
 
 namespace Library.Services
 {
@@ -27,8 +28,7 @@ namespace Library.Services
         }
 
         public AuthenticationData Authenticate(string name, string hash) {
-            var query = new GetEmployeesQuery(GetConnectionProvider());
-            var employee = query.Execute().FirstOrDefault(e => e.Name == name && e.Password == hash);
+            var employee = Ninject.Get<GetEmployeesQuery>().Execute().FirstOrDefault(e => e.Name == name && e.Password == hash);
             if (employee != null) {
                 var result = new AuthenticationData() {
                     Id = Guid.NewGuid(),

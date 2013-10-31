@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Library.DataContracts.Concrete;
 
 namespace Library.Contracts
 {
@@ -11,6 +12,13 @@ namespace Library.Contracts
     public interface IBibliographer
     {
         [OperationContract]
-        void DoSomething();
+        IEnumerable<Publisher> GetPublishers();
+
+        [OperationContract]
+        Publisher AddPublisher(Publisher publisher);
+        [OperationContract]
+        Publisher UpdatePublisher(Publisher publisher);
+        [OperationContract]
+        Publisher DeletePublisher(Publisher publisher);
     }
 }

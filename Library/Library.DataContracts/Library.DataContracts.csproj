@@ -48,6 +48,7 @@
     <Compile Include="Concrete\AuthenticationData.cs" />
     <Compile Include="Concrete\AuthenticationHeader.cs" />
     <Compile Include="Concrete\Employee.cs" />
+    <Compile Include="Concrete\Publisher.cs" />
     <Compile Include="Concrete\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

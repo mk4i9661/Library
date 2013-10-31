@@ -11,6 +11,11 @@ namespace Library.Services.Abstract
 {
     public class AbstractService
     {
+        public IKernel Ninject {
+            get;
+            private set;
+        }
+
         protected ConnectionProviderFactory Factory {
             get;
             private set;
@@ -18,10 +23,8 @@ namespace Library.Services.Abstract
 
         protected AbstractService() {
             Factory = new ConnectionProviderFactory(ApplicationConfigurationHelper.GetOracleConnectionString());
-        }
-
-        protected ConnectionProvider GetConnectionProvider() {
-            return Factory.Get();
+            Ninject = new StandardKernel();
+            Ninject.Bind<ConnectionProvider>().ToMethod(context => Factory.Get());
         }
     }
 }
