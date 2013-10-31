@@ -3,6 +3,7 @@ using Library.Server.Configuration;
 using Library.Server.Configuration.Helpers;
 using Library.Services;
 using Library.Services.Validators;
+using Library.Services.Validators.InspectorFactories.Abstract;
 using Library.Services.Validators.InspectorFactories.Concrete;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace Library.Server
             //Application.Run(new Form1());
             var helper = GetHelper();
 
-            var authentication = new ServiceHost(typeof(AuthenticationService));
+            /*var authentication = new ServiceHost(typeof(AuthenticationService));
             authentication.AddServiceEndpoint(typeof(IAuthentication), new NetTcpBinding(SecurityMode.None) {
                 MaxReceivedMessageSize = int.MaxValue,
                 MaxBufferSize = int.MaxValue,
@@ -34,9 +35,11 @@ namespace Library.Server
                 SendTimeout = TimeSpan.MaxValue,
                 ReceiveTimeout = TimeSpan.MaxValue,
                 OpenTimeout = TimeSpan.MaxValue,
-            }, helper.Host + "Authentication");
+            }, helper.Host + "Authentication");*/
+            var authentication = GetConfiguredHost(typeof(AuthenticationService), typeof(IAuthentication), helper.Host + "Authentication");
+            var bibliographer = GetConfiguredHost(typeof(BibliographerService), typeof(IBibliographer), helper.Host + "Bibliographer", new BibliographerInspectorFactory());
 
-            var bibliographer = new ServiceHost(typeof(BibliographerService));
+            /*var bibliographer = new ServiceHost(typeof(BibliographerService));
             bibliographer.AddServiceEndpoint(typeof(IBibliographer), new NetTcpBinding(SecurityMode.None) {
                 MaxReceivedMessageSize = int.MaxValue,
                 MaxBufferSize = int.MaxValue,
@@ -46,13 +49,35 @@ namespace Library.Server
                 OpenTimeout = TimeSpan.MaxValue,
             }, helper.Host + "Bibliographer").EndpointBehaviors.Add(new RoleValidationBehavior() {
                 Factory = new BibliographerInspectorFactory()
-            });
+            });*/
 
             authentication.Open();
             bibliographer.Open();
 
             Console.WriteLine("The services is ready. Press any key to terminate services");
             Console.ReadKey();
+        }
+
+        static ServiceHost GetConfiguredHost(Type service, Type contract, string address) {
+            var host = new ServiceHost(service);
+            var endpoint = host.AddServiceEndpoint(contract, new NetTcpBinding(SecurityMode.None) {
+                MaxReceivedMessageSize = int.MaxValue,
+                MaxBufferSize = int.MaxValue,
+                CloseTimeout = TimeSpan.MaxValue,
+                SendTimeout = TimeSpan.MaxValue,
+                ReceiveTimeout = TimeSpan.MaxValue,
+                OpenTimeout = TimeSpan.MaxValue,
+            }, address);
+            return host;
+        }
+
+        static ServiceHost GetConfiguredHost(Type service, Type contract, string address, IRoleInspectorFactory factory) {
+            var host = GetConfiguredHost(service, contract, address);
+            host.Description.Endpoints[0].EndpointBehaviors.Add(new EmployeeValidationBehavior());
+            host.Description.Endpoints[0].EndpointBehaviors.Add(new RoleValidationBehavior() {
+                Factory = factory
+            });
+            return host;
         }
 
         static ServerConfigurationHelper GetHelper() {

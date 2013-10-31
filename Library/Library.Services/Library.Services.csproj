@@ -53,8 +53,10 @@
     <Compile Include="Validators\Concrete\AdminRoleInspector.cs" />
     <Compile Include="Validators\Concrete\BibliographerRoleInspector.cs" />
     <Compile Include="Validators\Concrete\ChiefRoleInspector.cs" />
+    <Compile Include="Validators\Concrete\EmployeeInspector.cs" />
     <Compile Include="Validators\Concrete\OperatorRoleInspector.cs" />
     <Compile Include="Validators\Abstract\RoleInspector.cs" />
+    <Compile Include="Validators\EmployeeValidationBehavior.cs" />
     <Compile Include="Validators\InspectorFactories\Abstract\IRoleInspectorFactory.cs" />
     <Compile Include="Validators\InspectorFactories\Concrete\BibliographerInspectorFactory.cs" />
     <Compile Include="Validators\RoleValidationBehavior.cs" />
@@ -71,6 +73,10 @@
     <ProjectReference Include="..\Library.DataContracts\Library.DataContracts.csproj">
       <Project>{b743226b-1ed7-44ae-b01e-be0245f2c368}</Project>
       <Name>Library.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Library.Proxies\Library.Proxies.csproj">
+      <Project>{6cb916ba-f6cf-4dad-846b-b4597bfaf444}</Project>
+      <Name>Library.Proxies</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

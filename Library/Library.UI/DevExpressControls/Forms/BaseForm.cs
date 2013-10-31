@@ -7,10 +7,10 @@ namespace Library.UI.DevExpressControls.Forms
     {
         public BaseForm() {
             InitializeComponent();
-            Load += BaseForm_Load;
+            Load += OnLoad;
         }
 
-        void BaseForm_Load(object sender, System.EventArgs e) {
+        protected void OnLoad(object sender, System.EventArgs e) {
             InitHandlers();
         }
 

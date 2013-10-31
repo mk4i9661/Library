@@ -15,8 +15,20 @@ namespace Library.Proxies
 
         }
 
-        public void DoSomething() {
-            ExecuteScoped(() => Channel.DoSomething());
+        public IEnumerable<Publisher> GetPublishers() {
+            return ExecuteScoped(() => Channel.GetPublishers());
+        }
+
+        public Publisher AddPublisher(Publisher publisher) {
+            return ExecuteScoped(() => Channel.AddPublisher(publisher));
+        }
+
+        public Publisher UpdatePublisher(Publisher publisher) {
+            return ExecuteScoped(() => Channel.UpdatePublisher(publisher));
+        }
+
+        public Publisher DeletePublisher(Publisher publisher) {
+            return ExecuteScoped(() => Channel.DeletePublisher(publisher));
         }
     }
 }

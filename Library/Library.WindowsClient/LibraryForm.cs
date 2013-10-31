@@ -1,15 +1,19 @@
-﻿using Library.Contracts;
-using Library.UI.DevExpressControls.Forms;
-using Ninject;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using Library.Contracts;
+using Library.UI.DevExpressControls.Forms;
+using Ninject;
 
 namespace Library.WindowsClient
 {
-    class LibraryForm : BaseForm
+    public partial class LibraryForm : BaseForm
     {
         [Inject]
         public IKernel Ninject {
@@ -21,6 +25,10 @@ namespace Library.WindowsClient
         public IAuthentication AuthenticationProxy {
             get;
             set;
+        }
+
+        public LibraryForm() {
+            InitializeComponent();
         }
 
         protected IAuthentication GetAuthenticationProxy() {
