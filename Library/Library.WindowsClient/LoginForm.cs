@@ -21,10 +21,12 @@ namespace Library.WindowsClient
 
         public LoginForm() {
             InitializeComponent();
+            InitHandlers();
+            teLogin.Text = "Администратор";
+            tePassword.Text = "Администратор";
         }
 
-        protected override void InitHandlers() {
-            base.InitHandlers();
+        void InitHandlers() {
             bLogIn.Click += bLogIn_Click;
             bCancel.Click += bCancel_Click;
             KeyDown += LoginForm_KeyDown;

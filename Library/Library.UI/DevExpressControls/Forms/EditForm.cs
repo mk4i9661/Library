@@ -1,3 +1,4 @@
+using System.Windows.Forms;
 namespace Library.UI.DevExpressControls.Forms
 {
     public partial class EditForm : BaseForm
@@ -20,12 +21,24 @@ namespace Library.UI.DevExpressControls.Forms
             OnSaveClick();
         }
 
+        protected virtual void OnValidateFormFields() {
+
+        }
+
+        protected bool IsValid() {
+            return !errorProvider.HasErrors;
+        }
+
+        protected void ValidateControl(Control control, bool isNotValid, string message) {
+            errorProvider.SetError(control, !isNotValid ? string.Empty : message);
+        }
+
         protected virtual void OnSaveClick() {
 
         }
 
         protected virtual void OnCancelClick() {
-
+            DialogResult = DialogResult.Cancel;
         }
 
     }

@@ -28,8 +28,17 @@ namespace Library.DataAccess.DBInterop
             using (var connection = CreateConnection()) {
                 connection.Open();
                 using (command) {
-                    command.Connection = connection;
-                    command.ExecuteNonQuery();
+                    using (var transaction = connection.BeginTransaction()) {
+                        command.Connection = connection;
+                        command.Transaction = transaction;
+                        try {
+                            command.ExecuteNonQuery();
+                            transaction.Commit();
+                        } catch (Exception exc) {
+                            transaction.Rollback();
+                            throw exc;
+                        }
+                    }
                 }
             }
         }

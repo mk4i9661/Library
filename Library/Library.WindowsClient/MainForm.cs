@@ -9,17 +9,23 @@ using Library.UI.DevExpressControls.Forms;
 using Library.WindowsClient.Pages.Abstract;
 using Library.WindowsClient.Pages.Concrete;
 using Ninject;
+using System.Linq;
+using System.Monads;
+using Ninject.Parameters;
 
 namespace Library.WindowsClient
 {
     partial class MainForm : LibraryForm
     {
-        public MainForm() {
-            Pages = new List<Page>();
+        public MainForm(IKernel ninject) {
+            Ninject = ninject;
+            Pages = new List<IPage>();
             InitializeComponent();
+            InitHandlers();
+            InitPages();
         }
 
-        List<Page> Pages {
+        List<IPage> Pages {
             get;
             set;
         }
@@ -48,15 +54,21 @@ namespace Library.WindowsClient
             }
         }
 
-        void InitPages() {
-            Role role = Role;
+        public IPage SelectedPage {
+            get;
+            private set;
+        }
 
+        void InitPages() {
             if (IsBibliographer) {
-                Pages.AddRange(new Page[] {
-                    new PublishersPage(new PageParameters {
-                        RibbonPage = rpPublishers,
-                        TabPage = xtpPublishers
-                    })
+                Ninject.Bind<PublishersPage>().ToMethod(context => new PublishersPage(new PageParameters {
+                    RibbonPage = rpPublishers,
+                    TabPage = xtpPublishers,
+                    GridControl = gcPublishers
+                }));
+
+                Pages.AddRange(new IPage[] {
+                    Ninject.Get<PublishersPage>()
                 });
             }
 
@@ -65,51 +77,44 @@ namespace Library.WindowsClient
             rcPages.Pages.Clear();
 
             foreach (var page in Pages) {
-                rcPages.Pages.Add(page.RibbonPage);
                 xtcPages.TabPages.Add(page.TabPage);
+                rcPages.Pages.Add(page.RibbonPage);
             }
+
+            SelectedPage = Pages.FirstOrDefault().Do(a => a.Activate());
         }
 
-        protected override void OnLoad(EventArgs e) {
-            InitPages();
-        }
-
-        protected override void InitHandlers() {
-            base.InitHandlers();
+        void InitHandlers() {
             FormClosing += MainForm_FormClosing;
-            rcPages.SelectedPageChanged += rcPages_SelectedPageChanged;
             rcPages.SelectedPageChanging += rcPages_SelectedPageChanging;
+            bbiAdd.ItemClick += bbiAdd_ItemClick;
+            bbiEdit.ItemClick += bbiEdit_ItemClick;
+            bbiDelete.ItemClick += bbiDelete_ItemClick;
+        }
+
+
+        void bbiDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            SelectedPage.Do(page => page.DeleteClick());
+        }
+
+        void bbiEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            SelectedPage.Do(page => page.EditClick());
+        }
+
+        void bbiAdd_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            SelectedPage.Do(page => page.AddClick());
         }
 
         void rcPages_SelectedPageChanging(object sender, RibbonPageChangingEventArgs e) {
-            var page = rcPages.SelectedPage.Tag as Page;
-        }
-
-        void rcPages_SelectedPageChanged(object sender, EventArgs e) {
-            //var page = rcPages.SelectedPage.Tag as Page;
-            //page.Activate();
+            var page = rcPages.SelectedPage.Return(p => p.Tag as IPage, null);
+            SelectedPage.Do(p => p.Deactivate());
+            page.Do(p => p.Activate());
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
             if (!(e.Cancel = !DialogMessages.Question("Вы уверены, что хотите покинуть систему?"))) {
                 GetAuthenticationProxy().LogOut(Ninject.Get<AuthenticationData>());
             }
-        }
-
-        protected Task<T> AsyncLoadData<T>(Func<T> loader) {
-            return Task.Factory.StartNew(loader);
-        }
-
-        public async void LoadData<T>(Func<T> loader) {
-            OnBeginDataLoad();
-            //var result = await AsyncLoadData(loader).Result;
-            OnEndDataLoad();
-        }
-
-        protected void OnBeginDataLoad() {
-        }
-
-        protected void OnEndDataLoad() {
         }
     }
 }

@@ -59,6 +59,9 @@
     <Compile Include="DevExpressControls\Controls\LibraryLabelControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DevExpressControls\Controls\LibraryMemoEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DevExpressControls\Controls\LibraryTextEdit.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -92,6 +95,7 @@
     <EmbeddedResource Include="DevExpressControls\Forms\TypedEditForm.resx">
       <DependentUpon>TypedEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library.DataAccess\Library.DataAccess.csproj">

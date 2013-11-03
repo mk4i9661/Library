@@ -20,14 +20,39 @@ namespace Library.Services
         }
 
         public Publisher AddPublisher(Publisher publisher) {
-            throw new NotImplementedException();
+            var query = Ninject.Get<InsertPublisherQuery>();
+            query.Publisher = publisher;
+            query.Execute();
+            return publisher;
         }
 
         public Publisher UpdatePublisher(Publisher publisher) {
-            throw new NotImplementedException();
+            var query = Ninject.Get<UpdatePublisherQuery>();
+            query.Publisher = publisher;
+            query.Execute();
+            return publisher;
         }
 
         public Publisher DeletePublisher(Publisher publisher) {
+            var query = Ninject.Get<DeletePublisherQuery>();
+            query.Publisher = publisher;
+            query.Execute();
+            return publisher;
+        }
+
+        public IEnumerable<Rubric> GetRubrics() {
+            return Ninject.Get<GetRubricsQuery>().Execute();
+        }
+
+        public Rubric AddRubric(Rubric rubric) {
+            throw new NotImplementedException();
+        }
+
+        public Rubric UpdateRubric(Rubric rubric) {
+            throw new NotImplementedException();
+        }
+
+        public Rubric DeleteRubric(Rubric rubric) {
             throw new NotImplementedException();
         }
     }

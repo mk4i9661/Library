@@ -30,5 +30,21 @@ namespace Library.Proxies
         public Publisher DeletePublisher(Publisher publisher) {
             return ExecuteScoped(() => Channel.DeletePublisher(publisher));
         }
+
+        public IEnumerable<Rubric> GetRubrics() {
+            return ExecuteScoped(() => Channel.GetRubrics());
+        }
+
+        public Rubric AddRubric(Rubric rubric) {
+            return ExecuteScoped(() => Channel.AddRubric(rubric));
+        }
+
+        public Rubric UpdateRubric(Rubric rubric) {
+            return ExecuteScoped(() => Channel.UpdateRubric(rubric));
+        }
+
+        public Rubric DeleteRubric(Rubric rubric) {
+            return ExecuteScoped(() => Channel.DeleteRubric(rubric));
+        }
     }
 }

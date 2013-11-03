@@ -33,10 +33,21 @@ namespace Library.UI.DevExpressControls.Controls
         /// <summary>
         /// Привязка данных к таблице
         /// </summary>
-        public void Bind(object data) {
-            BeginUpdate();
+        public void Bind<T>(IEnumerable<T> data)
+            where T : class, IEquatable<T> {
+            GridView.BeginDataUpdate();
+            var row = GridView.GetSelectedRow<T>();
             DataSource = data;
-            EndUpdate();
+            if (row != null) {
+                var enumerated = data.ToArray();
+                for (int i = 0, count = enumerated.Length; i < count; i++) {
+                    if (enumerated[i].Equals(row)) {
+                        GridView.FocusedRowHandle = i;
+                        break;
+                    }
+                }
+            }
+            GridView.EndDataUpdate();
         }
 
     }
@@ -92,9 +103,10 @@ namespace Library.UI.DevExpressControls.Controls
         /// <typeparam name="T"></typeparam>
         /// <param name="elem"></param>
         public virtual void SelectRow<T>(T elem) where T : class, IEquatable<T> {
-            var data = DataSource as List<T>;
+            var data = DataSource as IEnumerable<T>;
             if (data != null) {
-                for (int i = 0; i < data.Count; i++) {
+                var enumerated = data.ToArray();
+                for (int i = 0; i < enumerated.Length; i++) {
                     if (GetRow<T>(i).Equals(elem)) {
                         FocusedRowHandle = i;
                         break;

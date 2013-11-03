@@ -43,6 +43,9 @@
     <Reference Include="DevExpress.XtraGrid.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Monads">
+      <HintPath>..\packages\Monads.1.1.5.0\lib\net40\Monads.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -59,6 +62,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditForms\LibraryEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditForms\PublisherEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditForms\PublisherEditForm.Designer.cs">
+      <DependentUpon>PublisherEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\DependencyResolver.cs" />
     <Compile Include="LibraryForm.cs">
       <SubType>Form</SubType>
@@ -80,8 +92,12 @@
     </Compile>
     <Compile Include="Pages\Abstract\Page.cs" />
     <Compile Include="Pages\Concrete\PublishersPage.cs" />
+    <Compile Include="Pages\Concrete\RubricsPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EditForms\PublisherEditForm.resx">
+      <DependentUpon>PublisherEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LibraryForm.resx">
       <DependentUpon>LibraryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,6 +116,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -133,8 +150,15 @@
       <Name>Library.UI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="EditForms\" />
+    <None Include="Resources\ADD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EDIT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DELETE.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

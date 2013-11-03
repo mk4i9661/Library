@@ -13,12 +13,20 @@ namespace Library.Contracts
     {
         [OperationContract]
         IEnumerable<Publisher> GetPublishers();
-
         [OperationContract]
         Publisher AddPublisher(Publisher publisher);
         [OperationContract]
         Publisher UpdatePublisher(Publisher publisher);
         [OperationContract]
         Publisher DeletePublisher(Publisher publisher);
+
+        [OperationContract]
+        IEnumerable<Rubric> GetRubrics();
+        [OperationContract]
+        Rubric AddRubric(Rubric rubric);
+        [OperationContract]
+        Rubric UpdateRubric(Rubric rubric);
+        [OperationContract]
+        Rubric DeleteRubric(Rubric rubric);
     }
 }

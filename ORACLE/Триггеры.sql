@@ -65,3 +65,10 @@ BEGIN
     item.BookQuantity := :new.Request_Book_Quantity;
     request_state.new_rows(request_state.new_rows.count + 1) := item;
 END;
+
+CREATE OR REPLACE TRIGGER PUBLISHER_GENERATE_ID 
+BEFORE INSERT ON PUBLISHER 
+FOR EACH ROW
+BEGIN
+  SELECT Publisher_Sequence.NEXTVAL INTO :new.Publisher_ID FROM dual;
+END;

@@ -25,7 +25,7 @@ CREATE TABLE Publisher(
 	Publisher_ID INT NOT NULL PRIMARY KEY,
 	Publisher_Name VARCHAR(255) NOT NULL, 
 	Publisher_Location VARCHAR(255) NOT NULL,
-	Publisher_Description VARCHAR(1000) NOT NULL
+	Publisher_Description VARCHAR(1000)
 );
 
 DROP TABLE Author;
@@ -147,3 +147,5 @@ CREATE TABLE Employee(
   Employee_Role_ID INT NOT NULL,
   FOREIGN KEY (Employee_Role_ID) REFERENCES Role(Role_ID) ON DELETE CASCADE
 );
+
+CREATE SEQUENCE Publisher_Sequence;
