@@ -33,6 +33,7 @@ namespace Library.UI.DevExpressControls.Forms
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.errorProvider = new DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
@@ -40,15 +41,17 @@ namespace Library.UI.DevExpressControls.Forms
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(314, 174, 362, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(507, 413);
+            this.layoutControl1.Size = new System.Drawing.Size(432, 480);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -61,7 +64,7 @@ namespace Library.UI.DevExpressControls.Forms
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(507, 413);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(432, 480);
             this.layoutControlGroup1.Text = "layoutControlGroup1";
             this.layoutControlGroup1.TextVisible = false;
             // 
@@ -73,7 +76,7 @@ namespace Library.UI.DevExpressControls.Forms
             this.layoutControl2.Location = new System.Drawing.Point(0, 480);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.layoutControlGroup2;
-            this.layoutControl2.Size = new System.Drawing.Size(507, 68);
+            this.layoutControl2.Size = new System.Drawing.Size(432, 68);
             this.layoutControl2.TabIndex = 1;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -81,9 +84,10 @@ namespace Library.UI.DevExpressControls.Forms
             // 
             this.bCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.bCancel.Appearance.Options.UseFont = true;
-            this.bCancel.Location = new System.Drawing.Point(245, 12);
+            this.bCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bCancel.Location = new System.Drawing.Point(209, 12);
             this.bCancel.Name = "bCancel";
-            this.bCancel.Size = new System.Drawing.Size(250, 44);
+            this.bCancel.Size = new System.Drawing.Size(211, 44);
             this.bCancel.StyleController = this.layoutControl2;
             this.bCancel.TabIndex = 2;
             this.bCancel.Text = "Отмена";
@@ -94,7 +98,7 @@ namespace Library.UI.DevExpressControls.Forms
             this.bSave.Appearance.Options.UseFont = true;
             this.bSave.Location = new System.Drawing.Point(12, 12);
             this.bSave.Name = "bSave";
-            this.bSave.Size = new System.Drawing.Size(229, 44);
+            this.bSave.Size = new System.Drawing.Size(193, 44);
             this.bSave.StyleController = this.layoutControl2;
             this.bSave.TabIndex = 4;
             this.bSave.Text = "Сохранить";
@@ -109,7 +113,7 @@ namespace Library.UI.DevExpressControls.Forms
             this.layoutControlItem2});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(507, 68);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(432, 68);
             this.layoutControlGroup2.Text = "layoutControlGroup2";
             this.layoutControlGroup2.TextVisible = false;
             // 
@@ -120,7 +124,7 @@ namespace Library.UI.DevExpressControls.Forms
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.MinSize = new System.Drawing.Size(95, 27);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(233, 48);
+            this.layoutControlItem1.Size = new System.Drawing.Size(197, 48);
             this.layoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem1.Text = "layoutControlItem1";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
@@ -131,15 +135,19 @@ namespace Library.UI.DevExpressControls.Forms
             // 
             this.layoutControlItem2.Control = this.bCancel;
             this.layoutControlItem2.CustomizationFormText = "layoutControlItem2";
-            this.layoutControlItem2.Location = new System.Drawing.Point(233, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(197, 0);
             this.layoutControlItem2.MinSize = new System.Drawing.Size(95, 27);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(254, 48);
+            this.layoutControlItem2.Size = new System.Drawing.Size(215, 48);
             this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem2.Text = "layoutControlItem2";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextToControlDistance = 0;
             this.layoutControlItem2.TextVisible = false;
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // EditForm
             // 
@@ -147,13 +155,15 @@ namespace Library.UI.DevExpressControls.Forms
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 548);
-            this.Controls.Add(this.layoutControl2);
+            this.CancelButton = this.bCancel;
+            this.ClientSize = new System.Drawing.Size(432, 548);
             this.Controls.Add(this.layoutControl1);
+            this.Controls.Add(this.layoutControl2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EditForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EditForm";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -163,13 +173,13 @@ namespace Library.UI.DevExpressControls.Forms
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraEditors.SimpleButton bCancel;
         private DevExpress.XtraEditors.SimpleButton bSave;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
@@ -177,5 +187,7 @@ namespace Library.UI.DevExpressControls.Forms
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         protected DevExpress.XtraLayout.LayoutControl layoutControl1;
         protected DevExpress.XtraLayout.LayoutControl layoutControl2;
+        protected DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider errorProvider;
     }
 }

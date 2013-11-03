@@ -50,6 +50,7 @@
     <Compile Include="Concrete\Employee.cs" />
     <Compile Include="Concrete\Publisher.cs" />
     <Compile Include="Concrete\Role.cs" />
+    <Compile Include="Concrete\Rubric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

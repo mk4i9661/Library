@@ -10,3 +10,4 @@
 --grant DEBUG CONNECT SESSION to lab;
 --grant  DEBUG ANY PROCEDURE to lab;
 --grant create any procedure to lab
+--grant create any sequence to lab;
