@@ -35,6 +35,10 @@ namespace Library.Proxies
             return ExecuteScoped(() => Channel.GetRubrics());
         }
 
+        public IEnumerable<Rubric> GetRubricsHierarchy() {
+            return ExecuteScoped(() => Channel.GetRubricsHierarchy());
+        }
+
         public Rubric AddRubric(Rubric rubric) {
             return ExecuteScoped(() => Channel.AddRubric(rubric));
         }

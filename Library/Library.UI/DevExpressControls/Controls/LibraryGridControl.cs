@@ -16,7 +16,7 @@ namespace Library.UI.DevExpressControls.Controls
     public class LibraryGridControl : GridControl
     {
         protected override BaseView CreateDefaultView() {
-            return CreateView("SimpleGridView");
+            return CreateView("LibraryGridView");
         }
 
         protected override void RegisterAvailableViewsCore(InfoCollection collection) {
@@ -79,7 +79,7 @@ namespace Library.UI.DevExpressControls.Controls
 
         protected override string ViewName {
             get {
-                return "SimpleGridView";
+                return "LibraryGridView";
             }
         }
 
@@ -120,7 +120,7 @@ namespace Library.UI.DevExpressControls.Controls
     {
         public override string ViewName {
             get {
-                return "SimpleGridView";
+                return "LibraryGridView";
             }
         }
 

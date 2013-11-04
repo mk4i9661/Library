@@ -21,18 +21,12 @@ namespace Library.WindowsClient
             set;
         }
 
-        [Inject]
-        public IAuthentication AuthenticationProxy {
-            get;
-            set;
-        }
-
         public LibraryForm() {
             InitializeComponent();
         }
 
         protected IAuthentication GetAuthenticationProxy() {
-            return AuthenticationProxy;
+            return Ninject.Get<IAuthentication>();
         }
     }
 }

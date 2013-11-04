@@ -21,6 +21,8 @@ namespace Library.Contracts
         Publisher DeletePublisher(Publisher publisher);
 
         [OperationContract]
+        IEnumerable<Rubric> GetRubricsHierarchy();
+        [OperationContract]
         IEnumerable<Rubric> GetRubrics();
         [OperationContract]
         Rubric AddRubric(Rubric rubric);

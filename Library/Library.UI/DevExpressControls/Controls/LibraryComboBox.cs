@@ -21,7 +21,7 @@ namespace Library.UI.DevExpressControls.Controls
         /// </summary>
         /// <param name="data">Элементы для добавления</param>
         /// <param name="converter">Функция конвертации объекта в его строковое представление</param>
-        public void Bind<T>(List<T> data, Func<T, string> converter) {
+        public void Bind<T>(IEnumerable<T> data, Func<T, string> converter) {
             BeginUpdate();
             Properties.Items.Clear();
             Properties.Items.AddRange((from elem in data
@@ -90,12 +90,12 @@ namespace Library.UI.DevExpressControls.Controls
         /// <summary>
         /// Добавить элементы в выпадающий список, выбрать в соответствии с шаблоном и возвратить выбранный
         /// </summary>
-        public T Bind<T>(List<T> data, Func<T, string> converter, T elem) where T : IEquatable<T> {
+        public T Bind<T>(IEnumerable<T> data, Func<T, string> converter, T elem) where T : IEquatable<T> {
             Bind<T>(data, converter);
             if (elem != null) {
                 elem = data.FirstOrDefault(e => elem.Equals(e));
                 if (elem != null) {
-                    int index = data.IndexOf(elem);
+                    int index = data.ToList().IndexOf(elem);
                     if (index > -1) {
                         EditValue = Properties.Items[index];
                         return GetSelectedElement<T>();
