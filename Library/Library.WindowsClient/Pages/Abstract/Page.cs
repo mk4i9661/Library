@@ -37,6 +37,8 @@ namespace Library.WindowsClient.Pages.Abstract
         void EditClick();
 
         void DeleteClick();
+
+        void ReloadClick();
     }
 
     abstract class Page<TContract, TNecessary, TData> : IPage
@@ -195,6 +197,10 @@ namespace Library.WindowsClient.Pages.Abstract
             } catch (Exception exc) {
                 DialogMessages.Error(exc.Message);
             }
+        }
+
+        public void ReloadClick() {
+            OnLoadData();
         }
 
         protected Task<TData> DeleteData(TData data) {
