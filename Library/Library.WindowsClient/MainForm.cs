@@ -71,10 +71,19 @@ namespace Library.WindowsClient
                     TabPage = xtpRubrics,
                     GridControl = gcRubrics
                 }));
+                Ninject.Bind<BookPage>().ToMethod(method => new BookPage(new BookPage.BookPageParameters() {
+                    RibbonPage = rpBooks,
+                    TabPage = xtpBooks,
+                    GridControl = gcBooks,
+                    RubricItem = beiRubric,
+                    PublisherItem = beiPublisher,
+                    SearchItem = beiSearch
+                }));
 
                 Pages.AddRange(new IPage[] {
                     Ninject.Get<PublishersPage>(),
-                    Ninject.Get<RubricsPage>()
+                    Ninject.Get<RubricsPage>(),
+                    Ninject.Get<BookPage>()
                 });
             }
 
@@ -96,8 +105,12 @@ namespace Library.WindowsClient
             bbiAdd.ItemClick += bbiAdd_ItemClick;
             bbiEdit.ItemClick += bbiEdit_ItemClick;
             bbiDelete.ItemClick += bbiDelete_ItemClick;
+            bbiReload.ItemClick += bbiReload_ItemClick;
         }
 
+        void bbiReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
+            SelectedPage.Do(page => page.ReloadClick());
+        }
 
         void bbiDelete_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e) {
             SelectedPage.Do(page => page.DeleteClick());

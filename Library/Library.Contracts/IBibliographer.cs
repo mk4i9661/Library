@@ -30,5 +30,14 @@ namespace Library.Contracts
         Rubric UpdateRubric(Rubric rubric);
         [OperationContract]
         Rubric DeleteRubric(Rubric rubric);
+
+        [OperationContract]
+        IEnumerable<Book> GetBooks(Rubric rubric = null, Publisher publisher = null, string search = "");
+        [OperationContract]
+        Book AddBook(Book book);
+        [OperationContract]
+        Book UpdateBook(Book book);
+        [OperationContract]
+        Book DeleteBook(Book book);
     }
 }

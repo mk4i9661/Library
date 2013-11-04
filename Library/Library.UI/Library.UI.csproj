@@ -33,6 +33,7 @@
     <Reference Include="DevExpress.Data.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v12.2.Core, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v12.2, Version=12.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -53,6 +54,9 @@
     <Compile Include="DevExpressControls\Controls\LibraryComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DevExpressControls\Controls\LibraryDateEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DevExpressControls\Controls\LibraryGridControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -60,6 +64,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DevExpressControls\Controls\LibraryMemoEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DevExpressControls\Controls\LibraryRibbonComboBox.cs" />
+    <Compile Include="DevExpressControls\Controls\LibraryRibbonTextEdit.cs" />
+    <Compile Include="DevExpressControls\Controls\LibrarySpinEdit.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DevExpressControls\Controls\LibraryTextEdit.cs">

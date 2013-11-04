@@ -81,5 +81,29 @@ namespace Library.Services
             query.Execute();
             return rubric;
         }
+
+
+        public IEnumerable<Book> GetBooks(Rubric rubric = null, Publisher publisher = null, string search = "") {
+            var books = Ninject.Get<GetBooksQuery>().Execute();
+            books = rubric.Return(r => books.Where(b => b.Rubric.Id == r.Id), books);
+            books = publisher.Return(p => books.Where(b => b.Publisher.Id == p.Id), books);
+            books = string.IsNullOrEmpty(search) ? books : from b in books
+                                                           let s = search.ToLower()
+                                                           where b.Name.ToLower().Contains(s) || b.Annotation.ToLower().Contains(s)
+                                                           select b;
+            return books.ToArray();
+        }
+
+        public Book AddBook(Book book) {
+            throw new NotImplementedException();
+        }
+
+        public Book UpdateBook(Book book) {
+            throw new NotImplementedException();
+        }
+
+        public Book DeleteBook(Book book) {
+            throw new NotImplementedException();
+        }
     }
 }
