@@ -28,5 +28,32 @@ namespace Library.DataContracts.Concrete
             get;
             set;
         }
+
+        [DataMember]
+        public List<Rubric> Childs {
+            get;
+            set;
+        }
+
+        static IEnumerable<Rubric> FormTree(Rubric root, IEnumerable<Rubric> rubrics) {
+            var childs = rubrics.Where(r => r.Parent.Id == root.Id).ToArray();
+
+            foreach (var child in childs) {
+                child.Parent = root;
+                child.Childs = FormTree(child, rubrics).ToList();
+            }
+
+            return childs;
+        }
+
+        public static IEnumerable<Rubric> FormTree(IEnumerable<Rubric> source) {
+            var roots = source.Where(s => s.Parent == null);
+            var childs = source.Where(s => s.Parent != null).ToArray();
+
+            foreach (var root in roots) {
+                root.Childs = FormTree(root, childs).ToList();
+            }
+            return roots;
+        }
     }
 }

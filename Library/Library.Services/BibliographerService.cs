@@ -9,10 +9,11 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Ninject;
+using System.Monads;
 
 namespace Library.Services
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class BibliographerService : AbstractService, IBibliographer
     {
         public IEnumerable<Publisher> GetPublishers() {
@@ -40,20 +41,45 @@ namespace Library.Services
             return publisher;
         }
 
+        void ClearTree(IEnumerable<Rubric> rubrics) {
+            foreach (var rubric in rubrics) {
+                rubric.Parent = rubric.Parent == null ? null : new Rubric() {
+                    Id = rubric.Parent.Id,
+                    Name = rubric.Parent.Name,
+                };
+                ClearTree(rubric.Childs);
+            }
+        }
+
         public IEnumerable<Rubric> GetRubrics() {
             return Ninject.Get<GetRubricsQuery>().Execute();
         }
 
+        public IEnumerable<Rubric> GetRubricsHierarchy() {
+            var rubrics = Rubric.FormTree(Ninject.Get<GetRubricsQuery>().Execute()).ToArray();
+            ClearTree(rubrics);
+            return rubrics;
+        }
+
         public Rubric AddRubric(Rubric rubric) {
-            throw new NotImplementedException();
+            var query = Ninject.Get<InsertRubricQuery>();
+            query.Rubric = rubric;
+            query.Execute();
+            return rubric;
         }
 
         public Rubric UpdateRubric(Rubric rubric) {
-            throw new NotImplementedException();
+            var query = Ninject.Get<UpdateRubricQuery>();
+            query.Rubric = rubric;
+            query.Execute();
+            return rubric;
         }
 
         public Rubric DeleteRubric(Rubric rubric) {
-            throw new NotImplementedException();
+            var query = Ninject.Get<DeleteRubricQuery>();
+            query.Rubric = rubric;
+            query.Execute();
+            return rubric;
         }
     }
 }

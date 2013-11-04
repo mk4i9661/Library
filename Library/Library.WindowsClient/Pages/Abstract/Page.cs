@@ -80,10 +80,10 @@ namespace Library.WindowsClient.Pages.Abstract
         }
 
         protected virtual void InitHandlers() {
-            GridControl.Do(c => c.GridView.Do(v => v.RowCellClick += v_RowCellClick));
+            GridControl.Do(c => c.GridView.Do(v => v.RowCellClick += OnRowCellClick));
         }
 
-        void v_RowCellClick(object sender, RowCellClickEventArgs e) {
+        protected virtual void OnRowCellClick(object sender, RowCellClickEventArgs e) {
             if (e.Clicks > 1) {
                 EditClick();
             }
@@ -153,7 +153,7 @@ namespace Library.WindowsClient.Pages.Abstract
             return Ninject.Get<TContract>();
         }
 
-        protected TData GetSelectedRow() {
+        protected virtual TData GetSelectedRow() {
             return GridControl.Return(grid => grid.GridView.GetSelectedRow<TData>(), default(TData));
         }
 

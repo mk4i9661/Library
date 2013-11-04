@@ -61,14 +61,20 @@ namespace Library.WindowsClient
 
         void InitPages() {
             if (IsBibliographer) {
-                Ninject.Bind<PublishersPage>().ToMethod(context => new PublishersPage(new PageParameters {
+                Ninject.Bind<PublishersPage>().ToMethod(method => new PublishersPage(new PageParameters() {
                     RibbonPage = rpPublishers,
                     TabPage = xtpPublishers,
                     GridControl = gcPublishers
                 }));
+                Ninject.Bind<RubricsPage>().ToMethod(method => new RubricsPage(new PageParameters() {
+                    RibbonPage = rpRubrics,
+                    TabPage = xtpRubrics,
+                    GridControl = gcRubrics
+                }));
 
                 Pages.AddRange(new IPage[] {
-                    Ninject.Get<PublishersPage>()
+                    Ninject.Get<PublishersPage>(),
+                    Ninject.Get<RubricsPage>()
                 });
             }
 
@@ -106,9 +112,11 @@ namespace Library.WindowsClient
         }
 
         void rcPages_SelectedPageChanging(object sender, RibbonPageChangingEventArgs e) {
-            var page = rcPages.SelectedPage.Return(p => p.Tag as IPage, null);
+            var page = e.Page.With(p => p.Tag as IPage);
+            xtcPages.SelectedTabPage = page.With(p => p.TabPage);
+
             SelectedPage.Do(p => p.Deactivate());
-            page.Do(p => p.Activate());
+            SelectedPage = page.Do(p => p.Activate());
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
