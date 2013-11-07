@@ -28,9 +28,11 @@ namespace Library.WindowsClient.Infrastructure
             var kernel = new StandardKernel();
             var authenticationPool = new ProxyPool<IAuthentication, AuthenticationProxy>(() => new AuthenticationProxy());
             var bibliographerPool = new ProxyPool<IBibliographer, BibliographerProxy>(() => new BibliographerProxy(Kernel.Get<AuthenticationData>()));
+            var operatorPool = new ProxyPool<IOperator, OperatorProxy>(() => new OperatorProxy(Kernel.Get<AuthenticationData>()));
 
             kernel.Bind<IAuthentication>().ToMethod(method => authenticationPool.Get());
             kernel.Bind<IBibliographer>().ToMethod(method => bibliographerPool.Get());
+            kernel.Bind<IOperator>().ToMethod(method => operatorPool.Get());
             return kernel;
         }
 

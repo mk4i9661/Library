@@ -38,7 +38,7 @@ namespace Library.Server
             }, helper.Host + "Authentication");*/
             var authentication = GetConfiguredHost(typeof(AuthenticationService), typeof(IAuthentication), helper.Host + "Authentication");
             var bibliographer = GetConfiguredHost(typeof(BibliographerService), typeof(IBibliographer), helper.Host + "Bibliographer", new BibliographerInspectorFactory());
-
+            var @operator = GetConfiguredHost(typeof(OperatorService), typeof(IOperator), helper.Host + "Operator", new OperatorInspectorFactory());
             /*var bibliographer = new ServiceHost(typeof(BibliographerService));
             bibliographer.AddServiceEndpoint(typeof(IBibliographer), new NetTcpBinding(SecurityMode.None) {
                 MaxReceivedMessageSize = int.MaxValue,
@@ -53,6 +53,7 @@ namespace Library.Server
 
             authentication.Open();
             bibliographer.Open();
+            @operator.Open();
 
             Console.WriteLine("The services is ready. Press any key to terminate services");
             Console.ReadKey();
