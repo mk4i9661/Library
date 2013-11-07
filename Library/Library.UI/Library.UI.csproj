@@ -104,6 +104,7 @@
     <EmbeddedResource Include="DevExpressControls\Forms\TypedEditForm.resx">
       <DependentUpon>TypedEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library.DataAccess\Library.DataAccess.csproj">

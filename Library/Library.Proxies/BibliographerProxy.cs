@@ -66,22 +66,5 @@ namespace Library.Proxies
         public Book DeleteBook(Book book) {
             return ExecuteScoped(() => Channel.DeleteBook(book));
         }
-
-
-        public IEnumerable<Author> GetAuthors() {
-            return ExecuteScoped(() => Channel.GetAuthors());
-        }
-
-        public Author AddAuthor(Author author) {
-            return ExecuteScoped(() => Channel.AddAuthor(author));
-        }
-
-        public Author UpdateAuthor(Author author) {
-            return ExecuteScoped(() => Channel.UpdateAuthor(author));
-        }
-
-        public Author DeleteAuthor(Author author) {
-            return ExecuteScoped(() => Channel.DeleteAuthor(author));
-        }
     }
 }
