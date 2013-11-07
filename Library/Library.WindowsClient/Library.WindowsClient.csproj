@@ -83,6 +83,10 @@
     <Compile Include="EditForms\PublisherEditForm.Designer.cs">
       <DependentUpon>PublisherEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditForms\ReaderEditForm.cs" />
+    <Compile Include="EditForms\ReaderEditForm.Designer.cs">
+      <DependentUpon>ReaderEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditForms\RubricEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditForms\PublisherEditForm.resx">
       <DependentUpon>PublisherEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditForms\ReaderEditForm.resx">
+      <DependentUpon>ReaderEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditForms\RubricEditForm.resx">
       <DependentUpon>RubricEditForm.cs</DependentUpon>
