@@ -105,5 +105,22 @@ namespace Library.Services
         public Book DeleteBook(Book book) {
             throw new NotImplementedException();
         }
+
+
+        public IEnumerable<Author> GetAuthors() {
+            return Ninject.Get<GetAuthorsQuery>().Execute();
+        }
+
+        public Author AddAuthor(Author author) {
+            throw new NotImplementedException();
+        }
+
+        public Author UpdateAuthor(Author author) {
+            throw new NotImplementedException();
+        }
+
+        public Author DeleteAuthor(Author author) {
+            throw new NotImplementedException();
+        }
     }
 }
