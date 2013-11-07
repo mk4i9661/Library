@@ -44,6 +44,7 @@
     <Compile Include="AuthenticationProxy.cs" />
     <Compile Include="BibliographerProxy.cs" />
     <Compile Include="DisposableProxy.cs" />
+    <Compile Include="OperatorProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -31,6 +31,11 @@ namespace Library.WindowsClient.Infrastructure
 
             kernel.Bind<IAuthentication>().ToMethod(method => authenticationPool.Get());
             kernel.Bind<IBibliographer>().ToMethod(method => bibliographerPool.Get());
+            var operatorPool = new ProxyPool<IOperator, OperatorProxy>(() => new OperatorProxy(Kernel.Get<AuthenticationData>()));
+
+            kernel.Bind<IAuthentication>().ToMethod(method => authenticationPool.Get());
+            kernel.Bind<IBibliographer>().ToMethod(method => bibliographerPool.Get());
+            kernel.Bind<IOperator>().ToMethod(method => operatorPool.Get());
             return kernel;
         }
 

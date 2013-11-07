@@ -52,6 +52,7 @@
     <Compile Include="AuthenticationService.cs" />
     <Compile Include="BibliographerService.cs" />
     <Compile Include="Helpers\ApplicationConfigurationHelper.cs" />
+    <Compile Include="OperatorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\Concrete\AdminRoleInspector.cs" />
     <Compile Include="Validators\Concrete\BibliographerRoleInspector.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Validators\EmployeeValidationBehavior.cs" />
     <Compile Include="Validators\InspectorFactories\Abstract\IRoleInspectorFactory.cs" />
     <Compile Include="Validators\InspectorFactories\Concrete\BibliographerInspectorFactory.cs" />
+    <Compile Include="Validators\InspectorFactories\Concrete\OperatorInspectorFactory.cs" />
     <Compile Include="Validators\RoleValidationBehavior.cs" />
   </ItemGroup>
   <ItemGroup>

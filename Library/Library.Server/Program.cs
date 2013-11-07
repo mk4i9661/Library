@@ -22,37 +22,14 @@ namespace Library.Server
         /// </summary>
         [STAThread]
         static void Main() {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
             var helper = GetHelper();
-
-            /*var authentication = new ServiceHost(typeof(AuthenticationService));
-            authentication.AddServiceEndpoint(typeof(IAuthentication), new NetTcpBinding(SecurityMode.None) {
-                MaxReceivedMessageSize = int.MaxValue,
-                MaxBufferSize = int.MaxValue,
-                CloseTimeout = TimeSpan.MaxValue,
-                SendTimeout = TimeSpan.MaxValue,
-                ReceiveTimeout = TimeSpan.MaxValue,
-                OpenTimeout = TimeSpan.MaxValue,
-            }, helper.Host + "Authentication");*/
             var authentication = GetConfiguredHost(typeof(AuthenticationService), typeof(IAuthentication), helper.Host + "Authentication");
             var bibliographer = GetConfiguredHost(typeof(BibliographerService), typeof(IBibliographer), helper.Host + "Bibliographer", new BibliographerInspectorFactory());
-
-            /*var bibliographer = new ServiceHost(typeof(BibliographerService));
-            bibliographer.AddServiceEndpoint(typeof(IBibliographer), new NetTcpBinding(SecurityMode.None) {
-                MaxReceivedMessageSize = int.MaxValue,
-                MaxBufferSize = int.MaxValue,
-                CloseTimeout = TimeSpan.MaxValue,
-                SendTimeout = TimeSpan.MaxValue,
-                ReceiveTimeout = TimeSpan.MaxValue,
-                OpenTimeout = TimeSpan.MaxValue,
-            }, helper.Host + "Bibliographer").EndpointBehaviors.Add(new RoleValidationBehavior() {
-                Factory = new BibliographerInspectorFactory()
-            });*/
+            var @operator = GetConfiguredHost(typeof(OperatorService), typeof(IOperator), helper.Host + "Operator", new OperatorInspectorFactory());
 
             authentication.Open();
             bibliographer.Open();
+            @operator.Open();
 
             Console.WriteLine("The services is ready. Press any key to terminate services");
             Console.ReadKey();
