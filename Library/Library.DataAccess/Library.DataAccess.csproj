@@ -51,6 +51,7 @@
     <Compile Include="DBInterop\Queries\Concrete\GetBooksQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetEmployeesQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetPublishersQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\GetReadersQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetRubricsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\PublisherQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\RubricQuery.cs" />
