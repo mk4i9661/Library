@@ -83,7 +83,9 @@
     <Compile Include="EditForms\PublisherEditForm.Designer.cs">
       <DependentUpon>PublisherEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditForms\ReaderEditForm.cs" />
+    <Compile Include="EditForms\ReaderEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditForms\ReaderEditForm.Designer.cs">
       <DependentUpon>ReaderEditForm.cs</DependentUpon>
     </Compile>
