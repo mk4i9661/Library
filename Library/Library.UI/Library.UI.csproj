@@ -105,12 +105,6 @@
       <DependentUpon>TypedEditForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Library.DataAccess\Library.DataAccess.csproj">
-      <Project>{edcaf598-458d-4497-8a18-61f0faa57d6a}</Project>
-      <Name>Library.DataAccess</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

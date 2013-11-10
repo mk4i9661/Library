@@ -3,26 +3,26 @@ using System.Runtime.Serialization;
 namespace Library.DataContracts.Abstract
 {
     [DataContract]
-    public abstract class UniqueObject<T, V> : IUniqueObject<T, V>
+    public abstract class UniqueObject<TIdentificator, TObject> : IUniqueObject<TIdentificator, TObject>
     {
         protected UniqueObject() {
 
         }
 
-        protected UniqueObject(T id) {
+        protected UniqueObject(TIdentificator id) {
             Id = id;
         }
 
         [DataMember]
-        public T Id {
+        public TIdentificator Id {
             get;
             set;
         }
 
-        public abstract int CompareTo(V other);
+        public abstract int CompareTo(TObject other);
 
-        public abstract bool Equals(V other);
+        public abstract bool Equals(TObject other);
 
-        public abstract int Compare(V x, V y);
+        public abstract int Compare(TObject x, TObject y);
     }
 }

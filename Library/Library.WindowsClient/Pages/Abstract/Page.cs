@@ -159,6 +159,10 @@ namespace Library.WindowsClient.Pages.Abstract
             return GridControl.Return(grid => grid.GridView.GetSelectedRow<TData>(), default(TData));
         }
 
+        protected virtual TData GetRow(int index) {
+            return GridControl.Return(grid => grid.GridView.GetRow<TData>(index), default(TData));
+        }
+
         protected void ShowEditForm(TData data, EditFormOperation operation) {
             if (data != null) {
                 var form = CreateEditForm();
@@ -168,11 +172,15 @@ namespace Library.WindowsClient.Pages.Abstract
                         form.Operation = operation;
                         if (form.ShowDialog() == DialogResult.OK) {
                             var result = form.Data;
-                            OnLoadData(() => GridControl.GridView.SelectRow(result));
+                            OnLoadData(() => AfterModifyDataOperation(result));
                         }
                     }
                 }
             }
+        }
+
+        protected virtual void AfterModifyDataOperation(TData data) {
+            GridControl.GridView.SelectRow(data);
         }
 
         public virtual void AddClick() {

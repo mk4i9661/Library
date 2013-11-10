@@ -80,6 +80,12 @@
     <Compile Include="EditForms\BookEditForm.Designer.cs">
       <DependentUpon>BookEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditForms\BookQuantityInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditForms\BookQuantityInputDialog.Designer.cs">
+      <DependentUpon>BookQuantityInputDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditForms\LibraryEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,12 @@
     </Compile>
     <Compile Include="EditForms\ReaderEditForm.Designer.cs">
       <DependentUpon>ReaderEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditForms\RequestEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditForms\RequestEditForm.Designer.cs">
+      <DependentUpon>RequestEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EditForms\RubricEditForm.cs">
       <SubType>Form</SubType>
@@ -135,11 +147,17 @@
     <EmbeddedResource Include="EditForms\BookEditForm.resx">
       <DependentUpon>BookEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditForms\BookQuantityInputDialog.resx">
+      <DependentUpon>BookQuantityInputDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditForms\PublisherEditForm.resx">
       <DependentUpon>PublisherEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditForms\ReaderEditForm.resx">
       <DependentUpon>ReaderEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditForms\RequestEditForm.resx">
+      <DependentUpon>RequestEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditForms\RubricEditForm.resx">
       <DependentUpon>RubricEditForm.cs</DependentUpon>

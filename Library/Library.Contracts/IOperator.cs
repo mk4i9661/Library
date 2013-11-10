@@ -24,8 +24,17 @@ namespace Library.Contracts
         IEnumerable<Card> GetCards();
 
         [OperationContract]
-        IEnumerable<Request> GetRequests();
+        IEnumerable<RequestHeader> GetRequestHeaders();
         [OperationContract]
-        Request AddRequest(Request request);
+        RequestHeader CreateRequest(Card card, IEnumerable<Request> requests);
+        [OperationContract]
+        IEnumerable<RequestApproved> GetApprovedRequests(RequestHeader request);
+        [OperationContract]
+        IEnumerable<RequestRejected> GetRejectedRequests(RequestHeader request);
+        
+        [OperationContract]
+        IEnumerable<Book> GetBooks();
+        [OperationContract]
+        IEnumerable<Author> GetBookAuthors(Book book);
     }
 }

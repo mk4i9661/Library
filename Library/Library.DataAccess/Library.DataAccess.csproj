@@ -50,15 +50,19 @@
     <Compile Include="DBInterop\Queries\Abstract\AbstractQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\BookAuthorQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\BookQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\GenerateRequestIdQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\GetApprovedRequestsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetAuthorsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetBooksQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetCardsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetEmployeesQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetPublishersQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetReadersQuery.cs" />
-    <Compile Include="DBInterop\Queries\Concrete\GetRequestsQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\GetRejectedRequestsQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\GetRequestHeadersQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetRubricsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\PublisherQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\RequestQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\RubricQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

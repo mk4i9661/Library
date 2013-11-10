@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Ninject;
 using Library.DataAccess.DBInterop.Queries.Concrete;
 using Library.DataContracts.Concrete;
+using Library.DataAccess.DBInterop.Executors;
 
 namespace Library.Services
 {
@@ -16,19 +17,19 @@ namespace Library.Services
     public class OperatorService : AbstractService, IOperator
     {
 
-        public IEnumerable<DataContracts.Concrete.Reader> GetReaders() {
+        public IEnumerable<Reader> GetReaders() {
             return Ninject.Get<GetReadersQuery>().Execute();
         }
 
-        public DataContracts.Concrete.Reader AddReader(DataContracts.Concrete.Reader reader) {
+        public Reader AddReader(Reader reader) {
             throw new NotImplementedException();
         }
 
-        public DataContracts.Concrete.Reader UpdateReader(DataContracts.Concrete.Reader reader) {
+        public Reader UpdateReader(Reader reader) {
             throw new NotImplementedException();
         }
 
-        public DataContracts.Concrete.Reader DeleteReader(DataContracts.Concrete.Reader reader) {
+        public Reader DeleteReader(Reader reader) {
             throw new NotImplementedException();
         }
 
@@ -36,12 +37,57 @@ namespace Library.Services
             return Ninject.Get<GetCardsQuery>().Execute();
         }
 
-        public IEnumerable<Request> GetRequests() {
-            return Ninject.Get<GetRequestsQuery>().Execute();
+        public IEnumerable<RequestHeader> GetRequestHeaders() {
+            return Ninject.Get<GetRequestHeadersQuery>().Execute();
         }
 
-        public Request AddRequest(Request request) {
-            throw new NotImplementedException();
+        public RequestHeader CreateRequest(Card card, IEnumerable<Request> requests) {
+            if (requests == null || !requests.Any()) {
+                throw new Exception("Для создания запроса необходимо выбрать хотя бы одну книгу");
+            }
+            var executor = Ninject.Get<Executor>();
+            var id = Ninject.Get<GenerateRequestIdQuery>().Execute();
+            var provider = Factory.Get();
+
+            foreach(var r in requests){
+                r.Id = new RequestHeader(){
+                    Id = id,
+                    Card = card
+                };
+            }
+
+            executor.ExecuteNonQueries(from r in requests
+                                       select new InsertRequestQuery(provider) {
+                                           Request = r
+                                       });
+
+            return new RequestHeader() {
+                Id = id,
+                Card = card,
+                CreateDate = DateTime.Now
+            };
+        }
+
+        public IEnumerable<RequestApproved> GetApprovedRequests(RequestHeader request) {
+            var query = Ninject.Get<GetApprovedRequestsQuery>();
+            query.Request = request;
+            return query.Execute();
+        }
+
+        public IEnumerable<RequestRejected> GetRejectedRequests(RequestHeader request) {
+            var query = Ninject.Get<GetRejectedRequestsQuery>();
+            query.Request = request;
+            return query.Execute();
+        }
+
+        public IEnumerable<Book> GetBooks() {
+            return Ninject.Get<GetBooksQuery>().Execute();
+        }
+
+        public IEnumerable<Author> GetBookAuthors(Book book) {
+            var query = Ninject.Get<GetBookAuthorsQuery>();
+            query.Book = book;
+            return query.Execute();
         }
     }
 }

@@ -33,12 +33,28 @@ namespace Library.Proxies
             return ExecuteScoped(() => Channel.GetCards());
         }
 
-        public IEnumerable<Request> GetRequests() {
-            return ExecuteScoped(() => Channel.GetRequests());
+        public IEnumerable<RequestHeader> GetRequestHeaders() {
+            return ExecuteScoped(() => Channel.GetRequestHeaders());
         }
 
-        public Request AddRequest(Request request) {
-            return ExecuteScoped(() => Channel.AddRequest(request));
+        public RequestHeader CreateRequest(Card card, IEnumerable<Request> requests) {
+            return ExecuteScoped(() => Channel.CreateRequest(card, requests));
+        }
+
+        public IEnumerable<RequestApproved> GetApprovedRequests(RequestHeader request) {
+            return ExecuteScoped(() => Channel.GetApprovedRequests(request));
+        }
+
+        public IEnumerable<RequestRejected> GetRejectedRequests(RequestHeader request) {
+            return ExecuteScoped(() => Channel.GetRejectedRequests(request));
+        }
+
+        public IEnumerable<Book> GetBooks() {
+            return ExecuteScoped(() => Channel.GetBooks());
+        }
+
+        public IEnumerable<Author> GetBookAuthors(Book book) {
+            return ExecuteScoped(() => Channel.GetBookAuthors(book));
         }
     }
 }

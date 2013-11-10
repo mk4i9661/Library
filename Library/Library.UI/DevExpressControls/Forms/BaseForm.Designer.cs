@@ -31,6 +31,7 @@ namespace Library.UI.DevExpressControls.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(552, 395);
             this.KeyPreview = true;
             this.Name = "BaseForm";

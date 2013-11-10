@@ -88,10 +88,12 @@ namespace Library.WindowsClient
                 });
             }
             if (IsOperator) {
-                Ninject.Bind<RequestPage>().ToMethod(method => new RequestPage(new PageParameters() {
+                Ninject.Bind<RequestPage>().ToMethod(method => new RequestPage(new RequestPage.RequestPageParameters() {
                     RibbonPage = rpRequests,
                     TabPage = xtpRequests,
-                    GridControl = gcRequests
+                    GridControl = gcRequests,
+                    RenewalItem = bbiRenewal,
+                    ReturnItem = bbiReturn
                 }));
 
                 Pages.AddRange(new IPage[] {
