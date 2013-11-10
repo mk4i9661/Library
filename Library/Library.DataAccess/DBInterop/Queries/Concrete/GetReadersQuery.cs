@@ -6,19 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using Oracle.DataAccess.Client;
 
 namespace Library.DataAccess.DBInterop.Queries.Concrete
 {
     public class GetReadersQuery : TableQuery<Reader>
     {
-        const string Query = @"SELECT reader_passport_id,reader_first_name,reader_last_name,reader_middle_name,reader_address,reader_phone FROM reader";
+        const string Query = @"select reader_passport_id, reader_first_name, reader_last_name, reader_middle_name, reader_address, reader_phone from reader";
+        
         public GetReadersQuery(ConnectionProvider provider)
-            : base(provider) { 
+            : base(provider) {
         }
-        public override Reader Read(System.Data.DataRow row)
-        {
-            return new Reader()
-            {
+
+        public override Reader Read(System.Data.DataRow row) {
+            return new Reader() {
                 Id = Convert.ToInt32(row.Field<decimal>("reader_passport_id")),
                 FirstName = row.Field<string>("reader_first_name"),
                 LastName = row.Field<string>("reader_last_name"),
@@ -28,9 +29,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
             };
         }
 
-        public override Oracle.DataAccess.Client.OracleCommand CreateSqlCommand()
-        {
-            return new Oracle.DataAccess.Client.OracleCommand(Query);
+        public override OracleCommand CreateOracleCommand() {
+            return new OracleCommand(Query);
         }
     }
 }

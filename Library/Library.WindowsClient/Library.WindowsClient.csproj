@@ -68,6 +68,12 @@
     <Compile Include="EditForms\AuthorEditForm.Designer.cs">
       <DependentUpon>AuthorEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditForms\BookAuthorEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditForms\BookAuthorEditForm.Designer.cs">
+      <DependentUpon>BookAuthorEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditForms\BookEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,9 @@
     <Compile Include="Pages\Concrete\RubricsPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EditForms\BookAuthorEditForm.resx">
+      <DependentUpon>BookAuthorEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditForms\BookEditForm.resx">
       <DependentUpon>BookEditForm.cs</DependentUpon>
     </EmbeddedResource>

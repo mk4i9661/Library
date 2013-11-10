@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Library.UI.DevExpressControls.Controls
 {
@@ -28,11 +29,20 @@ namespace Library.UI.DevExpressControls.Controls
         /// </summary>
         public event EventHandler TextChanged;
 
+        public event KeyEventHandler KeyDown;
+
         public LibraryRibbonTextEdit(BarEditItem beiItem) {
             this.beiItem = beiItem;
             riteItem = (RepositoryItemTextEdit)beiItem.Edit;
             riteItem.EditValueChanged += new EventHandler(Edit_EditValueChanged);
+            riteItem.KeyDown += OnKeyDown;
             Text = string.Empty;
+        }
+
+        void OnKeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
+            if (KeyDown != null) {
+                KeyDown(this, e);
+            }
         }
 
         void Edit_EditValueChanged(object sender, EventArgs e) {

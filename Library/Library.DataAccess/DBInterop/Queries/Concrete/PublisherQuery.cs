@@ -24,7 +24,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
 
         protected abstract string GetQuery();
 
-        public override OracleCommand CreateSqlCommand() {
+        public override OracleCommand CreateOracleCommand() {
             var command = new OracleCommand(GetQuery());
             command.Parameters.Add(":name", Publisher.Name);
             command.Parameters.Add(":location", Publisher.Location);
@@ -42,8 +42,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
             : base(provider) {
         }
 
-        public override OracleCommand CreateSqlCommand() {
-            var command = base.CreateSqlCommand();
+        public override OracleCommand CreateOracleCommand() {
+            var command = base.CreateOracleCommand();
             command.Parameters.Add(":id", OracleDbType.Decimal, ParameterDirection.ReturnValue);
             return command;
         }
@@ -91,7 +91,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
             return Query;
         }
 
-        public override OracleCommand CreateSqlCommand() {
+        public override OracleCommand CreateOracleCommand() {
             var command = new OracleCommand(GetQuery());
             command.Parameters.Add(":publisher_id", Publisher.Id);
             return command;

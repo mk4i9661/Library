@@ -14,6 +14,7 @@ namespace Library.WindowsClient
             this.bbiEdit = new DevExpress.XtraBars.BarButtonItem();
             this.bbiDelete = new DevExpress.XtraBars.BarButtonItem();
             this.beiSearch = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.beiRubric = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.beiPublisher = new DevExpress.XtraBars.BarEditItem();
@@ -37,6 +38,12 @@ namespace Library.WindowsClient
             this.xtpBooks = new DevExpress.XtraTab.XtraTabPage();
             this.gcBooks = new Library.UI.DevExpressControls.Controls.LibraryGridControl();
             this.libraryGridView3 = new Library.UI.DevExpressControls.Controls.LibraryGridView();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtpPublishers = new DevExpress.XtraTab.XtraTabPage();
             this.gcPublishers = new Library.UI.DevExpressControls.Controls.LibraryGridControl();
             this.libraryGridView1 = new Library.UI.DevExpressControls.Controls.LibraryGridView();
@@ -46,8 +53,9 @@ namespace Library.WindowsClient
             this.gcRubrics = new Library.UI.DevExpressControls.Controls.LibraryGridControl();
             this.libraryGridView2 = new Library.UI.DevExpressControls.Controls.LibraryGridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.bbiAuthors = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcPages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtcPages)).BeginInit();
@@ -61,7 +69,6 @@ namespace Library.WindowsClient
             this.xtpRubrics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcRubrics)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.libraryGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // rcPages
@@ -77,10 +84,11 @@ namespace Library.WindowsClient
             this.beiSearch,
             this.beiRubric,
             this.beiPublisher,
-            this.bbiReload});
+            this.bbiReload,
+            this.bbiAuthors});
             this.rcPages.Location = new System.Drawing.Point(0, 0);
             this.rcPages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rcPages.MaxItemId = 9;
+            this.rcPages.MaxItemId = 10;
             this.rcPages.Name = "rcPages";
             this.rcPages.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpReaders,
@@ -127,6 +135,11 @@ namespace Library.WindowsClient
             this.beiSearch.Id = 4;
             this.beiSearch.Name = "beiSearch";
             this.beiSearch.Width = 150;
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
             // beiRubric
             // 
@@ -196,6 +209,7 @@ namespace Library.WindowsClient
             this.ribbonPageGroup3.ItemLinks.Add(this.bbiAdd);
             this.ribbonPageGroup3.ItemLinks.Add(this.bbiEdit);
             this.ribbonPageGroup3.ItemLinks.Add(this.bbiDelete);
+            this.ribbonPageGroup3.ItemLinks.Add(this.bbiAuthors);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.ShowCaptionButton = false;
             this.ribbonPageGroup3.Text = "Редактирование";
@@ -309,6 +323,13 @@ namespace Library.WindowsClient
             this.libraryGridView3.Appearance.HeaderPanel.Options.UseFont = true;
             this.libraryGridView3.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9F);
             this.libraryGridView3.Appearance.Row.Options.UseFont = true;
+            this.libraryGridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9});
             this.libraryGridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
             this.libraryGridView3.GridControl = this.gcBooks;
             this.libraryGridView3.Name = "libraryGridView3";
@@ -323,6 +344,56 @@ namespace Library.WindowsClient
             this.libraryGridView3.OptionsMenu.EnableGroupPanelMenu = false;
             this.libraryGridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.libraryGridView3.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Рубрика";
+            this.gridColumn4.FieldName = "Rubric";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 0;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Издательство";
+            this.gridColumn5.FieldName = "Publisher";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 1;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Название";
+            this.gridColumn6.FieldName = "Name";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 2;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Год издания";
+            this.gridColumn7.DisplayFormat.FormatString = "yyyy";
+            this.gridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.gridColumn7.FieldName = "ImprintDate";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 3;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "Число страниц";
+            this.gridColumn8.FieldName = "PageQuantity";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 4;
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "Число книг";
+            this.gridColumn9.FieldName = "BookQuantity";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 5;
             // 
             // xtpPublishers
             // 
@@ -433,10 +504,11 @@ namespace Library.WindowsClient
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 0;
             // 
-            // repositoryItemTextEdit1
+            // bbiAuthors
             // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            this.bbiAuthors.Caption = "Авторы";
+            this.bbiAuthors.Id = 9;
+            this.bbiAuthors.Name = "bbiAuthors";
             // 
             // MainForm
             // 
@@ -448,6 +520,7 @@ namespace Library.WindowsClient
             this.Name = "MainForm";
             this.Text = "Система \"Библиотека\"";
             ((System.ComponentModel.ISupportInitialize)(this.rcPages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtcPages)).EndInit();
@@ -461,7 +534,6 @@ namespace Library.WindowsClient
             this.xtpRubrics.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcRubrics)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.libraryGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -504,5 +576,12 @@ namespace Library.WindowsClient
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraBars.BarButtonItem bbiAuthors;
     }
 }

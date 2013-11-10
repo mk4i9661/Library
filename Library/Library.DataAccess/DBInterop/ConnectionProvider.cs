@@ -43,6 +43,25 @@ namespace Library.DataAccess.DBInterop
             }
         }
 
+        public virtual void ExecuteNonQueries(IEnumerable<OracleCommand> commands) {
+            using (var connection = CreateConnection()) {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction()) {
+                    try {
+                        foreach (var command in commands) {
+                            command.Connection = connection;
+                            command.Transaction = transaction;
+                            command.ExecuteNonQuery();
+                        }
+                    } catch (Exception exc) {
+                        transaction.Rollback();
+                        throw exc;
+                    }
+                    transaction.Commit();
+                }
+            }
+        }
+
         public virtual DataSet ExecuteTable(OracleCommand command) {
             using (var connection = CreateConnection()) {
                 connection.Open();

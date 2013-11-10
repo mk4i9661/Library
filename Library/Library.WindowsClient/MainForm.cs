@@ -77,7 +77,8 @@ namespace Library.WindowsClient
                     GridControl = gcBooks,
                     RubricItem = beiRubric,
                     PublisherItem = beiPublisher,
-                    SearchItem = beiSearch
+                    SearchItem = beiSearch,
+                    AuthorsButton = bbiAuthors
                 }));
 
                 Pages.AddRange(new IPage[] {

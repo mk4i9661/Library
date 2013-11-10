@@ -50,6 +50,20 @@ namespace Library.WindowsClient.EditForms
             data.Annotation = Annotation;
         }
 
+        protected override void OnValidateFormFields() {
+            ValidateControl(cbRubric, Rubric == null, "Рубрика должна быть задана");
+            ValidateControl(cbPublisher, Publisher == null, "Издатель должен быть задан");
+            ValidateControl(teName, string.IsNullOrEmpty(BookName), "Название книги должно быть задано");
+        }
+
+        protected override Book InsertOperation(Book data) {
+            return GetProxy().AddBook(data);
+        }
+
+        protected override Book UpdateOperation(Book data) {
+            return GetProxy().UpdateBook(data);
+        }
+
         Rubric Rubric {
             get {
                 return cbRubric.GetSelectedElement<Rubric>();

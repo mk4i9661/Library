@@ -27,7 +27,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
             };
         }
 
-        public override OracleCommand CreateSqlCommand() {
+        public override OracleCommand CreateOracleCommand() {
             return new OracleCommand(Query);
         }
     }

@@ -39,6 +39,10 @@ namespace Library.Contracts
         Book UpdateBook(Book book);
         [OperationContract]
         Book DeleteBook(Book book);
+        [OperationContract]
+        IEnumerable<Author> GetBookAuthors(Book book);
+        [OperationContract]
+        IEnumerable<Author> SetBookAuthors(Book book, IEnumerable<Author> authors);
 
         [OperationContract]
         IEnumerable<Author> GetAuthors();

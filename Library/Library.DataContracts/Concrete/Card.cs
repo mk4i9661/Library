@@ -1,36 +1,32 @@
-﻿using System;
+﻿using Library.DataContracts.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using Library.DataContracts.Abstract;
 
 namespace Library.DataContracts.Concrete
 {
     [DataContract]
-    public class Publisher : UniqueObjectInt<Publisher>
+    public class Card : UniqueObjectInt<Card>
     {
         [DataMember]
-        public string Name {
+        public Reader Reader {
             get;
             set;
         }
 
         [DataMember]
-        public string Location {
+        public DateTime IssueDate {
             get;
             set;
         }
 
         [DataMember]
-        public string Description {
+        public DateTime ExpiryDate {
             get;
             set;
-        }
-
-        public override string ToString() {
-            return Name;
         }
     }
 }

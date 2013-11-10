@@ -46,9 +46,13 @@
     <Compile Include="DBInterop\Accessors\Abstract\AbstractAccessor.cs" />
     <Compile Include="DBInterop\ConnectionProvider.cs" />
     <Compile Include="DBInterop\ConnectionProviderFactory.cs" />
+    <Compile Include="DBInterop\Executors\Executor.cs" />
     <Compile Include="DBInterop\Queries\Abstract\AbstractQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\BookAuthorQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\BookQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetAuthorsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetBooksQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\GetCardsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetEmployeesQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetPublishersQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetReadersQuery.cs" />

@@ -19,5 +19,11 @@ namespace Library.Contracts
         Reader UpdateReader(Reader reader);
         [OperationContract]
         Reader DeleteReader(Reader reader);
+
+        [OperationContract]
+        IEnumerable<Card> GetCards();
+
+        [OperationContract]
+        Request AddRequest(Request request);
     }
 }

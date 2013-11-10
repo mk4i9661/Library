@@ -25,7 +25,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
 
         protected abstract string GetQuery();
 
-        public override OracleCommand CreateSqlCommand() {
+        public override OracleCommand CreateOracleCommand() {
             var command = new OracleCommand(GetQuery());
             command.Parameters.Add(":parent_id", Rubric.Parent == null ? (object)DBNull.Value : Rubric.Parent.Id);
             command.Parameters.Add(":name", Rubric.Name);
@@ -44,8 +44,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
 
         }
 
-        public override OracleCommand CreateSqlCommand() {
-            var command = base.CreateSqlCommand();
+        public override OracleCommand CreateOracleCommand() {
+            var command = base.CreateOracleCommand();
             command.Parameters.Add(":id", OracleDbType.Decimal, ParameterDirection.ReturnValue);
             return command;
         }
@@ -92,7 +92,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
             return Query;
         }
 
-        public override OracleCommand CreateSqlCommand() {
+        public override OracleCommand CreateOracleCommand() {
             var command = new OracleCommand(Query);
             command.Parameters.Add(":rubric_id", Rubric.Id);
             return command;

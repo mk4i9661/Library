@@ -12,6 +12,7 @@ using System.Monads;
 using Library.UI.DevExpressControls.Forms;
 using Library.WindowsClient.EditForms;
 using Ninject;
+using System.Windows.Forms;
 
 namespace Library.WindowsClient.Pages.Concrete
 {
@@ -49,6 +50,56 @@ namespace Library.WindowsClient.Pages.Concrete
             SearchItem = new LibraryRibbonTextEdit(parameters.SearchItem);
             PublisherItem = new LibraryRibbonComboBox(parameters.PublisherItem);
             RubricItem = new LibraryRibbonComboBox(parameters.RubricItem);
+
+            SearchItem.KeyDown += SearchItem_KeyDown;
+            PublisherItem.EditValueChanged += PublisherItem_EditValueChanged;
+            RubricItem.EditValueChanged += RubricItem_EditValueChanged;
+            parameters.AuthorsButton.ItemClick += AuthorsButton_ItemClick;
+        }
+
+        void AuthorsButton_ItemClick(object sender, ItemClickEventArgs e) {
+            GetSelectedRow().Do(LoadAuthors);
+        }
+
+        void OnEndLoadAuthors(Book book, IEnumerable<Author> bookAuthors, IEnumerable<Author> authors) {
+            Ninject.Rebind<BookAuthorEditForm>().ToMethod(method => {
+                return new BookAuthorEditForm(book, authors) {
+                    Data = bookAuthors,
+                    Operation = EditFormOperation.Insert
+                };
+            });
+            using (var form = Ninject.Get<BookAuthorEditForm>()) {
+                form.ShowDialog();
+            }
+        }
+
+        Task<IEnumerable<Author>> GetAuthors(Book book) {
+            return Task.Factory.StartNew(() => GetProxy().GetBookAuthors(book));
+        }
+
+        Task<IEnumerable<Author>> GetAuthors() {
+            return Task.Factory.StartNew(() => GetProxy().GetAuthors());
+        }
+
+        void LoadAuthors(Book book) {
+            var bookAuthors = GetAuthors(book);
+            var authors = GetAuthors();
+            Task.WaitAll(bookAuthors, authors);
+            OnEndLoadAuthors(book, bookAuthors.Result, authors.Result);
+        }
+
+        void SearchItem_KeyDown(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.Enter) {
+                OnLoadData();
+            }
+        }
+
+        void RubricItem_EditValueChanged(object sender, EventArgs e) {
+            OnLoadData();
+        }
+
+        void PublisherItem_EditValueChanged(object sender, EventArgs e) {
+            OnLoadData();
         }
 
         protected override BookPage.LoadNecessaryData LoadNecessaryDataOperation() {
@@ -92,12 +143,18 @@ namespace Library.WindowsClient.Pages.Concrete
         protected override Book CreateDefaultRow() {
             return new Book() {
                 Publisher = Publisher,
-                Rubric = Rubric
+                Rubric = Rubric,
+                PageQuantity = 1,
+                ImprintDate = DateTime.Now
             };
         }
 
         protected override TypedEditForm<Book> CreateEditForm() {
             return Ninject.Get<BookEditForm>();
+        }
+
+        protected override Book DeleteOperation(Book data) {
+            return GetProxy().DeleteBook(data);
         }
 
         Rubric Rubric {
@@ -144,6 +201,11 @@ namespace Library.WindowsClient.Pages.Concrete
             }
 
             public BarEditItem RubricItem {
+                get;
+                set;
+            }
+
+            public BarButtonItem AuthorsButton {
                 get;
                 set;
             }

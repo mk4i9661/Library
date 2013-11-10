@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Library.DataAccess.DBInterop;
 using Library.Services.Helpers;
 using Ninject;
+using Library.DataAccess.DBInterop.Executors;
 
 namespace Library.Services.Abstract
 {

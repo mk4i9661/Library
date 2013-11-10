@@ -68,11 +68,9 @@ DROP TABLE Book_Author;
 CREATE TABLE Book_Author(
 	Book_Author_Book_ID	INT NOT NULL,
 	Book_Author_Author_ID INT NOT NULL,
-	Book_Author_Edition INT NOT NULL,
 	PRIMARY KEY (Book_Author_Book_ID, Book_Author_Author_ID),
 	FOREIGN KEY (Book_Author_Book_ID) REFERENCES Book ON DELETE CASCADE,
-	FOREIGN KEY (Book_Author_Author_ID) REFERENCES Author ON DELETE CASCADE,
-	CHECK(Book_Author_Edition > 0)
+	FOREIGN KEY (Book_Author_Author_ID) REFERENCES Author ON DELETE CASCADE
 );
 
 DROP TABLE Request;
@@ -150,3 +148,4 @@ CREATE TABLE Employee(
 
 CREATE SEQUENCE Publisher_Sequence;
 CREATE SEQUENCE Rubric_Sequence;
+CREATE SEQUENCE Book_Sequence;

@@ -147,7 +147,7 @@
             // sePageQuantity
             // 
             this.sePageQuantity.EditValue = new decimal(new int[] {
-            0,
+            1,
             0,
             0,
             0});
@@ -161,6 +161,11 @@
             this.sePageQuantity.Properties.Mask.EditMask = "F0";
             this.sePageQuantity.Properties.MaxValue = new decimal(new int[] {
             2000000000,
+            0,
+            0,
+            0});
+            this.sePageQuantity.Properties.MinValue = new decimal(new int[] {
+            1,
             0,
             0,
             0});

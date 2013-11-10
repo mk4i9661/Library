@@ -55,5 +55,9 @@ namespace Library.DataContracts.Concrete
             }
             return roots;
         }
+
+        public override string ToString() {
+            return Name;
+        }
     }
 }

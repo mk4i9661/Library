@@ -49,9 +49,11 @@
     <Compile Include="Concrete\AuthenticationHeader.cs" />
     <Compile Include="Concrete\Author.cs" />
     <Compile Include="Concrete\Book.cs" />
+    <Compile Include="Concrete\Card.cs" />
     <Compile Include="Concrete\Employee.cs" />
     <Compile Include="Concrete\Publisher.cs" />
     <Compile Include="Concrete\Reader.cs" />
+    <Compile Include="Concrete\Request.cs" />
     <Compile Include="Concrete\Role.cs" />
     <Compile Include="Concrete\Rubric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -23,7 +23,7 @@ namespace Library.DataAccess.DBInterop.Queries.Abstract
 
         protected abstract void ExecuteQuery(OracleCommand command);
 
-        public abstract OracleCommand CreateSqlCommand();
+        public abstract OracleCommand CreateOracleCommand();
     }
 
     public abstract class NoValueQuery : AbstractQuery
@@ -34,7 +34,7 @@ namespace Library.DataAccess.DBInterop.Queries.Abstract
         }
 
         public override void ExecuteQuery() {
-            ExecuteQuery(CreateSqlCommand());
+            ExecuteQuery(CreateOracleCommand());
         }
 
         protected override void ExecuteQuery(OracleCommand command) {
@@ -64,7 +64,7 @@ namespace Library.DataAccess.DBInterop.Queries.Abstract
         }
 
         public override void ExecuteQuery() {
-            ExecuteQuery(CreateSqlCommand());
+            ExecuteQuery(CreateOracleCommand());
         }
     }
 

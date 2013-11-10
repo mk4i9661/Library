@@ -28,8 +28,32 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
             };
         }
 
-        public override OracleCommand CreateSqlCommand() {
+        public override OracleCommand CreateOracleCommand() {
             return new OracleCommand(Query);
+        }
+    }
+
+    public class GetBookAuthorsQuery : GetAuthorsQuery
+    {
+        const string Query = @"select 
+                                  a.author_id, a.author_first_name, a.author_last_name, a.author_middle_name, a.author_biography 
+                                from book_author ba
+                                inner join author a on ba.book_author_author_id = a.author_id
+                                where book_author_book_id = :book_id";
+
+        public GetBookAuthorsQuery(ConnectionProvider provider)
+            : base(provider) {
+        }
+
+        public Book Book {
+            get;
+            set;
+        }
+
+        public override OracleCommand CreateOracleCommand() {
+            var command = new OracleCommand(Query);
+            command.Parameters.Add(":book_id", Book.Id);
+            return command;
         }
     }
 }
