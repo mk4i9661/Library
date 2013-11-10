@@ -9,6 +9,12 @@ namespace Library.WindowsClient
     partial class MainForm
     {
         private void InitializeComponent() {
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            this.libraryGridView5 = new Library.UI.DevExpressControls.Controls.LibraryGridView();
+            this.gcRequests = new Library.UI.DevExpressControls.Controls.LibraryGridControl();
+            this.libraryGridView6 = new Library.UI.DevExpressControls.Controls.LibraryGridView();
+            this.libraryGridView4 = new Library.UI.DevExpressControls.Controls.LibraryGridView();
             this.rcPages = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.bbiAdd = new DevExpress.XtraBars.BarButtonItem();
             this.bbiEdit = new DevExpress.XtraBars.BarButtonItem();
@@ -20,6 +26,7 @@ namespace Library.WindowsClient
             this.beiPublisher = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.bbiReload = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiAuthors = new DevExpress.XtraBars.BarButtonItem();
             this.rpReaders = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpCards = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpBooks = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -32,6 +39,7 @@ namespace Library.WindowsClient
             this.rpRubrics = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpRequests = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.xtcPages = new DevExpress.XtraTab.XtraTabControl();
             this.xtpReaders = new DevExpress.XtraTab.XtraTabPage();
             this.xtpCards = new DevExpress.XtraTab.XtraTabPage();
@@ -53,7 +61,13 @@ namespace Library.WindowsClient
             this.gcRubrics = new Library.UI.DevExpressControls.Controls.LibraryGridControl();
             this.libraryGridView2 = new Library.UI.DevExpressControls.Controls.LibraryGridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.bbiAuthors = new DevExpress.XtraBars.BarButtonItem();
+            this.xtpRequests = new DevExpress.XtraTab.XtraTabPage();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.libraryGridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcRequests)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.libraryGridView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.libraryGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rcPages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
@@ -69,7 +83,95 @@ namespace Library.WindowsClient
             this.xtpRubrics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcRubrics)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.libraryGridView2)).BeginInit();
+            this.xtpRequests.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // libraryGridView5
+            // 
+            this.libraryGridView5.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.libraryGridView5.Appearance.HeaderPanel.Options.UseFont = true;
+            this.libraryGridView5.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.libraryGridView5.Appearance.Row.Options.UseFont = true;
+            this.libraryGridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
+            this.libraryGridView5.GridControl = this.gcRequests;
+            this.libraryGridView5.Name = "libraryGridView5";
+            this.libraryGridView5.OptionsBehavior.Editable = false;
+            this.libraryGridView5.OptionsBehavior.ReadOnly = true;
+            this.libraryGridView5.OptionsCustomization.AllowFilter = false;
+            this.libraryGridView5.OptionsCustomization.AllowQuickHideColumns = false;
+            this.libraryGridView5.OptionsDetail.AllowZoomDetail = false;
+            this.libraryGridView5.OptionsDetail.ShowDetailTabs = false;
+            this.libraryGridView5.OptionsMenu.EnableColumnMenu = false;
+            this.libraryGridView5.OptionsMenu.EnableFooterMenu = false;
+            this.libraryGridView5.OptionsMenu.EnableGroupPanelMenu = false;
+            this.libraryGridView5.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.libraryGridView5.OptionsView.ShowGroupPanel = false;
+            // 
+            // gcRequests
+            // 
+            this.gcRequests.Dock = System.Windows.Forms.DockStyle.Fill;
+            gridLevelNode1.LevelTemplate = this.libraryGridView5;
+            gridLevelNode1.RelationName = "RequestApproved";
+            gridLevelNode2.LevelTemplate = this.libraryGridView6;
+            gridLevelNode2.RelationName = "RequestRejected";
+            this.gcRequests.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1,
+            gridLevelNode2});
+            this.gcRequests.Location = new System.Drawing.Point(0, 0);
+            this.gcRequests.MainView = this.libraryGridView4;
+            this.gcRequests.MenuManager = this.rcPages;
+            this.gcRequests.Name = "gcRequests";
+            this.gcRequests.Size = new System.Drawing.Size(1194, 438);
+            this.gcRequests.TabIndex = 0;
+            this.gcRequests.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.libraryGridView6,
+            this.libraryGridView4,
+            this.libraryGridView5});
+            // 
+            // libraryGridView6
+            // 
+            this.libraryGridView6.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.libraryGridView6.Appearance.HeaderPanel.Options.UseFont = true;
+            this.libraryGridView6.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.libraryGridView6.Appearance.Row.Options.UseFont = true;
+            this.libraryGridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
+            this.libraryGridView6.GridControl = this.gcRequests;
+            this.libraryGridView6.Name = "libraryGridView6";
+            this.libraryGridView6.OptionsBehavior.Editable = false;
+            this.libraryGridView6.OptionsBehavior.ReadOnly = true;
+            this.libraryGridView6.OptionsCustomization.AllowFilter = false;
+            this.libraryGridView6.OptionsCustomization.AllowQuickHideColumns = false;
+            this.libraryGridView6.OptionsDetail.AllowZoomDetail = false;
+            this.libraryGridView6.OptionsDetail.ShowDetailTabs = false;
+            this.libraryGridView6.OptionsMenu.EnableColumnMenu = false;
+            this.libraryGridView6.OptionsMenu.EnableFooterMenu = false;
+            this.libraryGridView6.OptionsMenu.EnableGroupPanelMenu = false;
+            this.libraryGridView6.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.libraryGridView6.OptionsView.ShowGroupPanel = false;
+            // 
+            // libraryGridView4
+            // 
+            this.libraryGridView4.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.libraryGridView4.Appearance.HeaderPanel.Options.UseFont = true;
+            this.libraryGridView4.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.libraryGridView4.Appearance.Row.Options.UseFont = true;
+            this.libraryGridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn10,
+            this.gridColumn11});
+            this.libraryGridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
+            this.libraryGridView4.GridControl = this.gcRequests;
+            this.libraryGridView4.Name = "libraryGridView4";
+            this.libraryGridView4.OptionsBehavior.Editable = false;
+            this.libraryGridView4.OptionsBehavior.ReadOnly = true;
+            this.libraryGridView4.OptionsCustomization.AllowFilter = false;
+            this.libraryGridView4.OptionsCustomization.AllowQuickHideColumns = false;
+            this.libraryGridView4.OptionsDetail.AllowZoomDetail = false;
+            this.libraryGridView4.OptionsDetail.ShowDetailTabs = false;
+            this.libraryGridView4.OptionsMenu.EnableColumnMenu = false;
+            this.libraryGridView4.OptionsMenu.EnableFooterMenu = false;
+            this.libraryGridView4.OptionsMenu.EnableGroupPanelMenu = false;
+            this.libraryGridView4.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.libraryGridView4.OptionsView.ShowGroupPanel = false;
             // 
             // rcPages
             // 
@@ -95,7 +197,8 @@ namespace Library.WindowsClient
             this.rpCards,
             this.rpBooks,
             this.rpPublishers,
-            this.rpRubrics});
+            this.rpRubrics,
+            this.rpRequests});
             this.rcPages.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1,
             this.repositoryItemComboBox2,
@@ -177,6 +280,12 @@ namespace Library.WindowsClient
             this.bbiReload.Id = 8;
             this.bbiReload.LargeGlyph = global::Library.WindowsClient.Properties.Resources.refresh;
             this.bbiReload.Name = "bbiReload";
+            // 
+            // bbiAuthors
+            // 
+            this.bbiAuthors.Caption = "Авторы";
+            this.bbiAuthors.Id = 9;
+            this.bbiAuthors.Name = "bbiAuthors";
             // 
             // rpReaders
             // 
@@ -271,6 +380,11 @@ namespace Library.WindowsClient
             this.ribbonPageGroup2.ShowCaptionButton = false;
             this.ribbonPageGroup2.Text = "Редактирование";
             // 
+            // rpRequests
+            // 
+            this.rpRequests.Name = "rpRequests";
+            this.rpRequests.Text = "Запросы книг";
+            // 
             // xtcPages
             // 
             this.xtcPages.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -284,7 +398,8 @@ namespace Library.WindowsClient
             this.xtpCards,
             this.xtpBooks,
             this.xtpPublishers,
-            this.xtpRubrics});
+            this.xtpRubrics,
+            this.xtpRequests});
             // 
             // xtpReaders
             // 
@@ -504,11 +619,27 @@ namespace Library.WindowsClient
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 0;
             // 
-            // bbiAuthors
+            // xtpRequests
             // 
-            this.bbiAuthors.Caption = "Авторы";
-            this.bbiAuthors.Id = 9;
-            this.bbiAuthors.Name = "bbiAuthors";
+            this.xtpRequests.Controls.Add(this.gcRequests);
+            this.xtpRequests.Name = "xtpRequests";
+            this.xtpRequests.Size = new System.Drawing.Size(1194, 438);
+            this.xtpRequests.Text = "Запросы книг";
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "№ карты";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 0;
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "Дата создания";
+            this.gridColumn11.FieldName = "CreateDate";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 1;
             // 
             // MainForm
             // 
@@ -519,6 +650,10 @@ namespace Library.WindowsClient
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.Text = "Система \"Библиотека\"";
+            ((System.ComponentModel.ISupportInitialize)(this.libraryGridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcRequests)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.libraryGridView6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.libraryGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rcPages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
@@ -534,6 +669,7 @@ namespace Library.WindowsClient
             this.xtpRubrics.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcRubrics)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.libraryGridView2)).EndInit();
+            this.xtpRequests.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -583,5 +719,13 @@ namespace Library.WindowsClient
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraBars.BarButtonItem bbiAuthors;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rpRequests;
+        private DevExpress.XtraTab.XtraTabPage xtpRequests;
+        private UI.DevExpressControls.Controls.LibraryGridControl gcRequests;
+        private UI.DevExpressControls.Controls.LibraryGridView libraryGridView5;
+        private UI.DevExpressControls.Controls.LibraryGridView libraryGridView6;
+        private UI.DevExpressControls.Controls.LibraryGridView libraryGridView4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
     }
 }

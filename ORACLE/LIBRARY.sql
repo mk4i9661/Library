@@ -81,8 +81,8 @@ CREATE TABLE Request(
 	Request_Book_Quantity INT NOT NULL,
 	Request_Create_Date DATE DEFAULT SYSDATE,
 	PRIMARY KEY (Request_ID, Request_Book_ID),
-	FOREIGN KEY (Request_ID) REFERENCES Book ON DELETE CASCADE,
-	FOREIGN KEY (Request_Card_ID) REFERENCES Card ON DELETE CASCADE,
+	FOREIGN KEY (Request_Book_ID) REFERENCES Book(Book_ID) ON DELETE CASCADE,
+	FOREIGN KEY (Request_Card_ID) REFERENCES Card(Card_ID) ON DELETE CASCADE,
 	CHECK(Request_Book_Quantity > 0)
 );
 

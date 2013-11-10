@@ -24,6 +24,8 @@ namespace Library.Contracts
         IEnumerable<Card> GetCards();
 
         [OperationContract]
+        IEnumerable<Request> GetRequests();
+        [OperationContract]
         Request AddRequest(Request request);
     }
 }

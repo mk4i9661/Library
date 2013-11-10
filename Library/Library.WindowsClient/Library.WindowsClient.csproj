@@ -125,6 +125,7 @@
     <Compile Include="Pages\Concrete\BookPage.cs" />
     <Compile Include="Pages\Concrete\PublishersPage.cs" />
     <Compile Include="Pages\Concrete\ReaderPage.cs" />
+    <Compile Include="Pages\Concrete\RequestPage.cs" />
     <Compile Include="Pages\Concrete\RubricsPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

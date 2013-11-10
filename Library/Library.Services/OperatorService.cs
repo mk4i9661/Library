@@ -36,6 +36,10 @@ namespace Library.Services
             return Ninject.Get<GetCardsQuery>().Execute();
         }
 
+        public IEnumerable<Request> GetRequests() {
+            return Ninject.Get<GetRequestsQuery>().Execute();
+        }
+
         public Request AddRequest(Request request) {
             throw new NotImplementedException();
         }

@@ -33,6 +33,10 @@ namespace Library.Proxies
             return ExecuteScoped(() => Channel.GetCards());
         }
 
+        public IEnumerable<Request> GetRequests() {
+            return ExecuteScoped(() => Channel.GetRequests());
+        }
+
         public Request AddRequest(Request request) {
             return ExecuteScoped(() => Channel.AddRequest(request));
         }

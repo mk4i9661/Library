@@ -16,5 +16,10 @@ namespace Library.DataContracts.Concrete
             get;
             set;
         }
+
+        public DateTime CreateDate {
+            get;
+            set;
+        }
     }
 }

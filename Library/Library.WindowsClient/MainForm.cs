@@ -87,6 +87,17 @@ namespace Library.WindowsClient
                     Ninject.Get<BookPage>()
                 });
             }
+            if (IsOperator) {
+                Ninject.Bind<RequestPage>().ToMethod(method => new RequestPage(new PageParameters() {
+                    RibbonPage = rpRequests,
+                    TabPage = xtpRequests,
+                    GridControl = gcRequests
+                }));
+
+                Pages.AddRange(new IPage[] {
+                    Ninject.Get<RequestPage>()
+                });
+            }
 
             xtcPages.ShowTabHeader = DefaultBoolean.False;
             xtcPages.TabPages.Clear();
