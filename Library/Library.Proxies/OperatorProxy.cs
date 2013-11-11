@@ -33,8 +33,8 @@ namespace Library.Proxies
             return ExecuteScoped(() => Channel.GetCards());
         }
 
-        public IEnumerable<RequestHeader> GetRequestHeaders() {
-            return ExecuteScoped(() => Channel.GetRequestHeaders());
+        public IEnumerable<RequestHeader> GetRequestHeaders(Card card = null, string search = "") {
+            return ExecuteScoped(() => Channel.GetRequestHeaders(card, search));
         }
 
         public RequestHeader CreateRequest(Card card, IEnumerable<Request> requests) {

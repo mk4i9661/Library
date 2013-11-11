@@ -13,22 +13,35 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
     public class GetRequestHeadersQuery : TableQuery<RequestHeader>
     {
         const string Query = @"select
-                                  r.request_id, r.request_card_id, r.request_create_date, (case when ra.c is null then 0 else 1 end) as has_approved, (case when rr.c is null then 0 else 1 end) as has_rejected
-                                from(
-                                  select 
-                                    distinct request_id, request_card_id, request_create_date
-                                  from request
-                                ) r
-                                left join (
-                                  select ra.request_approved_request_id, count(ra.request_approved_request_id) as c from request_approved ra group by ra.request_approved_request_id
-                                ) ra on r.request_id = ra.request_approved_request_id
-                                left join (
-                                  select rr.request_rejected_request_id, count(rr.request_rejected_request_id) as c from request_rejected rr group by rr.request_rejected_request_id
-                                ) rr on r.request_id = rr.request_rejected_request_id";
+                                    distinct r.request_id, r.request_card_id, r.request_create_date, (case when ra.c is null then 0 else 1 end) as has_approved, (case when rr.c is null then 0 else 1 end) as has_rejected
+                                  from(
+                                    select 
+                                      distinct request_id, request_card_id, request_create_date, request_book_id
+                                    from request
+                                  ) r
+                                  left join (
+                                    select ra.request_approved_request_id, count(ra.request_approved_request_id) as c from request_approved ra group by ra.request_approved_request_id
+                                  ) ra on r.request_id = ra.request_approved_request_id
+                                  left join (
+                                    select rr.request_rejected_request_id, count(rr.request_rejected_request_id) as c from request_rejected rr group by rr.request_rejected_request_id
+                                  ) rr on r.request_id = rr.request_rejected_request_id
+                                  inner join book b on r.request_book_id = b.book_id
+                                  where (:card_id is null or r.request_card_id = :card_id) and (:book_name is null or lower(b.book_name) like '%'||lower(:book_name)||'%')
+                                  order by r.request_card_id, r.request_create_date desc";
 
         public GetRequestHeadersQuery(ConnectionProvider provider)
             : base(provider) {
 
+        }
+
+        public Card Card {
+            get;
+            set;
+        }
+
+        public string Search {
+            get;
+            set;
         }
 
         public override RequestHeader Read(DataRow row) {
@@ -44,7 +57,12 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
         }
 
         public override OracleCommand CreateOracleCommand() {
-            return new OracleCommand(Query);
+            var command = new OracleCommand(Query);
+            command.Parameters.Add(":card_id", Card == null ? (object)DBNull.Value : Card.Id);
+            command.Parameters.Add(":card_id", Card == null ? (object)DBNull.Value : Card.Id);
+            command.Parameters.Add(":book_name", string.IsNullOrEmpty(Search) ? (object)DBNull.Value : Search);
+            command.Parameters.Add(":book_name", string.IsNullOrEmpty(Search) ? (object)DBNull.Value : Search);
+            return command;
         }
     }
 }

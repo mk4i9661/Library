@@ -12,7 +12,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
 {
     public class GetReadersQuery : TableQuery<Reader>
     {
-        const string Query = @"select reader_passport_id, reader_first_name, reader_last_name, reader_middle_name, reader_address, reader_phone from reader";
+        const string Query = @"select reader_passport_id, reader_first_name, reader_last_name, reader_middle_name, reader_address, reader_phone from reader order by reader_last_name, reader_first_name, reader_middle_name";
         
         public GetReadersQuery(ConnectionProvider provider)
             : base(provider) {

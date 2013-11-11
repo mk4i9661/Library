@@ -12,7 +12,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
 {
     public class GetPublishersQuery : TableQuery<Publisher>
     {
-        const string Query = @"select publisher_id, publisher_name, publisher_location, publisher_description from publisher";
+        const string Query = @"select publisher_id, publisher_name, publisher_location, publisher_description from publisher order by publisher_name";
 
         public GetPublishersQuery(ConnectionProvider provider)
             : base(provider) {

@@ -92,10 +92,12 @@ namespace Library.WindowsClient
                     RibbonPage = rpRequests,
                     TabPage = xtpRequests,
                     GridControl = gcRequests,
-                    RenewalItem = bbiRenewal,
+                    RenewItem = bbiRenewal,
                     ReturnItem = bbiReturn,
                     GridViewApprovedRequests = gvApprovedRequests,
-                    GridViewRejectedRequests = gvRejectedRequests
+                    GridViewRejectedRequests = gvRejectedRequests,
+                    CardItem = beiCard,
+                    SearchItem = beiSearch
                 }));
 
                 Pages.AddRange(new IPage[] {
@@ -109,7 +111,8 @@ namespace Library.WindowsClient
                     GridControl = gcReportBooks,
                     PublisherItem = beiPublisher,
                     RubricItem = beiRubric,
-                    SearchItem = beiSearch
+                    SearchItem = beiSearch,
+                    ObligatorsItem = bciObligors
                 }));
 
                 Pages.AddRange(new IPage[] {

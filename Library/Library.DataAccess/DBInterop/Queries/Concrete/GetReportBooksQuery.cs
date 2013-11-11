@@ -32,7 +32,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                                   from request_approved ra 
                                   inner join request r on ra.request_approved_request_id = r.request_id and ra.request_approved_book_id = r.request_book_id
                                   where ra.request_approved_is_returned = 0 and ra.request_approved_return_date < sysdate group by ra.request_approved_book_id
-                                ) delayed on b.book_id = delayed.request_approved_book_id";
+                                ) delayed on b.book_id = delayed.request_approved_book_id
+                                order by r.rubric_name, p.publisher_name, book_name";
 
         public GetReportBooksQuery(ConnectionProvider provider)
             : base(provider) {

@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using Ninject;
 using Library.UI.DevExpressControls.Controls;
 using System.Drawing;
+using System.Monads;
+using System.Windows.Forms;
 
 namespace Library.WindowsClient.Pages.Concrete
 {
@@ -38,6 +40,26 @@ namespace Library.WindowsClient.Pages.Concrete
             set;
         }
 
+        BarButtonItem ReturnItem {
+            get;
+            set;
+        }
+
+        BarButtonItem RenewItem {
+            get;
+            set;
+        }
+
+        LibraryRibbonTextEdit SearchItem {
+            get;
+            set;
+        }
+
+        LibraryRibbonComboBox CardItem {
+            get;
+            set;
+        }
+
         public RequestPage(RequestPageParameters parameters)
             : base(parameters) {
             Books = new List<Book>();
@@ -45,16 +67,37 @@ namespace Library.WindowsClient.Pages.Concrete
 
             GridViewApprovedRequests = parameters.GridViewApprovedRequests;
             GridViewRejectedRequests = parameters.GridViewRejectedRequests;
+            ReturnItem = parameters.ReturnItem;
+            RenewItem = parameters.RenewItem;
+            SearchItem = new LibraryRibbonTextEdit(parameters.SearchItem);
+            CardItem = new LibraryRibbonComboBox(parameters.CardItem);
 
-            parameters.ReturnItem.ItemClick += ReturnItem_ItemClick;
-            parameters.RenewalItem.ItemClick += RenewalItem_ItemClick;
+            GridControl.GridView.OptionsDetail.AllowExpandEmptyDetails = true;
+            GridControl.GridView.OptionsDetail.ShowDetailTabs = true;
+
+            InitHandlers();
+        }
+
+        void InitHandlers() {
+            ReturnItem.ItemClick += ReturnItem_ItemClick;
+            RenewItem.ItemClick += RenewalItem_ItemClick;
             GridControl.GridView.MasterRowGetRelationCount += GridView_MasterRowGetRelationCount;
             GridControl.GridView.MasterRowGetChildList += GridView_MasterRowGetChildList;
             GridControl.GridView.MasterRowGetRelationName += GridView_MasterRowGetRelationName;
             GridControl.GridView.MasterRowGetRelationDisplayCaption += GridView_MasterRowGetRelationDisplayCaption;
             GridControl.GridView.MasterRowEmpty += GridView_MasterRowEmpty;
-            GridControl.GridView.OptionsDetail.AllowExpandEmptyDetails = true;
-            GridControl.GridView.OptionsDetail.ShowDetailTabs = true;
+            SearchItem.KeyDown += SearchItem_KeyDown;
+            CardItem.EditValueChanged += CardItem_EditValueChanged;
+        }
+
+        void CardItem_EditValueChanged(object sender, EventArgs e) {
+            OnLoadData();
+        }
+
+        void SearchItem_KeyDown(object sender, KeyEventArgs e) {
+            if (e.KeyCode == Keys.Enter) {
+                OnLoadData();
+            }
         }
 
         void GridView_MasterRowEmpty(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventArgs e) {
@@ -199,13 +242,16 @@ namespace Library.WindowsClient.Pages.Concrete
         }
 
         protected override IEnumerable<RequestHeader> LoadDataOperation() {
-            return GetProxy().GetRequestHeaders();
+            return GetProxy().GetRequestHeaders(Card, Search);
         }
 
         protected override RequestPage.LoadNecessaryDataWrap LoadNecessaryDataOperation() {
+            var books = Task.Factory.StartNew(() => GetProxy().GetBooks());
+            var cards = Task.Factory.StartNew(() => GetProxy().GetCards());
+            Task.WaitAll(books, cards);
             return new LoadNecessaryDataWrap() {
-                Books = GetProxy().GetBooks(),
-                Cards = GetProxy().GetCards()
+                Books = books.Result,
+                Cards = cards.Result
             };
         }
 
@@ -213,6 +259,12 @@ namespace Library.WindowsClient.Pages.Concrete
             base.OnEndLoadNecessaryData(result);
             Cards = result.Cards;
             Books = result.Books;
+
+            var cards = result.Cards.ToList();
+            cards.Insert(0, new Card() {
+                Id = -1
+            });
+            CardItem.Bind(cards, c => c.Id == -1 ? "Все" : string.Format("{0} ({1} {2} {3})", c.Id, c.Reader.LastName, c.Reader.FirstName, c.Reader.MiddleName), Card);
         }
 
         protected override RequestHeader CreateDefaultRow() {
@@ -225,6 +277,18 @@ namespace Library.WindowsClient.Pages.Concrete
 
         public override void EditClick() {
 
+        }
+
+        string Search {
+            get {
+                return SearchItem.Text.Trim().ToLower();
+            }
+        }
+
+        Card Card {
+            get {
+                return CardItem.GetSelectedElement<Card>().IfNot(p => p.Id == -1);
+            }
         }
 
         internal class LoadNecessaryDataWrap
@@ -319,7 +383,7 @@ namespace Library.WindowsClient.Pages.Concrete
                 set;
             }
 
-            public BarButtonItem RenewalItem {
+            public BarButtonItem RenewItem {
                 get;
                 set;
             }
@@ -330,6 +394,16 @@ namespace Library.WindowsClient.Pages.Concrete
             }
 
             public LibraryGridView GridViewApprovedRequests {
+                get;
+                set;
+            }
+
+            public BarEditItem CardItem {
+                get;
+                set;
+            }
+
+            public BarEditItem SearchItem {
                 get;
                 set;
             }

@@ -12,7 +12,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
 {
     public class GetAuthorsQuery : TableQuery<Author>
     {
-        const string Query = @"select author_id, author_first_name, author_last_name, author_middle_name, author_biography from author";
+        const string Query = @"select author_id, author_first_name, author_last_name, author_middle_name, author_biography from author order by author_last_name, author_first_name, author_middle_name";
 
         public GetAuthorsQuery(ConnectionProvider provider)
             : base(provider) {
@@ -39,7 +39,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                                   a.author_id, a.author_first_name, a.author_last_name, a.author_middle_name, a.author_biography 
                                 from book_author ba
                                 inner join author a on ba.book_author_author_id = a.author_id
-                                where book_author_book_id = :book_id";
+                                where book_author_book_id = :book_id
+                                order by author_last_name, author_first_name, author_middle_name";
 
         public GetBookAuthorsQuery(ConnectionProvider provider)
             : base(provider) {

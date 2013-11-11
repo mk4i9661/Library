@@ -16,7 +16,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                                 r.rubric_id, r.rubric_name, r.rubric_description,
                                 r.rubric_parent_id, p.rubric_name as parent_name, p.rubric_description as parent_description
                             from rubric r
-                            left join rubric p on r.rubric_parent_id = p.rubric_id";
+                            left join rubric p on r.rubric_parent_id = p.rubric_id
+                            order by r.rubric_name";
 
         /*const string Query = @"select
                                     r.rubric_id, r.rubric_name, r.rubric_description,

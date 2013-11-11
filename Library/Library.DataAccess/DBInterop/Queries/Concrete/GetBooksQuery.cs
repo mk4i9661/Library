@@ -22,7 +22,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                                 inner join publisher p on b.book_publisher_id = p.publisher_id
                                 left join (
                                   select book_author_book_id, count(book_author_book_id) as c from book_author ba group by ba.book_author_book_id
-                                ) bc on b.book_id = bc.book_author_book_id";
+                                ) bc on b.book_id = bc.book_author_book_id
+                                order by r.rubric_name, p.publisher_name, book_name";
 
         public GetBooksQuery(ConnectionProvider provider)
             : base(provider) {

@@ -44,5 +44,17 @@ namespace Library.Services
         public IEnumerable<Rubric> GetRubrics() {
             return Ninject.Get<GetRubricsQuery>().Execute();
         }
+
+        public IEnumerable<Reader> GetBookHolders(Book book) {
+            var query = Ninject.Get<GetBookHoldersQuery>();
+            query.Book = book;
+            return query.Execute();
+        }
+
+        public IEnumerable<Reader> GetBookObligators(Book book) {
+            var query = Ninject.Get<GetBookObligatorsQuery>();
+            query.Book = book;
+            return query.Execute();
+        }
     }
 }

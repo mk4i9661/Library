@@ -17,5 +17,9 @@ namespace Library.Contracts
         IEnumerable<Publisher> GetPublishers();
         [OperationContract]
         IEnumerable<Rubric> GetRubrics();
+        [OperationContract]
+        IEnumerable<Reader> GetBookHolders(Book book);
+        [OperationContract]
+        IEnumerable<Reader> GetBookObligators(Book book);
     }
 }

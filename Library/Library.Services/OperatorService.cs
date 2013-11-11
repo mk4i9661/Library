@@ -39,8 +39,11 @@ namespace Library.Services
             return Ninject.Get<GetCardsQuery>().Execute();
         }
 
-        public IEnumerable<RequestHeader> GetRequestHeaders() {
-            return Ninject.Get<GetRequestHeadersQuery>().Execute();
+        public IEnumerable<RequestHeader> GetRequestHeaders(Card card = null, string search = "") {
+            var query = Ninject.Get<GetRequestHeadersQuery>();
+            query.Card = card;
+            query.Search = (search ?? string.Empty).Trim();
+            return query.Execute();
         }
 
         public RequestHeader CreateRequest(Card card, IEnumerable<Request> requests) {

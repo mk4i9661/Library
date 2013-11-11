@@ -16,7 +16,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                               r.reader_passport_id, r.reader_first_name, r.reader_middle_name, r.reader_last_name,
                               c.card_id, c.card_issue_date, c.card_expiry_date
                             from card c 
-                            inner join reader r on c.card_reader_passport_id = r.reader_passport_id";
+                            inner join reader r on c.card_reader_passport_id = r.reader_passport_id
+                            order by card_id";
 
         public GetCardsQuery(ConnectionProvider provider)
             : base(provider) {

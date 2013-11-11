@@ -25,5 +25,13 @@ namespace Library.Proxies
         public IEnumerable<Rubric> GetRubrics() {
             return ExecuteScoped(() => Channel.GetRubrics());
         }
+
+        public IEnumerable<Reader> GetBookHolders(Book book) {
+            return ExecuteScoped(() => Channel.GetBookHolders(book));
+        }
+
+        public IEnumerable<Reader> GetBookObligators(Book book) {
+            return ExecuteScoped(() => Channel.GetBookObligators(book));
+        }
     }
 }

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Monads;
+using Library.UI.DevExpressControls.Forms;
 
 namespace Library.WindowsClient.Pages.Concrete
 {
@@ -40,6 +41,11 @@ namespace Library.WindowsClient.Pages.Concrete
             set;
         }
 
+        BarCheckItem ObligatorsItem {
+            get;
+            set;
+        }
+
         public ReportBookPage(ReportBookPageParameters parameters)
             : base(parameters) {
             Publishers = new List<Publisher>();
@@ -47,10 +53,79 @@ namespace Library.WindowsClient.Pages.Concrete
             SearchItem = new LibraryRibbonTextEdit(parameters.SearchItem);
             PublisherItem = new LibraryRibbonComboBox(parameters.PublisherItem);
             RubricItem = new LibraryRibbonComboBox(parameters.RubricItem);
+            ObligatorsItem = parameters.ObligatorsItem;
 
+            GridControl.GridView.OptionsDetail.AllowExpandEmptyDetails = true;
+
+            InitHandlers();
+        }
+
+        void InitHandlers() {
             SearchItem.KeyDown += SearchItem_KeyDown;
             PublisherItem.EditValueChanged += PublisherItem_EditValueChanged;
             RubricItem.EditValueChanged += RubricItem_EditValueChanged;
+            ObligatorsItem.ItemClick += ObligatorsItem_ItemClick;
+            GridControl.GridView.MasterRowGetRelationCount += GridView_MasterRowGetRelationCount;
+            GridControl.GridView.MasterRowGetChildList += GridView_MasterRowGetChildList;
+            GridControl.GridView.MasterRowGetRelationName += GridView_MasterRowGetRelationName;
+            GridControl.GridView.MasterRowEmpty += GridView_MasterRowEmpty;
+            GridControl.GridView.MasterRowExpanding += GridView_MasterRowExpanding;
+        }
+
+        void ObligatorsItem_ItemClick(object sender, ItemClickEventArgs e) {
+            GridControl.GridView.BeginDataUpdate();
+            GridControl.GridView.CollapseAllDetails();
+            GridControl.GridView.EndDataUpdate();
+        }
+
+        async void GridView_MasterRowGetChildList(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventArgs e) {
+            var book = GetRow(e.RowHandle);
+            if (book != null) {
+                try {
+                    var readers = new List<Reader>();
+                    e.ChildList = readers;
+                    readers.AddRange(IncludeObligators ? await GetBookObligators(book) : await GetBookHolders(book));
+                    var view = GridControl.GridView.GetDetailView(e.RowHandle, 0);
+                    view.BeginDataUpdate();
+                    view.EndDataUpdate();
+                } catch (Exception exc) {
+                    DialogMessages.Error(exc.Message);
+                }
+            }
+        }
+
+        Task<IEnumerable<Reader>> GetBookHolders(Book book) {
+            return Task.Factory.StartNew(() => GetProxy().GetBookHolders(book));
+        }
+
+        Task<IEnumerable<Reader>> GetBookObligators(Book book) {
+            return Task.Factory.StartNew(() => GetProxy().GetBookObligators(book));
+        }
+
+        void GridView_MasterRowExpanding(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowCanExpandEventArgs e) {
+            var row = GetRow(e.RowHandle);
+            if (row != null) {
+                if (IncludeObligators) {
+                    e.Allow = row.DelayedBookQuantity != 0;
+                } else {
+                    e.Allow = row.TakenBookQuantity != 0;
+                }
+            } else {
+                e.Allow = false;
+            }
+        }
+
+        void GridView_MasterRowGetRelationCount(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationCountEventArgs e) {
+            e.RelationCount = 1;
+        }
+
+        void GridView_MasterRowGetRelationName(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationNameEventArgs e) {
+            e.RelationName = "Readers";
+        }
+
+        void GridView_MasterRowEmpty(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventArgs e) {
+            var row = GetRow(e.RowHandle);
+            e.IsEmpty = row == null || row.TakenBookQuantity == 0 || IncludeObligators && (row.DelayedBookQuantity == 0);
         }
 
         void SearchItem_KeyDown(object sender, KeyEventArgs e) {
@@ -121,6 +196,12 @@ namespace Library.WindowsClient.Pages.Concrete
             }
         }
 
+        bool IncludeObligators {
+            get {
+                return ObligatorsItem.Checked;
+            }
+        }
+
         internal class LoadNecessaryData
         {
             public IEnumerable<Publisher> Publishers {
@@ -147,6 +228,11 @@ namespace Library.WindowsClient.Pages.Concrete
             }
 
             public BarEditItem RubricItem {
+                get;
+                set;
+            }
+
+            public BarCheckItem ObligatorsItem {
                 get;
                 set;
             }

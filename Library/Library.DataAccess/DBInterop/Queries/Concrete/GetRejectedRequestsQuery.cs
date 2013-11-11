@@ -21,7 +21,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                             inner join request r on rr.request_rejected_request_id = r.request_id and rr.request_rejected_book_id = r.request_book_id
                             inner join book b on r.request_book_id = b.book_id
                             inner join reject_reason rrn on rr.request_rejected_reason_id = rrn.reject_reason_id
-                            where r.request_id = :id";
+                            where r.request_id = :id
+                            order by b.book_name";
 
         public RequestHeader Request {
             get;

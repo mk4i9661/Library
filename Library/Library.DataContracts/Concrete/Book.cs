@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace Library.DataContracts.Concrete
 {
     [DataContract]
+    [KnownType(typeof(ReportBook))]
     public class Book : UniqueObjectInt<Book>
     {
         [DataMember]

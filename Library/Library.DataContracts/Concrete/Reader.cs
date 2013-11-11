@@ -12,36 +12,31 @@ namespace Library.DataContracts.Concrete
     public class Reader : UniqueObjectInt<Reader>
     {
         [DataMember]
-        public string FirstName
-        {
+        public string FirstName {
             get;
             set;
         }
 
         [DataMember]
-        public string LastName
-        {
+        public string LastName {
             get;
             set;
         }
 
         [DataMember]
-        public string MiddleName
-        {
+        public string MiddleName {
             get;
             set;
         }
 
         [DataMember]
-        public string Address
-        {
+        public string Address {
             get;
             set;
         }
 
         [DataMember]
-        public string Phone
-        {
+        public string Phone {
             get;
             set;
         }

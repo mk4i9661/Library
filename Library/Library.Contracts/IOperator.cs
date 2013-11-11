@@ -24,7 +24,7 @@ namespace Library.Contracts
         IEnumerable<Card> GetCards();
 
         [OperationContract]
-        IEnumerable<RequestHeader> GetRequestHeaders();
+        IEnumerable<RequestHeader> GetRequestHeaders(Card card = null, string search = "");
         [OperationContract]
         RequestHeader CreateRequest(Card card, IEnumerable<Request> requests);
         [OperationContract]

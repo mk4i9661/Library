@@ -19,7 +19,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                             from request_approved ra
                             inner join request r on ra.request_approved_request_id = r.request_id and ra.request_approved_book_id = r.request_book_id
                             inner join book b on r.request_book_id = b.book_id
-                            where r.request_id = :id";
+                            where r.request_id = :id
+                            order by b.book_name";
 
         public GetApprovedRequestsQuery(ConnectionProvider provider)
             : base(provider) {
