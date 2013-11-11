@@ -103,4 +103,31 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
             return command;
         }
     }
+
+    public class UpdateBooksQuantityQuery : BookQuery
+    {
+        const string Query = @"update book set
+                              book_quantity = book_quantity + (:quantity)
+                            where book_id = :book_id";
+
+        public int BookQuantity {
+            get;
+            set;
+        }
+
+        public UpdateBooksQuantityQuery(ConnectionProvider provider)
+            : base(provider) {
+        }
+
+        protected override string GetQuery() {
+            return Query;
+        }
+
+        public override OracleCommand CreateOracleCommand() {
+            var command = new OracleCommand(GetQuery());
+            command.Parameters.Add(":quantity", BookQuantity);
+            command.Parameters.Add(":book_id", Book.Id);
+            return command;
+        }
+    }
 }

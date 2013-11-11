@@ -26,10 +26,12 @@ namespace Library.Server
             var authentication = GetConfiguredHost(typeof(AuthenticationService), typeof(IAuthentication), helper.Host + "Authentication");
             var bibliographer = GetConfiguredHost(typeof(BibliographerService), typeof(IBibliographer), helper.Host + "Bibliographer", new BibliographerInspectorFactory());
             var @operator = GetConfiguredHost(typeof(OperatorService), typeof(IOperator), helper.Host + "Operator", new OperatorInspectorFactory());
+            var chief = GetConfiguredHost(typeof(ChiefService), typeof(IChief), helper.Host + "Chief", new ChiefInspectorFactory());
 
             authentication.Open();
             bibliographer.Open();
             @operator.Open();
+            chief.Open();
 
             Console.WriteLine("The services is ready. Press any key to terminate services");
             Console.ReadKey();

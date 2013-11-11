@@ -10,26 +10,36 @@ using System.Threading.Tasks;
 
 namespace Library.DataAccess.DBInterop.Queries.Concrete
 {
-    public class GetBooksQuery : TableQuery<Book>
+    public class GetReportBooksQuery : TableQuery<ReportBook>
     {
         const string Query = @"select
                                   book_id, book_name, book_imprint_date, book_page_quantity, book_annotation, book_quantity,
                                   book_rubric_id, r.rubric_name,
                                   book_publisher_id, p.publisher_name,
-                                  (case when bc.c is null then 0 else 1 end) as has_authors
+                                  nvl(taken.c, 0) as taken_count,
+                                  nvl(delayed.c, 0) as delayed_count
                                 from book b
                                 inner join rubric r on b.book_rubric_id = r.rubric_id
                                 inner join publisher p on b.book_publisher_id = p.publisher_id
                                 left join (
-                                  select book_author_book_id, count(book_author_book_id) as c from book_author ba group by ba.book_author_book_id
-                                ) bc on b.book_id = bc.book_author_book_id";
+                                  select ra.request_approved_book_id, sum(r.request_book_quantity) as c
+                                  from request_approved ra 
+                                  inner join request r on ra.request_approved_request_id = r.request_id and ra.request_approved_book_id = r.request_book_id
+                                  where ra.request_approved_is_returned = 0 group by ra.request_approved_book_id
+                                ) taken on b.book_id = taken.request_approved_book_id
+                                left join (
+                                  select ra.request_approved_book_id, sum(r.request_book_quantity) as c
+                                  from request_approved ra 
+                                  inner join request r on ra.request_approved_request_id = r.request_id and ra.request_approved_book_id = r.request_book_id
+                                  where ra.request_approved_is_returned = 0 and ra.request_approved_return_date < sysdate group by ra.request_approved_book_id
+                                ) delayed on b.book_id = delayed.request_approved_book_id";
 
-        public GetBooksQuery(ConnectionProvider provider)
+        public GetReportBooksQuery(ConnectionProvider provider)
             : base(provider) {
         }
 
-        public override Book Read(DataRow row) {
-            return new Book() {
+        public override ReportBook Read(DataRow row) {
+            return new ReportBook() {
                 Id = Convert.ToInt32(row.Field<decimal>("book_id")),
                 Name = row.Field<string>("book_name"),
                 ImprintDate = row.Field<DateTime>("book_imprint_date"),
@@ -44,7 +54,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                     Id = Convert.ToInt32(row.Field<decimal>("book_publisher_id")),
                     Name = row.Field<string>("publisher_name")
                 },
-                HasAuthors = Convert.ToBoolean(row.Field<decimal>("has_authors"))
+                DelayedBookQuantity = Convert.ToInt32(row.Field<decimal>("delayed_count")),
+                TakenBookQuantity = Convert.ToInt32(row.Field<decimal>("taken_count"))
             };
         }
 

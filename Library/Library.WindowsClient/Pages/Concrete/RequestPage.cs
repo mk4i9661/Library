@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ninject;
+using Library.UI.DevExpressControls.Controls;
+using System.Drawing;
 
 namespace Library.WindowsClient.Pages.Concrete
 {
@@ -26,10 +28,23 @@ namespace Library.WindowsClient.Pages.Concrete
             set;
         }
 
+        LibraryGridView GridViewRejectedRequests {
+            get;
+            set;
+        }
+
+        LibraryGridView GridViewApprovedRequests {
+            get;
+            set;
+        }
+
         public RequestPage(RequestPageParameters parameters)
             : base(parameters) {
             Books = new List<Book>();
             Cards = new List<Card>();
+
+            GridViewApprovedRequests = parameters.GridViewApprovedRequests;
+            GridViewRejectedRequests = parameters.GridViewRejectedRequests;
 
             parameters.ReturnItem.ItemClick += ReturnItem_ItemClick;
             parameters.RenewalItem.ItemClick += RenewalItem_ItemClick;
@@ -52,12 +67,31 @@ namespace Library.WindowsClient.Pages.Concrete
             Ninject.Rebind<RequestEditForm>().ToMethod(method => new RequestEditForm(Cards, Books));
         }
 
-        void RenewalItem_ItemClick(object sender, ItemClickEventArgs e) {
-
+        async void RenewalItem_ItemClick(object sender, ItemClickEventArgs e) {
+            var view = GetFocusedChildView();
+            if (view != null) {
+                var request = view.GetSelectedRow<RequestApprovedWrap>();
+                if (request != null && DialogMessages.Question("Продлить книгу?")) {
+                    var result = await RenewalRequest(request.Request);
+                    view.BeginDataUpdate();
+                    request.Request.RenewalCount = result.RenewalCount;
+                    request.Request.ReturnDate = result.ReturnDate;
+                    view.EndDataUpdate();
+                }
+            }
         }
 
-        void ReturnItem_ItemClick(object sender, ItemClickEventArgs e) {
-
+        async void ReturnItem_ItemClick(object sender, ItemClickEventArgs e) {
+            var view = GetFocusedChildView();
+            if (view != null) {
+                var request = view.GetSelectedRow<RequestApprovedWrap>();
+                if (request != null && DialogMessages.Question("Вернуть книгу?")) {
+                    var result = await CloseRequest(request.Request);
+                    view.BeginDataUpdate();
+                    request.Request.IsReturned = result.IsReturned;
+                    view.EndDataUpdate();
+                }
+            }
         }
 
         void GridView_MasterRowGetRelationDisplayCaption(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationNameEventArgs e) {
@@ -89,28 +123,49 @@ namespace Library.WindowsClient.Pages.Concrete
             return string.Empty;
         }
 
-        void GridView_MasterRowGetChildList(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventArgs e) {
+        async void GridView_MasterRowGetChildList(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventArgs e) {
             var request = GetRow(e.RowHandle);
             if (request != null) {
+                var view = (LibraryGridView)null;
                 try {
                     switch (GetRelationName(request, e.RelationIndex)) {
                         case "RequestApproved":
-                            var approved = GetApprovedRequests(request);
-                            Task.WaitAll(approved);
-                            e.ChildList = approved.Result.Select(r => new RequestApprovedWrap(r)).ToList();
+                            var approved = new List<RequestApprovedWrap>();
+                            e.ChildList = approved;
+                            approved.AddRange((await GetApprovedRequests(request)).Select(r => new RequestApprovedWrap(r)));
+                            view = GetChildView(e.RowHandle, e.RelationIndex);
+                            view.BeginDataUpdate();
                             break;
                         case "RequestRejected":
-                            var rejected = GetRejectedRequests(request);
-                            Task.WaitAll(rejected);
-                            e.ChildList = rejected.Result.Select(r => new RequestRejectedWrap(r)).ToList();
+                            var rejected = new List<RequestRejectedWrap>();
+                            e.ChildList = rejected;
+                            rejected.AddRange((await GetRejectedRequests(request)).Select(r => new RequestRejectedWrap(r)));
+                            view = GetChildView(e.RowHandle, e.RelationIndex);
+                            view.BeginDataUpdate();
                             break;
                         default:
                             break;
                     }
                 } catch (Exception exc) {
                     DialogMessages.Error(exc.Message);
+                } finally {
+                    if (view != null) {
+                        view.EndDataUpdate();
+                    }
                 }
             }
+        }
+
+        LibraryGridView GetChildView(int handle, int relation) {
+            return GridControl.GridView.GetDetailView(handle, relation) as LibraryGridView;
+        }
+
+        LibraryGridView GetFocusedChildView() {
+            var view = GridControl.FocusedView;
+            if (view.IsDetailView) {
+                return view as LibraryGridView;
+            }
+            return null;
         }
 
         Task<IEnumerable<RequestApproved>> GetApprovedRequests(RequestHeader request) {
@@ -119,6 +174,14 @@ namespace Library.WindowsClient.Pages.Concrete
 
         Task<IEnumerable<RequestRejected>> GetRejectedRequests(RequestHeader request) {
             return Task.Factory.StartNew(() => GetProxy().GetRejectedRequests(request));
+        }
+
+        Task<RequestApproved> RenewalRequest(RequestApproved request) {
+            return Task.Factory.StartNew(() => GetProxy().RenewRequest(request));
+        }
+
+        Task<RequestApproved> CloseRequest(RequestApproved request) {
+            return Task.Factory.StartNew(() => GetProxy().CloseRequest(request));
         }
 
         void GridView_MasterRowGetRelationCount(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationCountEventArgs e) {
@@ -160,6 +223,10 @@ namespace Library.WindowsClient.Pages.Concrete
             return Ninject.Get<RequestEditForm>();
         }
 
+        public override void EditClick() {
+
+        }
+
         internal class LoadNecessaryDataWrap
         {
             public IEnumerable<Book> Books {
@@ -175,9 +242,9 @@ namespace Library.WindowsClient.Pages.Concrete
 
         class RequestApprovedWrap
         {
-            RequestApproved Request {
+            public RequestApproved Request {
                 get;
-                set;
+                private set;
             }
 
             public RequestApprovedWrap(RequestApproved request) {
@@ -253,6 +320,16 @@ namespace Library.WindowsClient.Pages.Concrete
             }
 
             public BarButtonItem RenewalItem {
+                get;
+                set;
+            }
+
+            public LibraryGridView GridViewRejectedRequests {
+                get;
+                set;
+            }
+
+            public LibraryGridView GridViewApprovedRequests {
                 get;
                 set;
             }

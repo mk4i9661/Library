@@ -9,12 +9,10 @@ using System.Threading.Tasks;
 
 namespace Library.Services.Validators.InspectorFactories.Concrete
 {
-    public class OperatorInspectorFactory : IRoleInspectorFactory
+    public class ChiefInspectorFactory : IRoleInspectorFactory
     {
-
         public RoleInspector Create() {
-            return new OperatorRoleInspector();
+            return new ChiefRoleInspector();
         }
     }
-
 }

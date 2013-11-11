@@ -105,9 +105,11 @@ namespace Library.WindowsClient.Pages.Abstract
         }
 
         protected virtual async void OnLoadNecessaryData() {
-            OnBeginLoadNecessaryData();
-            var result = await LoadNecessaryData();
-            OnEndLoadNecessaryData(result);
+            if (IsActive) {
+                OnBeginLoadNecessaryData();
+                var result = await LoadNecessaryData();
+                OnEndLoadNecessaryData(result);
+            }
         }
 
         protected virtual void OnEndLoadNecessaryData(TNecessary result) {
@@ -135,11 +137,13 @@ namespace Library.WindowsClient.Pages.Abstract
         }
 
         protected virtual async void OnLoadData(Action callback = null) {
-            OnBeginLoadData();
-            var result = await LoadData();
-            OnEndLoadData(result);
-            if (callback != null) {
-                callback();
+            if (IsActive) {
+                OnBeginLoadData();
+                var result = await LoadData();
+                OnEndLoadData(result);
+                if (callback != null) {
+                    callback();
+                }
             }
         }
 

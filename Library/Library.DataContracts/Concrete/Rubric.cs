@@ -59,5 +59,25 @@ namespace Library.DataContracts.Concrete
         public override string ToString() {
             return Name;
         }
+
+        public static bool IsChildOf(IEnumerable<Rubric> source, Rubric target, Rubric level) {
+            if (target.Parent == null) {
+                return false;
+            }
+            if (target.Id == target.Parent.Id) {
+                return true;
+            }
+            if (level != null && target.Parent.Id == level.Id) {
+                return true;
+            }
+
+            var childs = source.Where(r => r.Parent != null && r.Parent.Id == level.Id).ToArray();
+            if (childs.Length == 0) {
+                return false;
+            }
+            return (from c in childs
+                    where IsChildOf(source, target, c)
+                    select c).Count() != 0;
+        }
     }
 }

@@ -69,29 +69,9 @@ namespace Library.Services
             return rubric;
         }
 
-        bool IsChildOf(IEnumerable<Rubric> source, Rubric target, Rubric level) {
-            if (target.Parent == null) {
-                return false;
-            }
-            if (target.Id == target.Parent.Id) {
-                return true;
-            }
-            if (level != null && target.Parent.Id == level.Id) {
-                return true;
-            }
-
-            var childs = source.Where(r => r.Parent != null && r.Parent.Id == level.Id).ToArray();
-            if (childs.Length == 0) {
-                return false;
-            }
-            return (from c in childs
-                    where IsChildOf(source, target, c)
-                    select c).Count() != 0;
-        }
-
         public Rubric UpdateRubric(Rubric rubric) {
             var rubrics = GetRubrics();
-            if (IsChildOf(rubrics, rubric, rubric)) {
+            if (Rubric.IsChildOf(rubrics, rubric, rubric)) {
                 throw new Exception("Обнаружена циклическая зависимость рубрик. Обновление рубрики невозможно");
             }
 
@@ -117,14 +97,14 @@ namespace Library.Services
                 if (dictionary.ContainsKey(rubric.Id)) {
                     rubric = dictionary[rubric.Id];
                     books = from b in books
-                            where b.Rubric.Id == rubric.Id || dictionary.ContainsKey(b.Rubric.Id) && IsChildOf(rubrics, dictionary[b.Rubric.Id], rubric)
+                            where b.Rubric.Id == rubric.Id || dictionary.ContainsKey(b.Rubric.Id) && Rubric.IsChildOf(rubrics, dictionary[b.Rubric.Id], rubric)
                             select b;
                 }
             }
             books = publisher.Return(p => books.Where(b => b.Publisher.Id == p.Id), books);
             books = string.IsNullOrEmpty(search) ? books : from b in books
                                                            let s = search.ToLower()
-                                                           where b.Name.ToLower().Contains(s) || b.Annotation.ToLower().Contains(s)
+                                                           where b.Name.ToLower().Contains(s) || (b.Annotation ?? string.Empty).ToLower().Contains(s)
                                                            select b;
             return books.ToArray();
         }

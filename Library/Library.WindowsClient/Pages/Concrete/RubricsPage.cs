@@ -55,8 +55,12 @@ namespace Library.WindowsClient.Pages.Concrete
 
         protected override IEnumerable<Rubric> LoadDataOperation() {
             var proxy = GetProxy();
-            LoadedRubrics = proxy.GetRubrics();
-            return proxy.GetRubricsHierarchy();
+            var rubrics = Task.Factory.StartNew(() => proxy.GetRubrics());
+            var hierarchy = Task.Factory.StartNew(() => proxy.GetRubricsHierarchy());
+
+            Task.WaitAll(rubrics, hierarchy);
+            LoadedRubrics = rubrics.Result;
+            return hierarchy.Result;
         }
 
         protected override Rubric GetSelectedRow() {

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="IAuthentication.cs" />
     <Compile Include="IBibliographer.cs" />
+    <Compile Include="IChief.cs" />
     <Compile Include="IOperator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -43,6 +43,7 @@
     <Compile Include="AuthenticableProxy.cs" />
     <Compile Include="AuthenticationProxy.cs" />
     <Compile Include="BibliographerProxy.cs" />
+    <Compile Include="ChiefProxy.cs" />
     <Compile Include="DisposableProxy.cs" />
     <Compile Include="OperatorProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

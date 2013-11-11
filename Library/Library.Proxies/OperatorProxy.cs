@@ -49,6 +49,14 @@ namespace Library.Proxies
             return ExecuteScoped(() => Channel.GetRejectedRequests(request));
         }
 
+        public RequestApproved RenewRequest(RequestApproved request) {
+            return ExecuteScoped(() => Channel.RenewRequest(request));
+        }
+
+        public RequestApproved CloseRequest(RequestApproved request) {
+            return ExecuteScoped(() => Channel.CloseRequest(request));
+        }
+
         public IEnumerable<Book> GetBooks() {
             return ExecuteScoped(() => Channel.GetBooks());
         }

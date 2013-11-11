@@ -10,6 +10,8 @@ using Ninject;
 using Library.DataAccess.DBInterop.Queries.Concrete;
 using Library.DataContracts.Concrete;
 using Library.DataAccess.DBInterop.Executors;
+using Library.DataAccess.DBInterop.Queries.Abstract;
+using System.Data.Common;
 
 namespace Library.Services
 {
@@ -49,8 +51,8 @@ namespace Library.Services
             var id = Ninject.Get<GenerateRequestIdQuery>().Execute();
             var provider = Factory.Get();
 
-            foreach(var r in requests){
-                r.Id = new RequestHeader(){
+            foreach (var r in requests) {
+                r.Id = new RequestHeader() {
                     Id = id,
                     Card = card
                 };
@@ -78,6 +80,58 @@ namespace Library.Services
             var query = Ninject.Get<GetRejectedRequestsQuery>();
             query.Request = request;
             return query.Execute();
+        }
+
+        public RequestApproved RenewRequest(RequestApproved request) {
+            request = GetRequestApproved(request);
+
+            if (request.IsReturned) {
+                throw new Exception("Книга уже возвращена. Продление невозможно");
+            }
+
+            if (DateTime.Now.Date <= request.ReturnDate.Date) {
+                throw new Exception("Срок возврата еще не истек. Продление невозможно");
+            }   
+
+            var command = Ninject.Get<RenewRequestQuery>();
+            command.RequestApproved = request;
+            try {
+                command.Execute();
+            } catch (DbException exc) {
+                throw new Exception("Достигнут предел числа продлений. Дальнейшее продление невозможно");
+            }
+            return GetApprovedRequests(request.Id.Id).FirstOrDefault(r => r.Id.Equals(request.Id));
+        }
+
+        public RequestApproved CloseRequest(RequestApproved request) {
+            request = GetRequestApproved(request);
+
+            if (request.IsReturned) {
+                throw new Exception("Книга уже возвращена");
+            }
+
+            var returnBook = Ninject.Get<UpdateBooksQuantityQuery>();
+            returnBook.Book = request.Id.Book;
+            returnBook.BookQuantity = request.Id.BookQuantity;
+
+            var closeRequest = Ninject.Get<CloseRequestQuery>();
+            closeRequest.RequestApproved = request;
+
+            var executor = Ninject.Get<Executor>();
+            try {
+                executor.ExecuteNonQueries(new NoValueQuery[]{
+                    returnBook,
+                    closeRequest
+                });
+                request.IsReturned = true;
+            } catch (Exception exc) {
+                throw exc;
+            }
+            return request;
+        }
+
+        protected RequestApproved GetRequestApproved(RequestApproved source) {
+            return GetApprovedRequests(source.Id.Id).FirstOrDefault(s => s.Id.Equals(source.Id));
         }
 
         public IEnumerable<Book> GetBooks() {

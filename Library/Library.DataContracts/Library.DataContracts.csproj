@@ -54,6 +54,7 @@
     <Compile Include="Concrete\Publisher.cs" />
     <Compile Include="Concrete\Reader.cs" />
     <Compile Include="Concrete\RejectReason.cs" />
+    <Compile Include="Concrete\ReportBook.cs" />
     <Compile Include="Concrete\Request.cs" />
     <Compile Include="Concrete\RequestHeader.cs" />
     <Compile Include="Concrete\RequestApproved.cs" />

@@ -31,6 +31,12 @@ namespace Library.Contracts
         IEnumerable<RequestApproved> GetApprovedRequests(RequestHeader request);
         [OperationContract]
         IEnumerable<RequestRejected> GetRejectedRequests(RequestHeader request);
+        [OperationContract]
+        //продлить книгу
+        RequestApproved RenewRequest(RequestApproved request);
+        [OperationContract]
+        //вернуть книгу
+        RequestApproved CloseRequest(RequestApproved request);
         
         [OperationContract]
         IEnumerable<Book> GetBooks();

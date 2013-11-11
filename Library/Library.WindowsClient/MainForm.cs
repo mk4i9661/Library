@@ -93,11 +93,27 @@ namespace Library.WindowsClient
                     TabPage = xtpRequests,
                     GridControl = gcRequests,
                     RenewalItem = bbiRenewal,
-                    ReturnItem = bbiReturn
+                    ReturnItem = bbiReturn,
+                    GridViewApprovedRequests = gvApprovedRequests,
+                    GridViewRejectedRequests = gvRejectedRequests
                 }));
 
                 Pages.AddRange(new IPage[] {
                     Ninject.Get<RequestPage>()
+                });
+            }
+            if (IsChief) {
+                Ninject.Bind<ReportBookPage>().ToMethod(method => new ReportBookPage(new ReportBookPage.ReportBookPageParameters() {
+                    RibbonPage = rpReportBooks,
+                    TabPage = xtpReportBooks,
+                    GridControl = gcReportBooks,
+                    PublisherItem = beiPublisher,
+                    RubricItem = beiRubric,
+                    SearchItem = beiSearch
+                }));
+
+                Pages.AddRange(new IPage[] {
+                    Ninject.Get<ReportBookPage>()
                 });
             }
 
