@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Library.DataContracts.Abstract.UniqueObject&lt;TIdentificator, TObject&gt;" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAQAgAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Abstract\UniqueObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Library.DataContracts.Abstract.UniqueObjectGuid&lt;T&gt;">
+    <Position X="28.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Abstract\UniqueObjectGuid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Abstract.UniqueObjectInt&lt;T&gt;" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAgAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Abstract\UniqueObjectInt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.AuthenticationData">
+    <Position X="28.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\AuthenticationData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.AuthenticationHeader" Collapsed="true">
+    <Position X="33.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\AuthenticationHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.Author" Collapsed="true">
+    <Position X="10.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAEg=</HashCode>
+      <FileName>Concrete\Author.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.Book" Collapsed="true">
+    <Position X="17.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAECAAAgAQAAAAEAAgAAAAAQAACACA=</HashCode>
+      <FileName>Concrete\Book.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.Card" Collapsed="true">
+    <Position X="1.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAgAAAEAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Concrete\Card.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.Employee">
+    <Position X="4" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.Publisher" Collapsed="true">
+    <Position X="6.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAEAAIAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\Publisher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.Reader" Collapsed="true">
+    <Position X="13" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAQAAAAAAAAAAACAAAAIAAAAAg=</HashCode>
+      <FileName>Concrete\Reader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.RejectReason" Collapsed="true">
+    <Position X="19.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\RejectReason.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.ReportBook" Collapsed="true">
+    <Position X="17.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAEAAAgAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Concrete\ReportBook.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.Request">
+    <Position X="24.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAARAgAAAAAAAAAAAAAAAAABAAAACAAA=</HashCode>
+      <FileName>Concrete\Request.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.RequestApproved">
+    <Position X="26.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAACAAAAAAAAQAgAAAAAAAAAAAAAAAAABAAAAACAA=</HashCode>
+      <FileName>Concrete\RequestApproved.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.RequestHeader" Collapsed="true">
+    <Position X="15.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAIAAAAAAAAAAAEAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Concrete\RequestHeader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.RequestRejected">
+    <Position X="31.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAYAgAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Concrete\RequestRejected.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.Role">
+    <Position X="22" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAgAAAAAQAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Concrete\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataContracts.Concrete.Rubric" Collapsed="true">
+    <Position X="8.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAgAIAEAAAAQAQAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Concrete\Rubric.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Library.DataContracts.Abstract.IUniqueKey&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract\IUniqueKey.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Library.DataContracts.Abstract.IUniqueObject&lt;T&gt;" Collapsed="true">
+    <Position X="22.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract\IUniqueObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Library.DataContracts.Abstract.IUniqueObject&lt;T, V&gt;" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstract\IUniqueObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Library.DataContracts.Concrete.RoleId" Collapsed="true">
+    <Position X="33.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAEAAICA=</HashCode>
+      <FileName>Concrete\Role.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -52,7 +52,7 @@
     <Compile Include="AuthenticationService.cs" />
     <Compile Include="BibliographerService.cs" />
     <Compile Include="ChiefService.cs" />
-    <Compile Include="Helpers\ApplicationConfigurationHelper.cs" />
+    <Compile Include="Validators\ApplicationConfigurationHelper.cs" />
     <Compile Include="OperatorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\Concrete\AdminRoleInspector.cs" />
@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Concrete\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

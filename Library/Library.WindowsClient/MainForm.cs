@@ -81,10 +81,18 @@ namespace Library.WindowsClient
                     AuthorsButton = bbiAuthors
                 }));
 
+                Ninject.Bind<AuthorPage>().ToMethod(method => new AuthorPage(new PageParameters()
+                {
+                    RibbonPage = rpAuthors,
+                    TabPage = xtpAuthors,
+                    GridControl = gcAuthors,
+                }));
+
                 Pages.AddRange(new IPage[] {
                     Ninject.Get<PublishersPage>(),
                     Ninject.Get<RubricsPage>(),
-                    Ninject.Get<BookPage>()
+                    Ninject.Get<BookPage>(),
+                    Ninject.Get<AuthorPage>(),
                 });
             }
             if (IsOperator) {
@@ -100,8 +108,25 @@ namespace Library.WindowsClient
                     SearchItem = beiSearch
                 }));
 
+                Ninject.Bind<ReaderPage>().ToMethod(method => new ReaderPage(new PageParameters()
+                {
+                    RibbonPage = rpReaders,
+                    TabPage = xtpReaders,
+                    GridControl = gcReaders,
+                }));
+
+                Ninject.Bind<CardPage>().ToMethod(method => new CardPage(new PageParameters()
+                {
+                    RibbonPage = rpCards,
+                    TabPage = xtpCards,
+                    GridControl = gcCards,
+                }));
+
+
                 Pages.AddRange(new IPage[] {
-                    Ninject.Get<RequestPage>()
+                    Ninject.Get<RequestPage>(),
+                    Ninject.Get<ReaderPage>(),
+                    Ninject.Get<CardPage>()
                 });
             }
             if (IsChief) {
@@ -169,6 +194,11 @@ namespace Library.WindowsClient
             if (!(e.Cancel = !DialogMessages.Question("Вы уверены, что хотите покинуть систему?"))) {
                 GetAuthenticationProxy().LogOut(Ninject.Get<AuthenticationData>());
             }
+        }
+
+        private void rcPages_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

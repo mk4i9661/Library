@@ -11,7 +11,7 @@ namespace Library.DataContracts.Abstract
     public abstract class UniqueObjectGuid<T> : UniqueObject<Guid, T> where T : UniqueObject<Guid, T>
     {
         public override int CompareTo(T other) {
-            return Id.CompareTo(other);
+            return Id.CompareTo(other.Id);
         }
 
         public override bool Equals(T other) {

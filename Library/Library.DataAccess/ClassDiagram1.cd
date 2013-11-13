@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Library.DataAccess.Configuration.OracleConnectionSection" Collapsed="true">
+    <Position X="73.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgACAAACAACAAAAAAAABAA=</HashCode>
+      <FileName>Configuration\OracleConnectionSection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Accessors.Abstract.AbstractAccessor" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>DBInterop\Accessors\Abstract\AbstractAccessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Accessors.Abstract.AbstractAccessor&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Accessors\Abstract\AbstractAccessor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.ConnectionProvider" Collapsed="true">
+    <Position X="71.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAEAABAAAEAAAAAAAAABACAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\ConnectionProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.ConnectionProviderFactory" Collapsed="true">
+    <Position X="73.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\ConnectionProviderFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Executors.Executor" Collapsed="true">
+    <Position X="71.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>DBInterop\Executors\Executor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Abstract.AbstractQuery">
+    <Position X="36.25" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAEAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Abstract\AbstractQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Abstract.NoValueQuery">
+    <Position X="53.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Abstract\AbstractQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Abstract.ValueQuery&lt;T&gt;">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAEQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Abstract\AbstractQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Abstract.RowQuery&lt;T&gt;">
+    <Position X="17" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Abstract\AbstractQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Abstract.TableQuery&lt;T&gt;" Collapsed="true">
+    <Position X="17" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Abstract\AbstractQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Abstract.OneRowQuery&lt;T&gt;" Collapsed="true">
+    <Position X="33" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Abstract\AbstractQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Abstract.ScalarQuery&lt;T&gt;" Collapsed="true">
+    <Position X="35.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAQAAAAAAEAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Abstract\AbstractQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.BookAuthorQuery" Collapsed="true">
+    <Position X="54.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAgQAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\BookAuthorQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.InsertBookAuthorQuery">
+    <Position X="53.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\BookAuthorQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.DeleteBookAuthorQuery" Collapsed="true">
+    <Position X="55.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\BookAuthorQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.BookQuery" Collapsed="true">
+    <Position X="40.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAQAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\BookQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.InsertBookQuery" Collapsed="true">
+    <Position X="37.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAEAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\BookQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.UpdateBookQuery" Collapsed="true">
+    <Position X="39.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\BookQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.DeleteBookQuery" Collapsed="true">
+    <Position X="42" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\BookQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.UpdateBooksQuantityQuery" Collapsed="true">
+    <Position X="44.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAAACACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\BookQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GenerateRequestIdQuery" Collapsed="true">
+    <Position X="35.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAgAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GenerateRequestIdQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetApprovedRequestsQuery" Collapsed="true">
+    <Position X="24" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAgAAAAgAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetApprovedRequestsQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetAuthorsQuery" Collapsed="true">
+    <Position X="28.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAgAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetAuthorsQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetBookAuthorsQuery" Collapsed="true">
+    <Position X="28.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAQAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetAuthorsQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetBookReadersQuery" Collapsed="true">
+    <Position X="7" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAQAAAAAgAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetBookReadersQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetBookHoldersQuery" Collapsed="true">
+    <Position X="6" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetBookReadersQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetBookObligatorsQuery" Collapsed="true">
+    <Position X="8.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetBookReadersQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetBooksQuery" Collapsed="true">
+    <Position X="17.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAgAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetBooksQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetCardsQuery" Collapsed="true">
+    <Position X="21.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAgAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetCardsQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetEmployeesQuery">
+    <Position X="26.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAgAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetEmployeesQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetPublishersQuery" Collapsed="true">
+    <Position X="30.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAgAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetPublishersQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetReadersQuery" Collapsed="true">
+    <Position X="3.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAgAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetReadersQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetRejectedRequestsQuery" Collapsed="true">
+    <Position X="10.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAgAAAAgAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetRejectedRequestsQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetReportBooksQuery" Collapsed="true">
+    <Position X="12.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAgAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetReportBooksQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetRequestHeadersQuery" Collapsed="true">
+    <Position X="15" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAQAAAAAgAAAAAAgAAAAAAAAgAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetRequestHeadersQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.GetRubricsQuery" Collapsed="true">
+    <Position X="19.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAgAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\GetRubricsQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.PublisherQuery" Collapsed="true">
+    <Position X="60" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\PublisherQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.InsertPublisherQuery" Collapsed="true">
+    <Position X="60" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAEAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\PublisherQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.UpdatePublisherQuery" Collapsed="true">
+    <Position X="62.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\PublisherQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.DeletePublisherQuery" Collapsed="true">
+    <Position X="57.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\PublisherQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.RequestApprovedQuery" Collapsed="true">
+    <Position X="47.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAIAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\RequestApprovedQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.RenewRequestQuery" Collapsed="true">
+    <Position X="46.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\RequestApprovedQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.CloseRequestQuery" Collapsed="true">
+    <Position X="48.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\RequestApprovedQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.RequestQuery" Collapsed="true">
+    <Position X="51" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAgAAAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\RequestQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.InsertRequestQuery" Collapsed="true">
+    <Position X="51" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\RequestQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.RubricQuery" Collapsed="true">
+    <Position X="66.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAEAAAAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\RubricQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.InsertRubricQuery" Collapsed="true">
+    <Position X="69" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAEAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\RubricQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.UpdateRubricQuery" Collapsed="true">
+    <Position X="64.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\RubricQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Library.DataAccess.DBInterop.Queries.Concrete.DeleteRubricQuery" Collapsed="true">
+    <Position X="66.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>DBInterop\Queries\Concrete\RubricQuery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
