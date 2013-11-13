@@ -150,3 +150,4 @@ CREATE SEQUENCE Publisher_Sequence;
 CREATE SEQUENCE Rubric_Sequence;
 CREATE SEQUENCE Book_Sequence;
 CREATE SEQUENCE Request_Sequence;
+CREATE SEQUENCE Author_Sequence;

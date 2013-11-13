@@ -157,8 +157,8 @@ namespace Library.WindowsClient.Pages.Concrete
         string GetRelationName(RequestHeader request, int relation) {
             if (request == null)
                 return string.Empty;
-            if (relation == 0) {
-                return request.HasApprovedRequests ? "RequestApproved" : string.Empty;
+            if (relation == 0 ) {
+                return request.HasApprovedRequests ? "RequestApproved" : request.HasRejectedRequests ? "RequestRejected" : string.Empty;
             }
             if (relation == 1) {
                 return request.HasRejectedRequests ? "RequestRejected" : string.Empty;

@@ -137,7 +137,7 @@ namespace Library.Services
         }
 
         public IEnumerable<Author> SetBookAuthors(Book book, IEnumerable<Author> authors) {
-            var existsAuthors = GetBookAuthors(book);
+            var existsAuthors = GetBookAuthors(book).ToArray();
             var existsDictionary = existsAuthors.ToDictionary(a => a.Id);
             var insertingDictionary = authors.ToDictionary(a => a.Id);
 
@@ -165,15 +165,24 @@ namespace Library.Services
         }
 
         public Author AddAuthor(Author author) {
-            throw new NotImplementedException();
+            var query = Ninject.Get<InsertAuthorQuery>();
+            query.Author = author;
+            query.Execute();
+            return author;
         }
 
         public Author UpdateAuthor(Author author) {
-            throw new NotImplementedException();
+            var query = Ninject.Get<UpdateAuthorQuery>();
+            query.Author = author;
+            query.Execute();
+            return author;
         }
 
         public Author DeleteAuthor(Author author) {
-            throw new NotImplementedException();
+            var query = Ninject.Get<DeleteAuthorQuery>();
+            query.Author = author;
+            query.Execute();
+            return author;
         }
     }
 }

@@ -48,6 +48,7 @@
     <Compile Include="DBInterop\ConnectionProviderFactory.cs" />
     <Compile Include="DBInterop\Executors\Executor.cs" />
     <Compile Include="DBInterop\Queries\Abstract\AbstractQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\AuthorQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\BookAuthorQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\BookQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GenerateRequestIdQuery.cs" />
