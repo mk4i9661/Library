@@ -24,15 +24,24 @@ namespace Library.Services
         }
 
         public Reader AddReader(Reader reader) {
-            throw new NotImplementedException();
+            var query = Ninject.Get<InsertReaderQuery>();
+            query.Reader = reader;
+            query.Execute();
+            return reader;
         }
 
         public Reader UpdateReader(Reader reader) {
-            throw new NotImplementedException();
+            var query = Ninject.Get<UpdateReaderQuery>();
+            query.Reader = reader;
+            query.Execute();
+            return reader;
         }
 
         public Reader DeleteReader(Reader reader) {
-            throw new NotImplementedException();
+            var query = Ninject.Get<DeleteReaderQuery>();
+            query.Reader = reader;
+            query.Execute();
+            return reader;
         }
 
         public IEnumerable<Card> GetCards() {

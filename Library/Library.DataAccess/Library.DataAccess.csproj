@@ -65,6 +65,7 @@
     <Compile Include="DBInterop\Queries\Concrete\GetRequestHeadersQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetRubricsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\PublisherQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\ReaderQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\RequestApprovedQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\RequestQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\RubricQuery.cs" />
