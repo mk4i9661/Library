@@ -11,7 +11,7 @@ namespace Library.Services.Validators.Concrete
     public class AdminRoleInspector : RoleInspector
     {
         protected override bool ValidateRole(Role role) {
-            return (role.Id & RoleId.Admin) != 0;
+            return (role.Id & RoleId.Admin) == RoleId.Admin;
         }
     }
 }

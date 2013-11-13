@@ -135,6 +135,7 @@
     <Compile Include="Pages\Abstract\Page.cs" />
     <Compile Include="Pages\Concrete\AuthorPage.cs" />
     <Compile Include="Pages\Concrete\BookPage.cs" />
+    <Compile Include="Pages\Concrete\CardPage.cs" />
     <Compile Include="Pages\Concrete\PublishersPage.cs" />
     <Compile Include="Pages\Concrete\ReaderPage.cs" />
     <Compile Include="Pages\Concrete\ReportBookPage.cs" />
