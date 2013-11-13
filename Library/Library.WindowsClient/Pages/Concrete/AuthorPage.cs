@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Library.Contracts;
 using Library.DataContracts.Concrete;
+using Library.UI.DevExpressControls.Forms;
+using Library.WindowsClient.EditForms;
 using Library.WindowsClient.Pages.Abstract;
+using Ninject;
 
 namespace Library.WindowsClient.Pages.Concrete
 {
@@ -25,6 +28,10 @@ namespace Library.WindowsClient.Pages.Concrete
 
         protected override Author DeleteOperation(Author data) {
             return GetProxy().DeleteAuthor(data);
+        }
+
+        protected override TypedEditForm<Author> CreateEditForm() {
+            return Ninject.Get<AuthorEditForm>();
         }
 
         internal class LoadNecessaryDataWrap

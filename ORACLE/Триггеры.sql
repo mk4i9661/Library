@@ -86,3 +86,10 @@ FOR EACH ROW
 BEGIN
   SELECT Book_Sequence.NEXTVAL INTO :new.Book_ID FROM dual;
 END;
+
+create or replace TRIGGER AUTHOR_GENERATE_ID 
+BEFORE INSERT ON Author 
+FOR EACH ROW
+BEGIN
+  SELECT Reader_Sequence.NEXTVAL INTO :new.Author_ID FROM dual;
+END;
