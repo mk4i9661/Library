@@ -172,8 +172,8 @@ namespace Library.WindowsClient.Pages.Abstract
                 var form = CreateEditForm();
                 if (form != null) {
                     using (form) {
-                        form.SetData(data);
                         form.Operation = operation;
+                        form.SetData(data);
                         if (form.ShowDialog() == DialogResult.OK) {
                             var result = form.Data;
                             OnLoadData(() => AfterModifyDataOperation(result));

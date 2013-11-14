@@ -13,6 +13,28 @@ namespace Library.Proxies
         public OperatorProxy(AuthenticationData data)
             : base(data) {
         }
+
+        //---------
+        public IEnumerable<Card> GetCards(){
+            return ExecuteScoped(() => Channel.GetCards());
+            //return Channel.GetCards();
+        }
+        public DataContracts.Concrete.Card AddCard(DataContracts.Concrete.Card card)
+        {
+            return ExecuteScoped(() => Channel.AddCard(card));
+        }
+
+        public DataContracts.Concrete.Card UpdateCard(DataContracts.Concrete.Card card)
+        {
+            return ExecuteScoped(() => Channel.UpdateCard(card));
+        }
+
+        public DataContracts.Concrete.Card DeleteCard(DataContracts.Concrete.Card card)
+        {
+            return ExecuteScoped(() => Channel.DeleteCard(card));
+        }
+        //---------
+
         public IEnumerable<DataContracts.Concrete.Reader> GetReaders() {
             return ExecuteScoped(() => Channel.GetReaders());
         }
@@ -29,9 +51,7 @@ namespace Library.Proxies
             return ExecuteScoped(() => Channel.DeleteReader(reader));
         }
 
-        public IEnumerable<Card> GetCards() {
-            return ExecuteScoped(() => Channel.GetCards());
-        }
+        
 
         public IEnumerable<RequestHeader> GetRequestHeaders(Card card = null, string search = "") {
             return ExecuteScoped(() => Channel.GetRequestHeaders(card, search));

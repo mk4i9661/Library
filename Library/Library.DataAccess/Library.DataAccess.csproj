@@ -51,6 +51,7 @@
     <Compile Include="DBInterop\Queries\Concrete\AuthorQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\BookAuthorQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\BookQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\CardQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GenerateRequestIdQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetApprovedRequestsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetAuthorsQuery.cs" />

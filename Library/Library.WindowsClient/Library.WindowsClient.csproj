@@ -89,6 +89,12 @@
     <Compile Include="EditForms\BookQuantityInputDialog.Designer.cs">
       <DependentUpon>BookQuantityInputDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditForms\CardEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditForms\CardEditForm.Designer.cs">
+      <DependentUpon>CardEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditForms\LibraryEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditForms\BookQuantityInputDialog.resx">
       <DependentUpon>BookQuantityInputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditForms\CardEditForm.resx">
+      <DependentUpon>CardEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditForms\PublisherEditForm.resx">
       <DependentUpon>PublisherEditForm.cs</DependentUpon>

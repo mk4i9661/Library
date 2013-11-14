@@ -19,6 +19,7 @@ namespace Library.Services
     public class OperatorService : AbstractService, IOperator
     {
 
+
         public IEnumerable<Reader> GetReaders() {
             return Ninject.Get<GetReadersQuery>().Execute();
         }
@@ -46,6 +47,30 @@ namespace Library.Services
 
         public IEnumerable<Card> GetCards() {
             return Ninject.Get<GetCardsQuery>().Execute();
+        }
+
+        public Card AddCard(Card card)
+        {
+            var query = Ninject.Get<InsertCardQuery>();
+            query.Card = card;
+            query.Execute();
+            return card;
+        }
+
+        public Card UpdateCard(Card card)
+        {
+            var query = Ninject.Get<UpdateCardQuery>();
+            query.Card = card;
+            query.Execute();
+            return card;
+        }
+
+        public Card DeleteCard(Card card)
+        {
+            var query = Ninject.Get<DeleteCardQuery>();
+            query.Card = card;
+            query.Execute();
+            return card;
         }
 
         public IEnumerable<RequestHeader> GetRequestHeaders(Card card = null, string search = "") {

@@ -40,7 +40,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
         public class InsertReaderQuery : ReaderQuery
         {
             const string Query = @"insert into reader(reader_first_name,
-                                                       reader_last_name,reader_middle_name,reader_address,reader_phone,reader_passport_id)
+                                                       reader_last_name, reader_middle_name, reader_address, reader_phone, reader_passport_id)
                                     values (:reader_first_name, :reader_last_name, :reader_middle_name, :reader_address, :reader_phone, :reader_passport_id)";
 
                 public InsertReaderQuery(ConnectionProvider provider)
@@ -56,14 +56,14 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
 
         public class UpdateReaderQuery : ReaderQuery
         {
-            const string Query = @"reader_first_name = :reader_first_name,
+            const string Query = @"update reader set
+                                    reader_first_name = :reader_first_name,
                                     reader_last_name = :reader_last_name,
                                     reader_middle_name = :reader_middle_name,
                                     reader_address = :reader_address,
-                                    reader_phone = :reader_phone,
+                                    reader_phone = :reader_phone
                                   where
-                                    reader_passport_id = :reader_passport_id
-                                    ";
+                                    reader_passport_id = :reader_passport_id";
 
             public UpdateReaderQuery(ConnectionProvider provider)
                 : base(provider)
