@@ -63,6 +63,7 @@
     <Compile Include="Concrete\RequestRejected.cs" />
     <Compile Include="Concrete\Role.cs" />
     <Compile Include="Concrete\Rubric.cs" />
+    <Compile Include="Concrete\UniqueObjectRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

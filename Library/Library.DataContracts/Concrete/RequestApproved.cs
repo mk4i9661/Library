@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Library.DataContracts.Concrete
 {
     [DataContract]
-    public class RequestApproved : UniqueObject<Request, RequestApproved>
+    public class RequestApproved : UniqueObjectRequest<RequestApproved>
     {
 
         [DataMember]
@@ -28,18 +28,6 @@ namespace Library.DataContracts.Concrete
         public bool IsReturned {
             get;
             set;
-        }
-
-        public override int CompareTo(RequestApproved other) {
-            return Id.CompareTo(other.Id);
-        }
-
-        public override bool Equals(RequestApproved other) {
-            return Id.Equals(other.Id);
-        }
-
-        public override int Compare(RequestApproved x, RequestApproved y) {
-            return x.Id.CompareTo(y.Id);
         }
     }
 }

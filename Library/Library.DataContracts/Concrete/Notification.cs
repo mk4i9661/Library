@@ -9,18 +9,11 @@ using Library.DataContracts.Abstract;
 namespace Library.DataContracts.Concrete
 {
     [DataContract]
-    public class Notification : UniqueObject<Notification>
+    public class Notification : UniqueObjectRequest<Notification>
     {
-        public Request Request {
-            get;
-            set;
-        }
-
         public NotificationType NotificationType {
             get;
             set;
         }
-
-
     }
 }

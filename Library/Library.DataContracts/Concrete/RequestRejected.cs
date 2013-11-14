@@ -9,24 +9,12 @@ using System.Threading.Tasks;
 namespace Library.DataContracts.Concrete
 {
     [DataContract]
-    public class RequestRejected : UniqueObject<Request, RequestRejected>
+    public class RequestRejected : UniqueObjectRequest<RequestRejected>
     {
         [DataMember]
         public RejectReason Reason {
             get;
             set;
-        }
-
-        public override int CompareTo(RequestRejected other) {
-            return Id.CompareTo(other.Id);
-        }
-
-        public override bool Equals(RequestRejected other) {
-            return Id.Equals(other.Id);
-        }
-
-        public override int Compare(RequestRejected x, RequestRejected y) {
-            return x.Id.CompareTo(y.Id);
         }
     }
 }
