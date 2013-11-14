@@ -102,6 +102,7 @@ namespace Library.WindowsClient
                     GridControl = gcRequests,
                     RenewItem = bbiRenewal,
                     ReturnItem = bbiReturn,
+                    SendNotificationsItem = bbiSendNotifications,
                     GridViewApprovedRequests = gvApprovedRequests,
                     GridViewRejectedRequests = gvRejectedRequests,
                     CardItem = beiCard,

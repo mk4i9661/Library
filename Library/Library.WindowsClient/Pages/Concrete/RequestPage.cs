@@ -50,6 +50,11 @@ namespace Library.WindowsClient.Pages.Concrete
             set;
         }
 
+        BarButtonItem SendNotificationsItem {
+            get;
+            set;
+        }
+
         LibraryRibbonTextEdit SearchItem {
             get;
             set;
@@ -69,6 +74,7 @@ namespace Library.WindowsClient.Pages.Concrete
             GridViewRejectedRequests = parameters.GridViewRejectedRequests;
             ReturnItem = parameters.ReturnItem;
             RenewItem = parameters.RenewItem;
+            SendNotificationsItem = parameters.SendNotificationsItem;
             SearchItem = new LibraryRibbonTextEdit(parameters.SearchItem);
             CardItem = new LibraryRibbonComboBox(parameters.CardItem);
 
@@ -81,13 +87,30 @@ namespace Library.WindowsClient.Pages.Concrete
         void InitHandlers() {
             ReturnItem.ItemClick += ReturnItem_ItemClick;
             RenewItem.ItemClick += RenewalItem_ItemClick;
+            SendNotificationsItem.ItemClick += SendNotificationsItem_ItemClick;
             GridControl.GridView.MasterRowGetRelationCount += GridView_MasterRowGetRelationCount;
             GridControl.GridView.MasterRowGetChildList += GridView_MasterRowGetChildList;
             GridControl.GridView.MasterRowGetRelationName += GridView_MasterRowGetRelationName;
             GridControl.GridView.MasterRowGetRelationDisplayCaption += GridView_MasterRowGetRelationDisplayCaption;
             GridControl.GridView.MasterRowEmpty += GridView_MasterRowEmpty;
+            GridControl.GridView.CustomUnboundColumnData += GridView_CustomUnboundColumnData;
             SearchItem.KeyDown += SearchItem_KeyDown;
             CardItem.EditValueChanged += CardItem_EditValueChanged;
+        }
+
+        void SendNotificationsItem_ItemClick(object sender, ItemClickEventArgs e) {
+            
+        }
+
+        void GridView_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e) {
+            if (e.Column.FieldName == "Reader") {
+                var row = e.Row as RequestHeader;
+                e.Value = string.Format("{0} {1} {2} ({3})",
+                    row.Card.Reader.LastName,
+                    row.Card.Reader.FirstName,
+                    row.Card.Reader.MiddleName,
+                    row.Card.Id);
+            }
         }
 
         void CardItem_EditValueChanged(object sender, EventArgs e) {
@@ -157,7 +180,7 @@ namespace Library.WindowsClient.Pages.Concrete
         string GetRelationName(RequestHeader request, int relation) {
             if (request == null)
                 return string.Empty;
-            if (relation == 0 ) {
+            if (relation == 0) {
                 return request.HasApprovedRequests ? "RequestApproved" : request.HasRejectedRequests ? "RequestRejected" : string.Empty;
             }
             if (relation == 1) {
@@ -226,6 +249,7 @@ namespace Library.WindowsClient.Pages.Concrete
         Task<RequestApproved> CloseRequest(RequestApproved request) {
             return Task.Factory.StartNew(() => GetProxy().CloseRequest(request));
         }
+
 
         void GridView_MasterRowGetRelationCount(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationCountEventArgs e) {
             var request = GetRow(e.RowHandle);
@@ -404,6 +428,11 @@ namespace Library.WindowsClient.Pages.Concrete
             }
 
             public BarEditItem SearchItem {
+                get;
+                set;
+            }
+
+            public BarButtonItem SendNotificationsItem {
                 get;
                 set;
             }

@@ -22,6 +22,7 @@ namespace Library.WindowsClient
         }
 
         public LibraryForm() {
+            Icon = Properties.Resources.Book;
             InitializeComponent();
         }
 

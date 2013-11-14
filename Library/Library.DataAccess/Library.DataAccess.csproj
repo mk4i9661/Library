@@ -69,6 +69,8 @@
     <Compile Include="DBInterop\Queries\Concrete\RequestApprovedQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\RequestQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\RubricQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\SendNotificationsQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\UniqueObjectRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

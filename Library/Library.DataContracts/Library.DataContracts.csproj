@@ -51,6 +51,8 @@
     <Compile Include="Concrete\Book.cs" />
     <Compile Include="Concrete\Card.cs" />
     <Compile Include="Concrete\Employee.cs" />
+    <Compile Include="Concrete\Notification.cs" />
+    <Compile Include="Concrete\NotificationType.cs" />
     <Compile Include="Concrete\Publisher.cs" />
     <Compile Include="Concrete\Reader.cs" />
     <Compile Include="Concrete\RejectReason.cs" />
