@@ -22,6 +22,12 @@ namespace Library.Contracts
 
         [OperationContract]
         IEnumerable<Card> GetCards();
+        [OperationContract]
+        Card AddCard(Card card);
+        [OperationContract]
+        Card UpdateCard(Card card);
+        [OperationContract]
+        Card DeleteCard(Card card);
 
         [OperationContract]
         IEnumerable<RequestHeader> GetRequestHeaders(Card card = null, string search = "");

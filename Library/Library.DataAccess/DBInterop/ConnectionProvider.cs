@@ -24,7 +24,7 @@ namespace Library.DataAccess.DBInterop
             return new OracleConnection(ConnectionString);
         }
 
-        public virtual void ExecuteNonQuery(OracleCommand command) {
+        public virtual void ExecuteNonQuery(OracleCommand command) { //одна команда в одной транзакции
             using (var connection = CreateConnection()) {
                 connection.Open();
                 using (command) {
@@ -43,7 +43,7 @@ namespace Library.DataAccess.DBInterop
             }
         }
 
-        public virtual void ExecuteNonQueries(IEnumerable<OracleCommand> commands) {
+        public virtual void ExecuteNonQueries(IEnumerable<OracleCommand> commands) { // несколько команд в одной транзакции
             using (var connection = CreateConnection()) {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction()) {

@@ -1,5 +1,6 @@
 ﻿using Library.Contracts;
 using Library.DataContracts.Concrete;
+using Library.UI.DevExpressControls.Forms;
 using Library.WindowsClient.Pages.Abstract;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,12 @@ namespace Library.WindowsClient.Pages.Concrete
 
         protected override Card DeleteOperation(Card data)
         {
-            //return GetProxy().DeleteCard(data);
+            return GetProxy().DeleteCard(data);
+        }
+
+        protected override TypedEditForm<Card> CreateEditForm()
+        {
+            //return Ninject.Get<CardEditForm>();
             return null;
         }
 

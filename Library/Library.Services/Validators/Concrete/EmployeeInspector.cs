@@ -17,7 +17,15 @@ namespace Library.Services.Validators.Concrete
         }
 
         public object BeforeCall(string operationName, object[] inputs) {
-            var header = OperationContext.Current.RequestContext.RequestMessage.Headers.GetHeader<AuthenticationHeader>("AuthenticationHeader", "");
+            var header = (AuthenticationHeader)null;
+            try
+            {
+                header = OperationContext.Current.RequestContext.RequestMessage.Headers.GetHeader<AuthenticationHeader>("AuthenticationHeader", "");
+            }
+            catch (Exception)
+            {
+                
+            }
             if (header == null) {
                 throw new Exception("Неопознаный запрос");
             }

@@ -20,6 +20,7 @@ namespace Library.WindowsClient.EditForms
         }
 
         protected override void OnInitFormFields(Reader data){
+            seId.Enabled = !(Operation == UI.DevExpressControls.Forms.EditFormOperation.Update);
             Id = data.Id;
             FirstName = data.FirstName;
             LastName = data.LastName;
@@ -30,6 +31,7 @@ namespace Library.WindowsClient.EditForms
 
         protected override void OnInitDataFields(Reader data)
         {
+            data.Id = Id;
             data.FirstName = FirstName;
             data.LastName = LastName;
             data.MiddleName = MiddleName;
