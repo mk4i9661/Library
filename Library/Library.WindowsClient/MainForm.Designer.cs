@@ -40,9 +40,10 @@ namespace Library.WindowsClient
             this.bbiAuthors = new DevExpress.XtraBars.BarButtonItem();
             this.bbiRenewal = new DevExpress.XtraBars.BarButtonItem();
             this.bbiReturn = new DevExpress.XtraBars.BarButtonItem();
-            this.bciObligors = new DevExpress.XtraBars.BarCheckItem();
+            this.bciObligators = new DevExpress.XtraBars.BarCheckItem();
             this.beiCard = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.bbiSendNotifications = new DevExpress.XtraBars.BarButtonItem();
             this.rpReaders = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup15 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -63,6 +64,7 @@ namespace Library.WindowsClient
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup20 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup13 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpReportBooks = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -130,8 +132,6 @@ namespace Library.WindowsClient
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.bbiSendNotifications = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPageGroup20 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.gvApprovedRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRejectedRequests)).BeginInit();
@@ -339,7 +339,9 @@ namespace Library.WindowsClient
             // 
             // gridColumn11
             // 
-            this.gridColumn11.Caption = "Дата создания";
+            this.gridColumn11.Caption = "Время создания";
+            this.gridColumn11.DisplayFormat.FormatString = "dd.MM.yyyy HH:mm:ss";
+            this.gridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn11.FieldName = "CreateDate";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.Visible = true;
@@ -362,7 +364,7 @@ namespace Library.WindowsClient
             this.bbiAuthors,
             this.bbiRenewal,
             this.bbiReturn,
-            this.bciObligors,
+            this.bciObligators,
             this.beiCard,
             this.bbiSendNotifications});
             this.rcPages.Location = new System.Drawing.Point(0, 0);
@@ -390,7 +392,6 @@ namespace Library.WindowsClient
             this.rcPages.Size = new System.Drawing.Size(1200, 128);
             this.rcPages.Toolbar.ShowCustomizeItem = false;
             this.rcPages.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
-            this.rcPages.Click += new System.EventHandler(this.rcPages_Click);
             // 
             // bbiAdd
             // 
@@ -484,12 +485,12 @@ namespace Library.WindowsClient
             this.bbiReturn.LargeGlyph = global::Library.WindowsClient.Properties.Resources.book_previous;
             this.bbiReturn.Name = "bbiReturn";
             // 
-            // bciObligors
+            // bciObligators
             // 
-            this.bciObligors.Caption = "Должники";
-            this.bciObligors.Id = 12;
-            this.bciObligors.LargeGlyph = global::Library.WindowsClient.Properties.Resources.user_astronaut;
-            this.bciObligors.Name = "bciObligors";
+            this.bciObligators.Caption = "Должники";
+            this.bciObligators.Id = 12;
+            this.bciObligators.LargeGlyph = global::Library.WindowsClient.Properties.Resources.user_astronaut;
+            this.bciObligators.Name = "bciObligators";
             // 
             // beiCard
             // 
@@ -505,6 +506,13 @@ namespace Library.WindowsClient
             this.repositoryItemComboBox3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repositoryItemComboBox3.Name = "repositoryItemComboBox3";
+            // 
+            // bbiSendNotifications
+            // 
+            this.bbiSendNotifications.Caption = "Уведомить";
+            this.bbiSendNotifications.Id = 15;
+            this.bbiSendNotifications.LargeGlyph = global::Library.WindowsClient.Properties.Resources.sound;
+            this.bbiSendNotifications.Name = "bbiSendNotifications";
             // 
             // rpReaders
             // 
@@ -670,6 +678,13 @@ namespace Library.WindowsClient
             this.ribbonPageGroup9.ShowCaptionButton = false;
             this.ribbonPageGroup9.Text = "Книги";
             // 
+            // ribbonPageGroup20
+            // 
+            this.ribbonPageGroup20.ItemLinks.Add(this.bbiSendNotifications);
+            this.ribbonPageGroup20.Name = "ribbonPageGroup20";
+            this.ribbonPageGroup20.ShowCaptionButton = false;
+            this.ribbonPageGroup20.Text = "Читатели";
+            // 
             // ribbonPageGroup13
             // 
             this.ribbonPageGroup13.ItemLinks.Add(this.beiCard);
@@ -698,7 +713,7 @@ namespace Library.WindowsClient
             this.ribbonPageGroup12.ItemLinks.Add(this.beiRubric);
             this.ribbonPageGroup12.ItemLinks.Add(this.beiPublisher);
             this.ribbonPageGroup12.ItemLinks.Add(this.beiSearch);
-            this.ribbonPageGroup12.ItemLinks.Add(this.bciObligors);
+            this.ribbonPageGroup12.ItemLinks.Add(this.bciObligators);
             this.ribbonPageGroup12.Name = "ribbonPageGroup12";
             this.ribbonPageGroup12.ShowCaptionButton = false;
             this.ribbonPageGroup12.Text = "Фильтрация";
@@ -1413,20 +1428,6 @@ namespace Library.WindowsClient
             this.gridColumn45.Visible = true;
             this.gridColumn45.VisibleIndex = 2;
             // 
-            // bbiSendNotifications
-            // 
-            this.bbiSendNotifications.Caption = "Уведомить";
-            this.bbiSendNotifications.Id = 15;
-            this.bbiSendNotifications.LargeGlyph = global::Library.WindowsClient.Properties.Resources.sound;
-            this.bbiSendNotifications.Name = "bbiSendNotifications";
-            // 
-            // ribbonPageGroup20
-            // 
-            this.ribbonPageGroup20.ItemLinks.Add(this.bbiSendNotifications);
-            this.ribbonPageGroup20.Name = "ribbonPageGroup20";
-            this.ribbonPageGroup20.ShowCaptionButton = false;
-            this.ribbonPageGroup20.Text = "Читатели";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1554,7 +1555,7 @@ namespace Library.WindowsClient
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn27;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
-        private DevExpress.XtraBars.BarCheckItem bciObligors;
+        private DevExpress.XtraBars.BarCheckItem bciObligators;
         private UI.DevExpressControls.Controls.LibraryGridView libraryGridView6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn28;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn29;

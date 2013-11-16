@@ -11,6 +11,7 @@ namespace Library.DataContracts.Concrete
     [DataContract]
     public class Notification : UniqueObjectRequest<Notification>
     {
+        [DataMember]
         public NotificationType NotificationType {
             get;
             set;

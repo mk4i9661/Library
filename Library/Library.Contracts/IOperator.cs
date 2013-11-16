@@ -43,6 +43,8 @@ namespace Library.Contracts
         [OperationContract]
         //вернуть книгу
         RequestApproved CloseRequest(RequestApproved request);
+        [OperationContract]
+        IEnumerable<Notification> SendNotifications();
         
         [OperationContract]
         IEnumerable<Book> GetBooks();

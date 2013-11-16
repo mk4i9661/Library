@@ -115,6 +115,8 @@
             this.gridColumn1.Caption = "Выбрать";
             this.gridColumn1.FieldName = "Selected";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
             this.gridColumn1.Width = 79;

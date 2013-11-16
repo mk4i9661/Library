@@ -49,24 +49,21 @@ namespace Library.Services
             return Ninject.Get<GetCardsQuery>().Execute();
         }
 
-        public Card AddCard(Card card)
-        {
+        public Card AddCard(Card card) {
             var query = Ninject.Get<InsertCardQuery>();
             query.Card = card;
             query.Execute();
             return card;
         }
 
-        public Card UpdateCard(Card card)
-        {
+        public Card UpdateCard(Card card) {
             var query = Ninject.Get<UpdateCardQuery>();
             query.Card = card;
             query.Execute();
             return card;
         }
 
-        public Card DeleteCard(Card card)
-        {
+        public Card DeleteCard(Card card) {
             var query = Ninject.Get<DeleteCardQuery>();
             query.Card = card;
             query.Execute();
@@ -84,6 +81,15 @@ namespace Library.Services
             if (requests == null || !requests.Any()) {
                 throw new Exception("Для создания запроса необходимо выбрать хотя бы одну книгу");
             }
+
+            card = GetCards().FirstOrDefault(c => c.Id == card.Id);
+            if (card == null) {
+                throw new Exception("Не удалось обнаружить читательский билет. Возможно, билет не создан");
+            }
+            if (card.ExpiryDate.Date < DateTime.Now.Date) {
+                throw new Exception("Срок действия читательского билета истек. Перед созданием запроса продлите читательский билет");
+            }
+
             var executor = Ninject.Get<Executor>();
             var id = Ninject.Get<GenerateRequestIdQuery>().Execute();
             var provider = Factory.Get();
@@ -128,7 +134,7 @@ namespace Library.Services
 
             if (DateTime.Now.Date <= request.ReturnDate.Date) {
                 throw new Exception("Срок возврата еще не истек. Продление невозможно");
-            }   
+            }
 
             var command = Ninject.Get<RenewRequestQuery>();
             command.RequestApproved = request;
@@ -165,6 +171,27 @@ namespace Library.Services
                 throw exc;
             }
             return request;
+        }
+
+        public IEnumerable<Notification> SendNotifications() {
+            var query = Ninject.Get<SendNotificationsQuery>();
+            query.Execute();
+            var sended = query.Notifications.ToList();
+            var result = new List<Notification>();
+            if (sended.Count > 0) {
+                result.AddRange(
+                    from s in sended
+                    join n in Ninject.Get<GetNotificationsQuery>().Execute() on new {
+                        RequestId = s.RequestId,
+                        BookId = s.BookId
+                    } equals new {
+                        RequestId = n.Id.Id.Id,
+                        BookId = n.Id.Book.Id
+                    }
+                    select n
+                );
+            }
+            return result;
         }
 
         protected RequestApproved GetRequestApproved(RequestApproved source) {

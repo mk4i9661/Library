@@ -77,6 +77,10 @@ namespace Library.Proxies
             return ExecuteScoped(() => Channel.CloseRequest(request));
         }
 
+        public IEnumerable<Notification> SendNotifications() {
+            return ExecuteScoped(() => Channel.SendNotifications());
+        }
+
         public IEnumerable<Book> GetBooks() {
             return ExecuteScoped(() => Channel.GetBooks());
         }

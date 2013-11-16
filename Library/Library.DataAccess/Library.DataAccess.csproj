@@ -59,6 +59,7 @@
     <Compile Include="DBInterop\Queries\Concrete\GetBooksQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetCardsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetEmployeesQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\GetNotificationsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetPublishersQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetReadersQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetRejectedRequestsQuery.cs" />
@@ -72,6 +73,10 @@
     <Compile Include="DBInterop\Queries\Concrete\RubricQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\SendNotificationsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\UniqueObjectRequest.cs" />
+    <Compile Include="OracleCustomTypes\Factories\NotificationObjectFactory.cs" />
+    <Compile Include="OracleCustomTypes\Factories\SendedNotificationsFactory.cs" />
+    <Compile Include="OracleCustomTypes\NotificationObject.cs" />
+    <Compile Include="OracleCustomTypes\SendedNotifications.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

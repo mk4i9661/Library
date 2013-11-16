@@ -15,6 +15,7 @@ using Library.UI.DevExpressControls.Controls;
 using System.Drawing;
 using System.Monads;
 using System.Windows.Forms;
+using Library.WindowsClient.InformationForms;
 
 namespace Library.WindowsClient.Pages.Concrete
 {
@@ -98,8 +99,15 @@ namespace Library.WindowsClient.Pages.Concrete
             CardItem.EditValueChanged += CardItem_EditValueChanged;
         }
 
-        void SendNotificationsItem_ItemClick(object sender, ItemClickEventArgs e) {
-            
+        async void SendNotificationsItem_ItemClick(object sender, ItemClickEventArgs e) {
+            var result = await SendNotifications();
+            if (result.Any()) {
+                using (var form = new SendedNotificationsForm(result)) {
+                    form.ShowDialog();
+                }
+            } else {
+                DialogMessages.Inform("Нет уведомлений для отправки");
+            }
         }
 
         void GridView_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e) {
@@ -250,6 +258,9 @@ namespace Library.WindowsClient.Pages.Concrete
             return Task.Factory.StartNew(() => GetProxy().CloseRequest(request));
         }
 
+        Task<IEnumerable<Notification>> SendNotifications() {
+            return Task.Factory.StartNew(() => GetProxy().SendNotifications());
+        }
 
         void GridView_MasterRowGetRelationCount(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationCountEventArgs e) {
             var request = GetRow(e.RowHandle);

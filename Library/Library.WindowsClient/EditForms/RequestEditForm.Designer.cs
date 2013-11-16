@@ -26,6 +26,13 @@
         /// </summary>
         private void InitializeComponent() {
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            this.libraryGridView1 = new Library.UI.DevExpressControls.Controls.LibraryGridView();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcBooks = new Library.UI.DevExpressControls.Controls.LibraryGridControl();
+            this.gvBooks = new Library.UI.DevExpressControls.Controls.LibraryGridView();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cbCard = new Library.UI.DevExpressControls.Controls.LibraryComboBox();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gcResult = new Library.UI.DevExpressControls.Controls.LibraryGridControl();
@@ -36,10 +43,6 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
             this.teFilter = new Library.UI.DevExpressControls.Controls.LibraryTextEdit();
-            this.gcBooks = new Library.UI.DevExpressControls.Controls.LibraryGridControl();
-            this.gvBooks = new Library.UI.DevExpressControls.Controls.LibraryGridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -50,14 +53,13 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.lcRequests = new DevExpress.XtraEditors.LabelControl();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.libraryGridView1 = new Library.UI.DevExpressControls.Controls.LibraryGridView();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.libraryGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcBooks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvBooks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbCard.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcResult)).BeginInit();
@@ -68,8 +70,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
             this.layoutControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.teFilter.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcBooks)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvBooks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -78,7 +78,6 @@
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.libraryGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -108,6 +107,102 @@
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(829, 480);
             this.layoutControlGroup1.Text = "Root";
+            // 
+            // libraryGridView1
+            // 
+            this.libraryGridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.libraryGridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.libraryGridView1.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.libraryGridView1.Appearance.Row.Options.UseFont = true;
+            this.libraryGridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7});
+            this.libraryGridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
+            this.libraryGridView1.GridControl = this.gcBooks;
+            this.libraryGridView1.Name = "libraryGridView1";
+            this.libraryGridView1.OptionsBehavior.Editable = false;
+            this.libraryGridView1.OptionsBehavior.ReadOnly = true;
+            this.libraryGridView1.OptionsCustomization.AllowFilter = false;
+            this.libraryGridView1.OptionsCustomization.AllowQuickHideColumns = false;
+            this.libraryGridView1.OptionsDetail.AllowZoomDetail = false;
+            this.libraryGridView1.OptionsDetail.ShowDetailTabs = false;
+            this.libraryGridView1.OptionsMenu.EnableColumnMenu = false;
+            this.libraryGridView1.OptionsMenu.EnableFooterMenu = false;
+            this.libraryGridView1.OptionsMenu.EnableGroupPanelMenu = false;
+            this.libraryGridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.libraryGridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Фамилия";
+            this.gridColumn5.FieldName = "LastName";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 0;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Имя";
+            this.gridColumn6.FieldName = "FirstName";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 1;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "Отчество";
+            this.gridColumn7.FieldName = "MiddleName";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 2;
+            // 
+            // gcBooks
+            // 
+            gridLevelNode1.LevelTemplate = this.libraryGridView1;
+            gridLevelNode1.RelationName = "Authors";
+            this.gcBooks.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
+            gridLevelNode1});
+            this.gcBooks.Location = new System.Drawing.Point(2, 51);
+            this.gcBooks.MainView = this.gvBooks;
+            this.gcBooks.Name = "gcBooks";
+            this.gcBooks.Size = new System.Drawing.Size(355, 371);
+            this.gcBooks.TabIndex = 4;
+            this.gcBooks.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvBooks,
+            this.libraryGridView1});
+            // 
+            // gvBooks
+            // 
+            this.gvBooks.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.gvBooks.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvBooks.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.gvBooks.Appearance.Row.Options.UseFont = true;
+            this.gvBooks.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn2});
+            this.gvBooks.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
+            this.gvBooks.GridControl = this.gcBooks;
+            this.gvBooks.Name = "gvBooks";
+            this.gvBooks.OptionsBehavior.Editable = false;
+            this.gvBooks.OptionsBehavior.ReadOnly = true;
+            this.gvBooks.OptionsCustomization.AllowFilter = false;
+            this.gvBooks.OptionsCustomization.AllowQuickHideColumns = false;
+            this.gvBooks.OptionsDetail.AllowZoomDetail = false;
+            this.gvBooks.OptionsDetail.ShowDetailTabs = false;
+            this.gvBooks.OptionsMenu.EnableColumnMenu = false;
+            this.gvBooks.OptionsMenu.EnableFooterMenu = false;
+            this.gvBooks.OptionsMenu.EnableGroupPanelMenu = false;
+            this.gvBooks.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gvBooks.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Название";
+            this.gridColumn2.FieldName = "Name";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            this.gridColumn2.Width = 289;
             // 
             // cbCard
             // 
@@ -231,63 +326,6 @@
             this.teFilter.StyleController = this.layoutControl3;
             this.teFilter.TabIndex = 5;
             // 
-            // gcBooks
-            // 
-            gridLevelNode1.LevelTemplate = this.libraryGridView1;
-            gridLevelNode1.RelationName = "Authors";
-            this.gcBooks.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
-            this.gcBooks.Location = new System.Drawing.Point(2, 51);
-            this.gcBooks.MainView = this.gvBooks;
-            this.gcBooks.Name = "gcBooks";
-            this.gcBooks.Size = new System.Drawing.Size(355, 371);
-            this.gcBooks.TabIndex = 4;
-            this.gcBooks.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvBooks,
-            this.libraryGridView1});
-            // 
-            // gvBooks
-            // 
-            this.gvBooks.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.gvBooks.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gvBooks.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.gvBooks.Appearance.Row.Options.UseFont = true;
-            this.gvBooks.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2});
-            this.gvBooks.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
-            this.gvBooks.GridControl = this.gcBooks;
-            this.gvBooks.Name = "gvBooks";
-            this.gvBooks.OptionsBehavior.Editable = false;
-            this.gvBooks.OptionsBehavior.ReadOnly = true;
-            this.gvBooks.OptionsCustomization.AllowFilter = false;
-            this.gvBooks.OptionsCustomization.AllowQuickHideColumns = false;
-            this.gvBooks.OptionsDetail.AllowZoomDetail = false;
-            this.gvBooks.OptionsDetail.ShowDetailTabs = false;
-            this.gvBooks.OptionsMenu.EnableColumnMenu = false;
-            this.gvBooks.OptionsMenu.EnableFooterMenu = false;
-            this.gvBooks.OptionsMenu.EnableGroupPanelMenu = false;
-            this.gvBooks.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gvBooks.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = " ";
-            this.gridColumn1.FieldName = "Selected";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 48;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Название";
-            this.gridColumn2.FieldName = "Name";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 289;
-            // 
             // layoutControlGroup2
             // 
             this.layoutControlGroup2.CustomizationFormText = "layoutControlGroup2";
@@ -351,21 +389,23 @@
             // 
             this.bRemove.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
             this.bRemove.Appearance.Options.UseFont = true;
+            this.bRemove.Image = global::Library.WindowsClient.Properties.Resources.bullet_arrow_left;
+            this.bRemove.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.bRemove.Location = new System.Drawing.Point(5, 194);
             this.bRemove.Name = "bRemove";
             this.bRemove.Size = new System.Drawing.Size(101, 33);
             this.bRemove.TabIndex = 1;
-            this.bRemove.Text = "Удалить";
             // 
             // bAdd
             // 
             this.bAdd.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
             this.bAdd.Appearance.Options.UseFont = true;
+            this.bAdd.Image = global::Library.WindowsClient.Properties.Resources.bullet_arrow_right;
+            this.bAdd.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.bAdd.Location = new System.Drawing.Point(5, 155);
             this.bAdd.Name = "bAdd";
             this.bAdd.Size = new System.Drawing.Size(101, 33);
             this.bAdd.TabIndex = 0;
-            this.bAdd.Text = "Добавить";
             // 
             // layoutControlItem2
             // 
@@ -403,55 +443,6 @@
             this.layoutControlItem7.TextToControlDistance = 0;
             this.layoutControlItem7.TextVisible = false;
             // 
-            // libraryGridView1
-            // 
-            this.libraryGridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.libraryGridView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.libraryGridView1.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.libraryGridView1.Appearance.Row.Options.UseFont = true;
-            this.libraryGridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn5,
-            this.gridColumn6,
-            this.gridColumn7});
-            this.libraryGridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.None;
-            this.libraryGridView1.GridControl = this.gcBooks;
-            this.libraryGridView1.Name = "libraryGridView1";
-            this.libraryGridView1.OptionsBehavior.Editable = false;
-            this.libraryGridView1.OptionsBehavior.ReadOnly = true;
-            this.libraryGridView1.OptionsCustomization.AllowFilter = false;
-            this.libraryGridView1.OptionsCustomization.AllowQuickHideColumns = false;
-            this.libraryGridView1.OptionsDetail.AllowZoomDetail = false;
-            this.libraryGridView1.OptionsDetail.ShowDetailTabs = false;
-            this.libraryGridView1.OptionsMenu.EnableColumnMenu = false;
-            this.libraryGridView1.OptionsMenu.EnableFooterMenu = false;
-            this.libraryGridView1.OptionsMenu.EnableGroupPanelMenu = false;
-            this.libraryGridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.libraryGridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn5
-            // 
-            this.gridColumn5.Caption = "Фамилия";
-            this.gridColumn5.FieldName = "LastName";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 0;
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.Caption = "Имя";
-            this.gridColumn6.FieldName = "FirstName";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 1;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "Отчество";
-            this.gridColumn7.FieldName = "MiddleName";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 2;
-            // 
             // RequestEditForm
             // 
             this.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -465,6 +456,9 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.libraryGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcBooks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvBooks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbCard.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcResult)).EndInit();
@@ -475,8 +469,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
             this.layoutControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.teFilter.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcBooks)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvBooks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
@@ -485,7 +477,6 @@
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.libraryGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -510,7 +501,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;

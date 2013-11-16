@@ -10,6 +10,10 @@ namespace Library.WindowsClient.EditForms
 {
     class LibraryEditForm<TContract, T> : TypedEditForm<T> where T : class
     {
+        public LibraryEditForm() {
+            Icon = Properties.Resources.Book;
+        }
+
         [Inject]
         public IKernel Ninject {
             get;

@@ -81,8 +81,7 @@ namespace Library.WindowsClient
                     AuthorsButton = bbiAuthors
                 }));
 
-                Ninject.Bind<AuthorPage>().ToMethod(method => new AuthorPage(new PageParameters()
-                {
+                Ninject.Bind<AuthorPage>().ToMethod(method => new AuthorPage(new PageParameters() {
                     RibbonPage = rpAuthors,
                     TabPage = xtpAuthors,
                     GridControl = gcAuthors,
@@ -109,15 +108,13 @@ namespace Library.WindowsClient
                     SearchItem = beiSearch
                 }));
 
-                Ninject.Bind<ReaderPage>().ToMethod(method => new ReaderPage(new PageParameters()
-                {
+                Ninject.Bind<ReaderPage>().ToMethod(method => new ReaderPage(new PageParameters() {
                     RibbonPage = rpReaders,
                     TabPage = xtpReaders,
                     GridControl = gcReaders,
                 }));
 
-                Ninject.Bind<CardPage>().ToMethod(method => new CardPage(new PageParameters()
-                {
+                Ninject.Bind<CardPage>().ToMethod(method => new CardPage(new PageParameters() {
                     RibbonPage = rpCards,
                     TabPage = xtpCards,
                     GridControl = gcCards,
@@ -138,7 +135,7 @@ namespace Library.WindowsClient
                     PublisherItem = beiPublisher,
                     RubricItem = beiRubric,
                     SearchItem = beiSearch,
-                    ObligatorsItem = bciObligors
+                    ObligatorsItem = bciObligators
                 }));
 
                 Pages.AddRange(new IPage[] {
@@ -193,13 +190,12 @@ namespace Library.WindowsClient
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
             if (!(e.Cancel = !DialogMessages.Question("Вы уверены, что хотите покинуть систему?"))) {
-                GetAuthenticationProxy().LogOut(Ninject.Get<AuthenticationData>());
+                try {
+                    GetAuthenticationProxy().LogOut(Ninject.Get<AuthenticationData>());
+                } catch {
+
+                }
             }
-        }
-
-        private void rcPages_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

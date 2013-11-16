@@ -12,12 +12,16 @@ namespace Library.UI.DevExpressControls.Forms
     {
         const string Caption = "Система \"Библиотека\"";
 
-        public static DialogResult Error(string text) {
-            return XtraMessageBox.Show(text, Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        public static void Error(string text) {
+            MessageBox.Show(text, Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public static bool Question(string text) {
-            return XtraMessageBox.Show(text, Caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+            return MessageBox.Show(text, Caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        public static void Inform(string text) {
+            MessageBox.Show(text, Caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

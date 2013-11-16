@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Monads;
 
 namespace Library.WindowsClient.EditForms
 {
@@ -31,14 +32,18 @@ namespace Library.WindowsClient.EditForms
 
             InitializeComponent();
             InitHandlers();
-
-            gvAuthors.OptionsBehavior.Editable = true;
-            gvAuthors.OptionsBehavior.ReadOnly = false;
         }
 
         void InitHandlers() {
             Load += BookAuthorEditForm_Load;
             teFilter.TextChanged += teFilter_TextChanged;
+            gvAuthors.RowCellClick += gvAuthors_RowCellClick;
+        }
+
+        void gvAuthors_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e) {
+            var row = gvAuthors.GetRow<AuthorWrap>(e.RowHandle);
+            row.Do(r => r.Selected = !r.Selected);
+            gvAuthors.RefreshData();
         }
 
         void teFilter_TextChanged(object sender, EventArgs e) {

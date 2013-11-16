@@ -11,3 +11,4 @@
 --grant  DEBUG ANY PROCEDURE to lab;
 --grant create any procedure to lab
 --grant create any sequence to lab;
+--grant create any type to lab;

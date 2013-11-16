@@ -1,33 +1,26 @@
-create or replace PROCEDURE SEND_NOTIFICATIONS AS 
-  TYPE NeededRequests IS TABLE OF Request_Rejected%ROWTYPE INDEX BY PLS_INTEGER;
-  records NeededRequests;
-  --from_rejected Request_Rejected%ROWTYPE;
+create or replace PROCEDURE SEND_NOTIFICATIONS (
+  sended out sended_notifications
+) AS 
   from_request Request%ROWTYPE;
   total INTEGER;
   max_quantity INTEGER;
   book_available INTEGER;
   return_date DATE;
-  
-  --CURSOR curr;
+  sended_index INTEGER;
 BEGIN
   DBMS_OUTPUT.put_line('BEGIN');
+  
+  sended := sended_notifications();
   
   -- люйяхлюкэмне дносярхлне вхякн ймхц мю псйюу с вхрюрекъ
   SELECT GET_DEFAULT_MAX_BOOK_QUANTITY() INTO max_quantity FROM DUAL;
   -- дюрю бнгбпюрю он слнквюмхч
   SELECT get_default_return_date() INTO return_date FROM DUAL;
   -- бяе нрйюгш, врн еые ме сярюпекх
-  --SELECT * BULK COLLECT INTO records FROM Request_Rejected WHERE request_rejected_reason_id != 3;
-  
-  --DBMS_OUTPUT.put_line('нРЙЮГНБ: '||records.count);
   
   for from_rejected in (
     SELECT * FROM Request_Rejected WHERE request_rejected_reason_id != 3
   ) loop
-  --DBMS_OUTPUT.put_line('хДЕМРХТХЙЮРНП ГЮОПНЯЮ: '||from_rejected.Request_Rejected_Request_ID);
-  --DBMS_OUTPUT.put_line('хДЕМРХТХЙЮРНП ЙМХЦХ: '||from_rejected.Request_Rejected_Book_ID);
-    --fetch curr into from_rejected;
-    
     -- яюл гюопня, йнрнпнлс ашкн нрйюгюмн
     select * into from_request from Request WHERE Request_ID = from_rejected.Request_Rejected_Request_ID AND Request_Book_ID = from_rejected.Request_Rejected_Book_ID;
     
@@ -35,6 +28,14 @@ BEGIN
       -- гюопня хярей он япнйс дюбмнярх, нропюбкъел рюйне сбеднлкемхе х лемъел бхд нрйюгю
       INSERT INTO Notification(Notification_Request_ID, Notification_Book_ID, Notification_Type_ID)
       VALUES(from_rejected.Request_Rejected_Request_ID, from_rejected.Request_Rejected_Book_ID, 2);
+	  -- х днаюбкъел рс фе ярпнйс б йнккейжхч дкъ бнгбпюрю
+      sended_index := sended.count + 1;
+      sended.extend();
+      sended(sended_index) := notification_object(0, 0, 0);
+      sended(sended_index).Request_ID := from_rejected.Request_Rejected_Request_ID;
+      sended(sended_index).Book_ID := from_rejected.Request_Rejected_Book_ID;
+      sended(sended_index).Type_ID := 2;
+      
       -- намнбкъел нрйюг йюй хярейьхи
       UPDATE Request_Rejected SET Request_Rejected_Reason_ID = 3
       WHERE Request_Rejected_Request_ID = from_rejected.Request_Rejected_Request_ID AND Request_Rejected_Book_ID = from_rejected.Request_Rejected_Book_ID;
@@ -53,6 +54,14 @@ BEGIN
         -- оняшкюел сбеднлкемхе
         INSERT INTO Notification(Notification_Request_ID, Notification_Book_ID, Notification_Type_ID)
         VALUES(from_rejected.Request_Rejected_Request_ID, from_rejected.Request_Rejected_Book_ID, 1);
+        -- х днаюбкъел рс фе ярпнйс б йнккейжхч дкъ бнгбпюрю
+        sended_index := sended.count + 1;
+        sended.extend();
+        sended(sended_index) := notification_object(0, 0, 0);
+        sended(sended_index).Request_ID := from_rejected.Request_Rejected_Request_ID;
+        sended(sended_index).Book_ID := from_rejected.Request_Rejected_Book_ID;
+        sended(sended_index).Type_ID := 1;
+        
         -- сдюкъел гюопня х нрйюгнб
         DELETE FROM Request_Rejected WHERE 
                                       Request_Rejected_Request_ID = from_rejected.Request_Rejected_Request_ID

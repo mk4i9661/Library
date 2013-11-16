@@ -24,7 +24,7 @@ namespace Library.WindowsClient.EditForms
             set;
         }
 
-        IEnumerable<BookWrap> Books {
+        List<Book> AllBooks {
             get;
             set;
         }
@@ -36,8 +36,7 @@ namespace Library.WindowsClient.EditForms
 
         public RequestEditForm(IEnumerable<Card> cards, IEnumerable<Book> books) {
             Cards = cards;
-            Books = (from b in books
-                     select new BookWrap(b)).ToList();
+            AllBooks = books.ToList();
             Requests = new List<Request>();
 
             InitializeComponent();
@@ -58,12 +57,12 @@ namespace Library.WindowsClient.EditForms
 
         void gvBooks_MasterRowExpanding(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowCanExpandEventArgs e) {
             var row = GetBook(e.RowHandle);
-            e.Allow = row != null && row.Book.HasAuthors;
+            e.Allow = row != null && row.HasAuthors;
         }
 
         void gvBooks_MasterRowEmpty(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventArgs e) {
             var row = GetBook(e.RowHandle);
-            e.IsEmpty = row == null || !row.Book.HasAuthors;
+            e.IsEmpty = row == null || !row.HasAuthors;
         }
 
         void gvBooks_MasterRowGetRelationName(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationNameEventArgs e) {
@@ -76,7 +75,7 @@ namespace Library.WindowsClient.EditForms
                 try {
                     var authors = new List<Author>();
                     e.ChildList = authors;
-                    authors.AddRange(await GetBookAuthors(book.Book));
+                    authors.AddRange(await GetBookAuthors(book));
                     var view = gvBooks.GetDetailView(e.RowHandle, 0);
                     view.BeginDataUpdate();
                     view.EndDataUpdate();
@@ -91,7 +90,7 @@ namespace Library.WindowsClient.EditForms
         }
 
         protected override void OnInitFormFields(RequestHeader data) {
-            cbCard.Bind(Cards, c => string.Format("{0} ({1} {2} {3})", c.Id, c.Reader.LastName, c.Reader.FirstName, c.Reader.MiddleName), data.Card);
+            cbCard.Bind(Cards, c => string.Format("{0} {1} {2} ({3})", c.Reader.LastName, c.Reader.FirstName, c.Reader.MiddleName, c.Id), data.Card);
             FilterBooks();
         }
 
@@ -103,8 +102,8 @@ namespace Library.WindowsClient.EditForms
             gcBooks.Bind(GetFilteredBooks(FilterText));
         }
 
-        IEnumerable<BookWrap> GetFilteredBooks(string filter) {
-            return string.IsNullOrEmpty(filter) ? Books : Books.Where(b => b.Name.ToLower().Contains(filter));
+        IEnumerable<Book> GetFilteredBooks(string filter) {
+            return string.IsNullOrEmpty(filter) ? AllBooks : AllBooks.Where(b => b.Name.ToLower().Contains(filter));
         }
 
         Task<IEnumerable<Author>> GetBookAuthors(Book book) {
@@ -114,26 +113,29 @@ namespace Library.WindowsClient.EditForms
         void bRemove_Click(object sender, EventArgs e) {
             var request = gvResult.GetSelectedRow<Request>();
             request.Do(r => {
+                AllBooks.Add(r.Book);
+                AllBooks = AllBooks.OrderBy(b => b.Name).ToList();
+                gcBooks.Bind(AllBooks);
                 RemoveRequest(r);
             });
         }
 
         void bAdd_Click(object sender, EventArgs e) {
             var book = GetSelectedBook();
-            gvBooks.BeginDataUpdate();
             book.Do(b => {
-                b.Selected = true;
-                AddRequest(b.Book);
+                AllBooks.Remove(b);
+                AddRequest(b);
             });
-            gvBooks.EndDataUpdate();
+            AllBooks = AllBooks.OrderBy(b => b.Name).ToList();
+            gcBooks.Bind(AllBooks);
         }
 
-        BookWrap GetSelectedBook() {
-            return gvBooks.GetSelectedRow<BookWrap>();
+        Book GetSelectedBook() {
+            return gvBooks.GetSelectedRow<Book>();
         }
 
-        BookWrap GetBook(int handle) {
-            return gvBooks.GetRow<BookWrap>(handle);
+        Book GetBook(int handle) {
+            return gvBooks.GetRow<Book>(handle);
         }
 
         void AddRequest(Book book) {
@@ -162,9 +164,6 @@ namespace Library.WindowsClient.EditForms
             Requests.Remove(request);
             Requests = Requests.OrderBy(r => r.Book.Name).ToList();
             gcResult.Bind(Requests);
-            gvBooks.BeginDataUpdate();
-            Books.FirstOrDefault(w => w.Book.Id == request.Book.Id).Do(w => w.Selected = false);
-            gvBooks.EndDataUpdate();
         }
 
         protected override RequestHeader InsertOperation(RequestHeader data) {
@@ -184,33 +183,6 @@ namespace Library.WindowsClient.EditForms
         Card Card {
             get {
                 return cbCard.GetSelectedElement<Card>();
-            }
-        }
-
-        class BookWrap : IEquatable<BookWrap>
-        {
-            public Book Book {
-                get;
-                private set;
-            }
-
-            public BookWrap(Book book) {
-                Book = book;
-            }
-
-            public bool Selected {
-                get;
-                set;
-            }
-
-            public string Name {
-                get {
-                    return Book.Name;
-                }
-            }
-
-            public bool Equals(BookWrap other) {
-                return Book.Equals(other.Book);
             }
         }
     }

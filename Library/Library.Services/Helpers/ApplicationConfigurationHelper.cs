@@ -17,7 +17,7 @@ namespace Library.Services.Helpers
         }
 
         public static string GetOracleConnectionString() {
-            return string.Format("Data Source={0}:{1}/{2}; User Id={3}; Password={4}; Pooling=false;", ConnectionSection.Host, ConnectionSection.Port, ConnectionSection.ServiceName, ConnectionSection.UserId, ConnectionSection.Password);
+            return string.Format("Data Source={0}:{1}/{2}; User Id={3}; Password={4}; Pooling=true;", ConnectionSection.Host, ConnectionSection.Port, ConnectionSection.ServiceName, ConnectionSection.UserId, ConnectionSection.Password);
         }
     }
 }

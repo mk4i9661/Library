@@ -13,7 +13,7 @@ using Ninject;
 
 namespace Library.WindowsClient
 {
-    public partial class LibraryForm : BaseForm
+    partial class LibraryForm : BaseForm
     {
         [Inject]
         public IKernel Ninject {
