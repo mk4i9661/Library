@@ -66,14 +66,14 @@
             this.layoutControlGroup1.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
-            this.layoutControlItem2,
             this.layoutControlItem3,
-            this.layoutControlItem4});
+            this.layoutControlItem4,
+            this.layoutControlItem2});
             this.layoutControlGroup1.Size = new System.Drawing.Size(432, 331);
             // 
             // teName
             // 
-            this.teName.Location = new System.Drawing.Point(96, 12);
+            this.teName.Location = new System.Drawing.Point(96, 40);
             this.teName.Name = "teName";
             this.teName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
             this.teName.Properties.Appearance.Options.UseFont = true;
@@ -86,7 +86,7 @@
             // 
             this.layoutControlItem1.Control = this.teName;
             this.layoutControlItem1.CustomizationFormText = "Имя:";
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 28);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(412, 28);
             this.layoutControlItem1.Text = "Имя:";
@@ -94,7 +94,7 @@
             // 
             // teLastName
             // 
-            this.teLastName.Location = new System.Drawing.Point(96, 40);
+            this.teLastName.Location = new System.Drawing.Point(96, 12);
             this.teLastName.Name = "teLastName";
             this.teLastName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
             this.teLastName.Properties.Appearance.Options.UseFont = true;
@@ -107,7 +107,7 @@
             // 
             this.layoutControlItem2.Control = this.teLastName;
             this.layoutControlItem2.CustomizationFormText = "Отчество:";
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 28);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(412, 28);
             this.layoutControlItem2.Text = "Фамилия:";

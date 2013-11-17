@@ -12,6 +12,18 @@ namespace Library.DataContracts.Concrete
     public class Reader : UniqueObjectInt<Reader>
     {
         [DataMember]
+        public int PassportNumber {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public Card Card {
+            get;
+            set;
+        }
+
+        [DataMember]
         public string FirstName {
             get;
             set;

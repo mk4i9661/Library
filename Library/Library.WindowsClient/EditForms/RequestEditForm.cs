@@ -19,7 +19,7 @@ namespace Library.WindowsClient.EditForms
 {
     partial class RequestEditForm : RequestEditFormMock
     {
-        IEnumerable<Card> Cards {
+        IEnumerable<Reader> Readers {
             get;
             set;
         }
@@ -34,8 +34,8 @@ namespace Library.WindowsClient.EditForms
             set;
         }
 
-        public RequestEditForm(IEnumerable<Card> cards, IEnumerable<Book> books) {
-            Cards = cards;
+        public RequestEditForm(IEnumerable<Reader> readers, IEnumerable<Book> books) {
+            Readers = readers;
             AllBooks = books.ToList();
             Requests = new List<Request>();
 
@@ -90,7 +90,7 @@ namespace Library.WindowsClient.EditForms
         }
 
         protected override void OnInitFormFields(RequestHeader data) {
-            cbCard.Bind(Cards, c => string.Format("{0} {1} {2} ({3})", c.Reader.LastName, c.Reader.FirstName, c.Reader.MiddleName, c.Id), data.Card);
+            cbReader.Bind(Readers, r => string.Format("{0} {1} {2} ({3})", r.LastName, r.FirstName, r.MiddleName, r.Card.Id), data.Reader);
             FilterBooks();
         }
 
@@ -167,11 +167,11 @@ namespace Library.WindowsClient.EditForms
         }
 
         protected override RequestHeader InsertOperation(RequestHeader data) {
-            return GetProxy().CreateRequest(Card, Requests);
+            return GetProxy().CreateRequest(Reader, Requests);
         }
 
         protected override void OnValidateFormFields() {
-            ValidateControl(cbCard, Card == null, "Читательский билет должен быть выбран");
+            ValidateControl(cbReader, Reader == null, "Читатель должен быть выбран");
         }
 
         string FilterText {
@@ -180,9 +180,9 @@ namespace Library.WindowsClient.EditForms
             }
         }
 
-        Card Card {
+        Reader Reader {
             get {
-                return cbCard.GetSelectedElement<Card>();
+                return cbReader.GetSelectedElement<Reader>();
             }
         }
     }

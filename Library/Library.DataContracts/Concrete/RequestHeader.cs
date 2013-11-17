@@ -12,7 +12,7 @@ namespace Library.DataContracts.Concrete
     public class RequestHeader : UniqueObjectInt<RequestHeader>
     {
         [DataMember]
-        public Card Card {
+        public Reader Reader {
             get;
             set;
         }

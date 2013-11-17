@@ -25,9 +25,24 @@ namespace Library.Services
         }
 
         public Reader AddReader(Reader reader) {
-            var query = Ninject.Get<InsertReaderQuery>();
-            query.Reader = reader;
-            query.Execute();
+            if (GetReaders().Any(r => r.Id == reader.Id)) {
+                throw new Exception("Читатель с таким номером паспорта уже существует!");
+            }
+
+            var executor = Ninject.Get<Executor>();
+            var provider = Factory.Get();
+            reader.Card = new Card();
+            var insertReader = new InsertReaderQuery(provider) {
+                Reader = reader
+            };
+            var insertCard = new InsertCardQuery(provider) {
+                Reader = reader
+            };
+
+            executor.ExecuteNonQueries(new NoValueQuery[]{
+                insertReader,
+                insertCard
+            });
             return reader;
         }
 
@@ -45,44 +60,37 @@ namespace Library.Services
             return reader;
         }
 
-        public IEnumerable<Card> GetCards() {
-            return Ninject.Get<GetCardsQuery>().Execute();
-        }
+        public Reader RenewCard(Reader reader) {
+            reader = GetReaders().FirstOrDefault(r => r.Id == reader.Id);
+            if (reader == null) {
+                throw new Exception("Читатель не найден");
+            }
+            if (reader.Card.ExpiryDate.Date > DateTime.Now.Date) {
+                throw new Exception("Срок действия читательского билета еще не истек. Продление невозможно");
+            }
+            if (reader.Card.ExpiryDate.AddMonths(1).Date < DateTime.Now.Date) {
+                throw new Exception("Продление читательского билета возможно только в течении месяца после его срока истечения");
+            }
 
-        public Card AddCard(Card card) {
-            var query = Ninject.Get<InsertCardQuery>();
-            query.Card = card;
+            var query = Ninject.Get<RenewCardQuery>();
+            query.Reader = reader;
             query.Execute();
-            return card;
+            return reader;
         }
 
-        public Card UpdateCard(Card card) {
-            var query = Ninject.Get<UpdateCardQuery>();
-            query.Card = card;
-            query.Execute();
-            return card;
-        }
-
-        public Card DeleteCard(Card card) {
-            var query = Ninject.Get<DeleteCardQuery>();
-            query.Card = card;
-            query.Execute();
-            return card;
-        }
-
-        public IEnumerable<RequestHeader> GetRequestHeaders(Card card = null, string search = "") {
+        public IEnumerable<RequestHeader> GetRequestHeaders(Reader reader = null, string search = "") {
             var query = Ninject.Get<GetRequestHeadersQuery>();
-            query.Card = card;
+            query.Reader = reader;
             query.Search = (search ?? string.Empty).Trim();
             return query.Execute();
         }
 
-        public RequestHeader CreateRequest(Card card, IEnumerable<Request> requests) {
+        public RequestHeader CreateRequest(Reader reader, IEnumerable<Request> requests) {
             if (requests == null || !requests.Any()) {
                 throw new Exception("Для создания запроса необходимо выбрать хотя бы одну книгу");
             }
 
-            card = GetCards().FirstOrDefault(c => c.Id == card.Id);
+            var card = GetReaders().Select(r => r.Card).FirstOrDefault(c => c.Id == reader.Card.Id);
             if (card == null) {
                 throw new Exception("Не удалось обнаружить читательский билет. Возможно, билет не создан");
             }
@@ -97,7 +105,7 @@ namespace Library.Services
             foreach (var r in requests) {
                 r.Id = new RequestHeader() {
                     Id = id,
-                    Card = card
+                    Reader = reader
                 };
             }
 
@@ -108,7 +116,7 @@ namespace Library.Services
 
             return new RequestHeader() {
                 Id = id,
-                Card = card,
+                Reader = reader,
                 CreateDate = DateTime.Now
             };
         }

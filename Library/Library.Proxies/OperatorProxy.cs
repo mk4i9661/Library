@@ -14,27 +14,6 @@ namespace Library.Proxies
             : base(data) {
         }
 
-        //---------
-        public IEnumerable<Card> GetCards(){
-            return ExecuteScoped(() => Channel.GetCards());
-            //return Channel.GetCards();
-        }
-        public DataContracts.Concrete.Card AddCard(DataContracts.Concrete.Card card)
-        {
-            return ExecuteScoped(() => Channel.AddCard(card));
-        }
-
-        public DataContracts.Concrete.Card UpdateCard(DataContracts.Concrete.Card card)
-        {
-            return ExecuteScoped(() => Channel.UpdateCard(card));
-        }
-
-        public DataContracts.Concrete.Card DeleteCard(DataContracts.Concrete.Card card)
-        {
-            return ExecuteScoped(() => Channel.DeleteCard(card));
-        }
-        //---------
-
         public IEnumerable<DataContracts.Concrete.Reader> GetReaders() {
             return ExecuteScoped(() => Channel.GetReaders());
         }
@@ -51,14 +30,16 @@ namespace Library.Proxies
             return ExecuteScoped(() => Channel.DeleteReader(reader));
         }
 
-        
-
-        public IEnumerable<RequestHeader> GetRequestHeaders(Card card = null, string search = "") {
-            return ExecuteScoped(() => Channel.GetRequestHeaders(card, search));
+        public Reader RenewCard(Reader reader) {
+            return ExecuteScoped(() => Channel.RenewCard(reader));
         }
 
-        public RequestHeader CreateRequest(Card card, IEnumerable<Request> requests) {
-            return ExecuteScoped(() => Channel.CreateRequest(card, requests));
+        public IEnumerable<RequestHeader> GetRequestHeaders(Reader reader = null, string search = "") {
+            return ExecuteScoped(() => Channel.GetRequestHeaders(reader, search));
+        }
+
+        public RequestHeader CreateRequest(Reader reader, IEnumerable<Request> requests) {
+            return ExecuteScoped(() => Channel.CreateRequest(reader, requests));
         }
 
         public IEnumerable<RequestApproved> GetApprovedRequests(RequestHeader request) {

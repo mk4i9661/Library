@@ -33,7 +33,7 @@
             this.gcBooks = new Library.UI.DevExpressControls.Controls.LibraryGridControl();
             this.gvBooks = new Library.UI.DevExpressControls.Controls.LibraryGridView();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cbCard = new Library.UI.DevExpressControls.Controls.LibraryComboBox();
+            this.cbReader = new Library.UI.DevExpressControls.Controls.LibraryComboBox();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gcResult = new Library.UI.DevExpressControls.Controls.LibraryGridControl();
             this.gvResult = new Library.UI.DevExpressControls.Controls.LibraryGridView();
@@ -60,7 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.libraryGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcBooks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBooks)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbCard.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbReader.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvResult)).BeginInit();
@@ -86,7 +86,7 @@
             this.layoutControl1.Controls.Add(this.panelControl2);
             this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Controls.Add(this.gcResult);
-            this.layoutControl1.Controls.Add(this.cbCard);
+            this.layoutControl1.Controls.Add(this.cbReader);
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(682, 446, 362, 350);
             this.layoutControl1.Size = new System.Drawing.Size(829, 480);
             // 
@@ -204,23 +204,23 @@
             this.gridColumn2.VisibleIndex = 0;
             this.gridColumn2.Width = 289;
             // 
-            // cbCard
+            // cbReader
             // 
-            this.cbCard.Location = new System.Drawing.Point(162, 12);
-            this.cbCard.Name = "cbCard";
-            this.cbCard.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.cbCard.Properties.Appearance.Options.UseFont = true;
-            this.cbCard.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cbReader.Location = new System.Drawing.Point(162, 12);
+            this.cbReader.Name = "cbReader";
+            this.cbReader.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.cbReader.Properties.Appearance.Options.UseFont = true;
+            this.cbReader.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbCard.Properties.DropDownRows = 15;
-            this.cbCard.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbCard.Size = new System.Drawing.Size(655, 24);
-            this.cbCard.StyleController = this.layoutControl1;
-            this.cbCard.TabIndex = 4;
+            this.cbReader.Properties.DropDownRows = 15;
+            this.cbReader.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbReader.Size = new System.Drawing.Size(655, 24);
+            this.cbReader.StyleController = this.layoutControl1;
+            this.cbReader.TabIndex = 4;
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.cbCard;
+            this.layoutControlItem1.Control = this.cbReader;
             this.layoutControlItem1.CustomizationFormText = "Читательский билет:";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
@@ -459,7 +459,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.libraryGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcBooks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBooks)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cbCard.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cbReader.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcResult)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvResult)).EndInit();
@@ -483,7 +483,7 @@
 
         #endregion
 
-        private UI.DevExpressControls.Controls.LibraryComboBox cbCard;
+        private UI.DevExpressControls.Controls.LibraryComboBox cbReader;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private UI.DevExpressControls.Controls.LibraryButton bRemove;

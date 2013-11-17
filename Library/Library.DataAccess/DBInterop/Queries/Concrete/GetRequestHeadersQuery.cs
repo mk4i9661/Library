@@ -17,7 +17,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                                 r.request_id,
                                 r.request_card_id,
                                 r.request_create_date,
-                                re.reader_passport_id, re.reader_first_name, re.reader_last_name, re.reader_middle_name,
+                                re.reader_id, re.reader_passport_id, re.reader_first_name, re.reader_last_name, re.reader_middle_name,
                                 (case when ra.c is null then 0 else 1 end) as has_approved,
                                 (case when rr.c is null then 0 else 1 end) as has_rejected
                             from(
@@ -33,7 +33,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                             ) rr on r.request_id = rr.request_rejected_request_id
                             inner join book b on r.request_book_id = b.book_id
                             inner join card c on r.request_card_id = c.card_id
-                            inner join reader re on c.card_reader_passport_id = re.reader_passport_id
+                            inner join reader re on c.card_reader_id = re.reader_id
                             where (:card_id is null or r.request_card_id = :card_id) and (:book_name is null or lower(b.book_name) like '%'||lower(:book_name)||'%')
                             order by r.request_card_id, r.request_create_date desc";
 
@@ -42,7 +42,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
 
         }
 
-        public Card Card {
+        public Reader Reader {
             get;
             set;
         }
@@ -55,13 +55,14 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
         public override RequestHeader Read(DataRow row) {
             return new RequestHeader() {
                 Id = Convert.ToInt32(row.Field<decimal>("request_id")),
-                Card = new Card() {
-                    Id = Convert.ToInt32(row.Field<decimal>("request_card_id")),
-                    Reader = new Reader() {
-                        Id = Convert.ToInt32(row.Field<decimal>("reader_passport_id")),
-                        FirstName = row.Field<string>("reader_first_name"),
-                        LastName = row.Field<string>("reader_last_name"),
-                        MiddleName = row.Field<string>("reader_middle_name")
+                Reader = new Reader() {
+                    Id = Convert.ToInt32(row.Field<decimal>("reader_id")),
+                    PassportNumber = Convert.ToInt32(row.Field<decimal>("reader_passport_id")),
+                    FirstName = row.Field<string>("reader_first_name"),
+                    LastName = row.Field<string>("reader_last_name"),
+                    MiddleName = row.Field<string>("reader_middle_name"),
+                    Card = new Card() {
+                        Id = Convert.ToInt32(row.Field<decimal>("request_card_id")),
                     }
                 },
                 CreateDate = row.Field<DateTime>("request_create_date"),
@@ -72,8 +73,8 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
 
         public override OracleCommand CreateOracleCommand() {
             var command = new OracleCommand(Query);
-            command.Parameters.Add(":card_id", Card == null ? (object)DBNull.Value : Card.Id);
-            command.Parameters.Add(":card_id", Card == null ? (object)DBNull.Value : Card.Id);
+            command.Parameters.Add(":card_id", Reader == null ? (object)DBNull.Value : Reader.Card.Id);
+            command.Parameters.Add(":card_id", Reader == null ? (object)DBNull.Value : Reader.Card.Id);
             command.Parameters.Add(":book_name", string.IsNullOrEmpty(Search) ? (object)DBNull.Value : Search);
             command.Parameters.Add(":book_name", string.IsNullOrEmpty(Search) ? (object)DBNull.Value : Search);
             return command;

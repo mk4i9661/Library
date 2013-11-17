@@ -91,5 +91,19 @@ create or replace TRIGGER AUTHOR_GENERATE_ID
 BEFORE INSERT ON Author 
 FOR EACH ROW
 BEGIN
-  SELECT Reader_Sequence.NEXTVAL INTO :new.Author_ID FROM dual;
+  SELECT Author_Sequence.NEXTVAL INTO :new.Author_ID FROM dual;
+END;
+
+create or replace TRIGGER READER_GENERATE_ID 
+BEFORE INSERT ON Reader 
+FOR EACH ROW
+BEGIN
+  SELECT Reader_Sequence.NEXTVAL INTO :new.Reader_ID FROM dual;
+END;
+
+create or replace TRIGGER CARD_GENERATE_ID 
+BEFORE INSERT ON Card 
+FOR EACH ROW
+BEGIN
+  SELECT Card_Sequence.NEXTVAL INTO :new.Card_ID FROM dual;
 END;

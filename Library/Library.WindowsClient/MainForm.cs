@@ -104,27 +104,20 @@ namespace Library.WindowsClient
                     SendNotificationsItem = bbiSendNotifications,
                     GridViewApprovedRequests = gvApprovedRequests,
                     GridViewRejectedRequests = gvRejectedRequests,
-                    CardItem = beiCard,
+                    ReaderItem = beiCard,
                     SearchItem = beiSearch
                 }));
 
-                Ninject.Bind<ReaderPage>().ToMethod(method => new ReaderPage(new PageParameters() {
+                Ninject.Bind<ReaderPage>().ToMethod(method => new ReaderPage(new ReaderPage.ReaderPageParameters() {
                     RibbonPage = rpReaders,
                     TabPage = xtpReaders,
                     GridControl = gcReaders,
+                    RenewCardItem = bbiRenewCard
                 }));
-
-                Ninject.Bind<CardPage>().ToMethod(method => new CardPage(new PageParameters() {
-                    RibbonPage = rpCards,
-                    TabPage = xtpCards,
-                    GridControl = gcCards,
-                }));
-
 
                 Pages.AddRange(new IPage[] {
                     Ninject.Get<RequestPage>(),
-                    Ninject.Get<ReaderPage>(),
-                    Ninject.Get<CardPage>()
+                    Ninject.Get<ReaderPage>()
                 });
             }
             if (IsChief) {

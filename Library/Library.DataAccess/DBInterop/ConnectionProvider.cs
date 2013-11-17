@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess.Client;
+using Library.DataAccess.DBInterop.Queries.Abstract;
 
 namespace Library.DataAccess.DBInterop
 {
@@ -43,15 +44,19 @@ namespace Library.DataAccess.DBInterop
             }
         }
 
-        public virtual void ExecuteNonQueries(IEnumerable<OracleCommand> commands) { // несколько команд в одной транзакции
+        public virtual void ExecuteNonQueries(IEnumerable<NoValueQuery> queries) { // несколько команд в одной транзакции
             using (var connection = CreateConnection()) {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction()) {
                     try {
-                        foreach (var command in commands) {
-                            command.Connection = connection;
-                            command.Transaction = transaction;
-                            command.ExecuteNonQuery();
+                        foreach (var query in queries) {
+                            using (var command = query.CreateOracleCommand()) {
+                                command.Connection = connection;
+                                command.Transaction = transaction;
+                                query.OnBeforeExecuteQuery(command);
+                                command.ExecuteNonQuery();
+                                query.OnAfterExecuteQuery(command);
+                            }
                         }
                     } catch (Exception exc) {
                         transaction.Rollback();

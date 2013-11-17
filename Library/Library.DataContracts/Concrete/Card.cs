@@ -12,12 +12,6 @@ namespace Library.DataContracts.Concrete
     public class Card : UniqueObjectInt<Card>
     {
         [DataMember]
-        public Reader Reader {
-            get;
-            set;
-        }
-
-        [DataMember]
         public DateTime IssueDate {
             get;
             set;

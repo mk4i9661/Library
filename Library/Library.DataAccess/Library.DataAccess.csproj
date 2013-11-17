@@ -57,7 +57,6 @@
     <Compile Include="DBInterop\Queries\Concrete\GetAuthorsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetBookReadersQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetBooksQuery.cs" />
-    <Compile Include="DBInterop\Queries\Concrete\GetCardsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetEmployeesQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetNotificationsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetPublishersQuery.cs" />

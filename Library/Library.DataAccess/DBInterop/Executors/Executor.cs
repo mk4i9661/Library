@@ -19,7 +19,7 @@ namespace Library.DataAccess.DBInterop.Executors
         }
 
         public void ExecuteNonQueries(IEnumerable<NoValueQuery> queries) {
-            ConnectionProvider.ExecuteNonQueries(queries.Select(q => q.CreateOracleCommand()));
+            ConnectionProvider.ExecuteNonQueries(queries);
         }
     }
 }

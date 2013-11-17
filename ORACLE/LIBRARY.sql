@@ -2,7 +2,8 @@
 
 DROP TABLE Reader;
 CREATE TABLE Reader(
-	Reader_Passport_ID INT NOT NULL PRIMARY KEY,
+	Reader_ID INT NOT NULL PRIMARY KEY,
+	Reader_Passport_ID INT NOT NULL,
 	Reader_First_Name VARCHAR(255) NOT NULL,
 	Reader_Middle_Name VARCHAR(255) NOT NULL,
 	Reader_Last_Name VARCHAR(255) NOT NULL,
@@ -13,10 +14,10 @@ CREATE TABLE Reader(
 DROP TABLE Card;
 CREATE TABLE Card(
 	Card_ID INT NOT NULL PRIMARY KEY,
-	Card_Reader_Passport_ID INT NOT NULL,
+	Card_Reader_ID INT NOT NULL,
 	Card_Issue_Date DATE DEFAULT SYSDATE,
 	Card_Expiry_Date DATE NOT NULL,
-	FOREIGN KEY (Card_Reader_Passport_ID) REFERENCES Reader ON DELETE CASCADE,
+	FOREIGN KEY (Card_Reader_ID) REFERENCES Reader ON DELETE CASCADE,
 	CHECK (Card_Issue_Date < Card_Expiry_Date)
 );
 
@@ -151,3 +152,5 @@ CREATE SEQUENCE Rubric_Sequence;
 CREATE SEQUENCE Book_Sequence;
 CREATE SEQUENCE Request_Sequence;
 CREATE SEQUENCE Author_Sequence;
+CREATE SEQUENCE Card_Sequence;
+CREATE SEQUENCE Reader_Sequence;

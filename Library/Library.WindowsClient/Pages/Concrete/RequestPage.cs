@@ -26,7 +26,7 @@ namespace Library.WindowsClient.Pages.Concrete
             set;
         }
 
-        IEnumerable<Card> Cards {
+        IEnumerable<Reader> Readers {
             get;
             set;
         }
@@ -61,7 +61,7 @@ namespace Library.WindowsClient.Pages.Concrete
             set;
         }
 
-        LibraryRibbonComboBox CardItem {
+        LibraryRibbonComboBox ReaderItem {
             get;
             set;
         }
@@ -69,7 +69,7 @@ namespace Library.WindowsClient.Pages.Concrete
         public RequestPage(RequestPageParameters parameters)
             : base(parameters) {
             Books = new List<Book>();
-            Cards = new List<Card>();
+            Readers = new List<Reader>();
 
             GridViewApprovedRequests = parameters.GridViewApprovedRequests;
             GridViewRejectedRequests = parameters.GridViewRejectedRequests;
@@ -77,7 +77,7 @@ namespace Library.WindowsClient.Pages.Concrete
             RenewItem = parameters.RenewItem;
             SendNotificationsItem = parameters.SendNotificationsItem;
             SearchItem = new LibraryRibbonTextEdit(parameters.SearchItem);
-            CardItem = new LibraryRibbonComboBox(parameters.CardItem);
+            ReaderItem = new LibraryRibbonComboBox(parameters.ReaderItem);
 
             GridControl.GridView.OptionsDetail.AllowExpandEmptyDetails = true;
             GridControl.GridView.OptionsDetail.ShowDetailTabs = true;
@@ -96,12 +96,13 @@ namespace Library.WindowsClient.Pages.Concrete
             GridControl.GridView.MasterRowEmpty += GridView_MasterRowEmpty;
             GridControl.GridView.CustomUnboundColumnData += GridView_CustomUnboundColumnData;
             SearchItem.KeyDown += SearchItem_KeyDown;
-            CardItem.EditValueChanged += CardItem_EditValueChanged;
+            ReaderItem.EditValueChanged += CardItem_EditValueChanged;
         }
 
         async void SendNotificationsItem_ItemClick(object sender, ItemClickEventArgs e) {
             var result = await SendNotifications();
             if (result.Any()) {
+                OnLoadData();
                 using (var form = new SendedNotificationsForm(result)) {
                     form.ShowDialog();
                 }
@@ -111,13 +112,13 @@ namespace Library.WindowsClient.Pages.Concrete
         }
 
         void GridView_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e) {
-            if (e.Column.FieldName == "Reader") {
+            if (e.Column.FieldName == "ReaderUnbound") {
                 var row = e.Row as RequestHeader;
                 e.Value = string.Format("{0} {1} {2} ({3})",
-                    row.Card.Reader.LastName,
-                    row.Card.Reader.FirstName,
-                    row.Card.Reader.MiddleName,
-                    row.Card.Id);
+                    row.Reader.LastName,
+                    row.Reader.FirstName,
+                    row.Reader.MiddleName,
+                    row.Reader.Card.Id);
             }
         }
 
@@ -138,7 +139,7 @@ namespace Library.WindowsClient.Pages.Concrete
 
         public override void Activate() {
             base.Activate();
-            Ninject.Rebind<RequestEditForm>().ToMethod(method => new RequestEditForm(Cards, Books));
+            Ninject.Rebind<RequestEditForm>().ToMethod(method => new RequestEditForm(Readers, Books));
         }
 
         async void RenewalItem_ItemClick(object sender, ItemClickEventArgs e) {
@@ -208,14 +209,14 @@ namespace Library.WindowsClient.Pages.Concrete
                             e.ChildList = approved;
                             approved.AddRange((await GetApprovedRequests(request)).Select(r => new RequestApprovedWrap(r)));
                             view = GetChildView(e.RowHandle, e.RelationIndex);
-                            view.BeginDataUpdate();
+                            view.Do(v => v.BeginDataUpdate());
                             break;
                         case "RequestRejected":
                             var rejected = new List<RequestRejectedWrap>();
                             e.ChildList = rejected;
                             rejected.AddRange((await GetRejectedRequests(request)).Select(r => new RequestRejectedWrap(r)));
                             view = GetChildView(e.RowHandle, e.RelationIndex);
-                            view.BeginDataUpdate();
+                            view.Do(v => v.BeginDataUpdate());
                             break;
                         default:
                             break;
@@ -277,29 +278,29 @@ namespace Library.WindowsClient.Pages.Concrete
         }
 
         protected override IEnumerable<RequestHeader> LoadDataOperation() {
-            return GetProxy().GetRequestHeaders(Card, Search);
+            return GetProxy().GetRequestHeaders(Reader, Search);
         }
 
         protected override RequestPage.LoadNecessaryDataWrap LoadNecessaryDataOperation() {
             var books = Task.Factory.StartNew(() => GetProxy().GetBooks());
-            var cards = Task.Factory.StartNew(() => GetProxy().GetCards());
-            Task.WaitAll(books, cards);
+            var readers = Task.Factory.StartNew(() => GetProxy().GetReaders());
+            Task.WaitAll(books, readers);
             return new LoadNecessaryDataWrap() {
                 Books = books.Result,
-                Cards = cards.Result
+                Readers = readers.Result
             };
         }
 
         protected override void OnEndLoadNecessaryData(RequestPage.LoadNecessaryDataWrap result) {
             base.OnEndLoadNecessaryData(result);
-            Cards = result.Cards;
+            Readers = result.Readers;
             Books = result.Books;
 
-            var cards = result.Cards.ToList();
-            cards.Insert(0, new Card() {
+            var readers = result.Readers.ToList();
+            readers.Insert(0, new Reader() {
                 Id = -1
             });
-            CardItem.Bind(cards, c => c.Id == -1 ? "Все" : string.Format("{0} ({1} {2} {3})", c.Id, c.Reader.LastName, c.Reader.FirstName, c.Reader.MiddleName), Card);
+            ReaderItem.Bind(readers, r => r.Id == -1 ? "Все" : string.Format("{0} {1} {2} ({3})", r.LastName, r.FirstName, r.MiddleName, r.Card.Id), Reader);
         }
 
         protected override RequestHeader CreateDefaultRow() {
@@ -320,9 +321,9 @@ namespace Library.WindowsClient.Pages.Concrete
             }
         }
 
-        Card Card {
+        Reader Reader {
             get {
-                return CardItem.GetSelectedElement<Card>().IfNot(p => p.Id == -1);
+                return ReaderItem.GetSelectedElement<Reader>().IfNot(p => p.Id == -1);
             }
         }
 
@@ -333,7 +334,7 @@ namespace Library.WindowsClient.Pages.Concrete
                 set;
             }
 
-            public IEnumerable<Card> Cards {
+            public IEnumerable<Reader> Readers {
                 get;
                 set;
             }
@@ -433,7 +434,7 @@ namespace Library.WindowsClient.Pages.Concrete
                 set;
             }
 
-            public BarEditItem CardItem {
+            public BarEditItem ReaderItem {
                 get;
                 set;
             }

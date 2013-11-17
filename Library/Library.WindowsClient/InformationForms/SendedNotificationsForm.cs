@@ -68,20 +68,20 @@ namespace Library.WindowsClient.InformationForms
 
             public string Reader {
                 get {
-                    var reader = Notification.Id.Id.Card.Reader;
+                    var reader = Notification.Id.Id.Reader;
                     return string.Format("{0} {1} {2}", reader.LastName, reader.FirstName, reader.MiddleName);
                 }
             }
 
             public string Address {
                 get {
-                    return Notification.Id.Id.Card.Reader.Address;
+                    return Notification.Id.Id.Reader.Address;
                 }
             }
 
             public string Phone {
                 get {
-                    return Notification.Id.Id.Card.Reader.Phone;
+                    return Notification.Id.Id.Reader.Phone;
                 }
             }
 

@@ -14,14 +14,12 @@ namespace Library.WindowsClient.EditForms
 {
     partial class ReaderEditForm : ReaderEditFormMock
     {
-        public ReaderEditForm()
-        {
+        public ReaderEditForm() {
             InitializeComponent();
         }
 
-        protected override void OnInitFormFields(Reader data){
-            seId.Enabled = !(Operation == UI.DevExpressControls.Forms.EditFormOperation.Update);
-            Id = data.Id;
+        protected override void OnInitFormFields(Reader data) {
+            PassportNumber = data.PassportNumber;
             FirstName = data.FirstName;
             LastName = data.LastName;
             MiddleName = data.MiddleName;
@@ -29,9 +27,8 @@ namespace Library.WindowsClient.EditForms
             Phone = data.Phone;
         }
 
-        protected override void OnInitDataFields(Reader data)
-        {
-            data.Id = Id;
+        protected override void OnInitDataFields(Reader data) {
+            data.PassportNumber = PassportNumber;
             data.FirstName = FirstName;
             data.LastName = LastName;
             data.MiddleName = MiddleName;
@@ -39,9 +36,8 @@ namespace Library.WindowsClient.EditForms
             data.Phone = Phone;
         }
 
-        protected override void OnValidateFormFields()
-        {
-            ValidateControl(seId, Id == 0, "Поле должно быть заполено");
+        protected override void OnValidateFormFields() {
+            ValidateControl(seId, PassportNumber == 0, "Поле должно быть заполено");
             ValidateControl(teName, string.IsNullOrEmpty(FirstName), "Поле должно быть заполено");
             ValidateControl(teLastName, string.IsNullOrEmpty(LastName), "Поле должно быть заполено");
             ValidateControl(teMiddleName, string.IsNullOrEmpty(MiddleName), "Поле должно быть заполено");
@@ -49,88 +45,72 @@ namespace Library.WindowsClient.EditForms
             ValidateControl(tePhone, string.IsNullOrEmpty(Phone), "Поле должно быть заполено");
         }
 
-        protected override Reader InsertOperation(Reader data){
+        protected override Reader InsertOperation(Reader data) {
             return GetProxy().AddReader(data);
         }
 
-        protected override Reader UpdateOperation(Reader data){
+        protected override Reader UpdateOperation(Reader data) {
             return GetProxy().UpdateReader(data);
         }
 
-        int Id{
-            get
-            {
+        int PassportNumber {
+            get {
                 return Convert.ToInt32(seId.Value);
             }
-            set
-            {
+            set {
                 seId.Value = value;
             }
         }
 
-        string FirstName
-        {
-            get
-            {
+        string FirstName {
+            get {
                 return teName.Text.Trim();
             }
-            set
-            {
+            set {
                 teName.Text = value;
             }
         }
 
-        string MiddleName
-        {
-            get
-            {
+        string MiddleName {
+            get {
                 return teMiddleName.Text.Trim();
             }
-            set
-            {
+            set {
                 teMiddleName.Text = value;
             }
         }
 
-        string LastName
-        {
-            get
-            {
+        string LastName {
+            get {
                 return teLastName.Text.Trim();
             }
-            set
-            {
+            set {
                 teLastName.Text = value;
             }
         }
 
-        string Address
-        {
-            get
-            {
+        string Address {
+            get {
                 return teAddress.Text.Trim();
             }
-            set
-            {
+            set {
                 teAddress.Text = value;
             }
         }
 
-        string Phone
-        {
-            get
-            {
+        string Phone {
+            get {
                 return tePhone.Text.Trim();
             }
-            set
-            {
+            set {
                 tePhone.Text = value;
             }
         }
 
     }
 
-    class ReaderEditFormMock : LibraryEditForm<IOperator, Reader> { 
+    class ReaderEditFormMock : LibraryEditForm<IOperator, Reader>
+    {
 
     }
 }

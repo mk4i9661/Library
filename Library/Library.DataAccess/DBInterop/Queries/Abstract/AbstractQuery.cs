@@ -37,8 +37,18 @@ namespace Library.DataAccess.DBInterop.Queries.Abstract
             ExecuteQuery(CreateOracleCommand());
         }
 
+        internal virtual void OnBeforeExecuteQuery(OracleCommand command) {
+
+        }
+
         protected override void ExecuteQuery(OracleCommand command) {
+            OnBeforeExecuteQuery(command);
             ConnectionProvider.ExecuteNonQuery(command);
+            OnAfterExecuteQuery(command);
+        }
+
+        internal virtual void OnAfterExecuteQuery(OracleCommand command) {
+
         }
 
         public virtual void Execute() {

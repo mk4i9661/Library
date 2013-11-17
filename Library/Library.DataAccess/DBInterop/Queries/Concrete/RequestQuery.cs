@@ -26,7 +26,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
             var command = new OracleCommand(GetQuery());
             command.Parameters.Add(":request_id", Request.Id.Id);
             command.Parameters.Add(":book_id", Request.Book.Id);
-            command.Parameters.Add(":card_id", Request.Id.Card.Id);
+            command.Parameters.Add(":card_id", Request.Id.Reader.Card.Id);
             command.Parameters.Add(":book_quantity", Request.BookQuantity);
             return command;
         }

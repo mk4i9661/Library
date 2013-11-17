@@ -19,20 +19,13 @@ namespace Library.Contracts
         Reader UpdateReader(Reader reader);
         [OperationContract]
         Reader DeleteReader(Reader reader);
+        [OperationContract]
+        Reader RenewCard(Reader reader);
 
         [OperationContract]
-        IEnumerable<Card> GetCards();
+        IEnumerable<RequestHeader> GetRequestHeaders(Reader reader = null, string search = "");
         [OperationContract]
-        Card AddCard(Card card);
-        [OperationContract]
-        Card UpdateCard(Card card);
-        [OperationContract]
-        Card DeleteCard(Card card);
-
-        [OperationContract]
-        IEnumerable<RequestHeader> GetRequestHeaders(Card card = null, string search = "");
-        [OperationContract]
-        RequestHeader CreateRequest(Card card, IEnumerable<Request> requests);
+        RequestHeader CreateRequest(Reader reader, IEnumerable<Request> requests);
         [OperationContract]
         IEnumerable<RequestApproved> GetApprovedRequests(RequestHeader request);
         [OperationContract]

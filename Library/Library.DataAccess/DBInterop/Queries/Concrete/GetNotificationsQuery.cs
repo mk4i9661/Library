@@ -20,7 +20,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                                     b.book_publisher_id, p.publisher_name,
                                   r.request_create_date, r.request_book_quantity,
                                   c.card_id,
-                                  re.reader_passport_id, re.reader_first_name, re.reader_last_name, re.reader_middle_name, re.reader_address, re.reader_phone
+                                  re.reader_id, re.reader_passport_id, re.reader_first_name, re.reader_last_name, re.reader_middle_name, re.reader_address, re.reader_phone
                                 from notification n
                                 inner join notification_type nt on n.notification_type_id = nt.notification_type_id
                                 inner join book b on n.notification_book_id = b.book_id
@@ -28,7 +28,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                                 inner join publisher p on b.book_publisher_id = p.publisher_id
                                 inner join request r on n.notification_request_id = r.request_id and n.notification_book_id = r.request_book_id
                                 inner join card c on r.request_card_id = c.card_id
-                                inner join reader re on c.card_reader_passport_id = re.reader_passport_id";
+                                inner join reader re on c.card_reader_id = re.reader_id";
 
         public GetNotificationsQuery(ConnectionProvider provider)
             : base(provider) {
@@ -39,15 +39,16 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                 Id = new Request() {
                     Id = new RequestHeader() {
                         Id = Convert.ToInt32(row.Field<decimal>("notification_request_id")),
-                        Card = new Card() {
-                            Id = Convert.ToInt32(row.Field<decimal>("card_id")),
-                            Reader = new Reader() {
-                                Id = Convert.ToInt32(row.Field<decimal>("reader_passport_id")),
-                                FirstName = row.Field<string>("reader_first_name"),
-                                LastName = row.Field<string>("reader_last_name"),
-                                MiddleName = row.Field<string>("reader_middle_name"),
-                                Address = row.Field<string>("reader_address"),
-                                Phone = row.Field<string>("reader_phone")
+                        Reader = new Reader() {
+                            Id = Convert.ToInt32(row.Field<decimal>("reader_id")),
+                            PassportNumber = Convert.ToInt32(row.Field<decimal>("reader_passport_id")),
+                            FirstName = row.Field<string>("reader_first_name"),
+                            LastName = row.Field<string>("reader_last_name"),
+                            MiddleName = row.Field<string>("reader_middle_name"),
+                            Address = row.Field<string>("reader_address"),
+                            Phone = row.Field<string>("reader_phone"),
+                            Card = new Card() {
+                                Id = Convert.ToInt32(row.Field<decimal>("card_id")),
                             }
                         },
                         CreateDate = row.Field<DateTime>("request_create_date")
