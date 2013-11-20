@@ -45,6 +45,9 @@ namespace Library.WindowsClient
             this.beiCard = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.bbiSendNotifications = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiRenewCard = new DevExpress.XtraBars.BarButtonItem();
+            this.beiAuthor = new DevExpress.XtraBars.BarEditItem();
+            this.repositoryItemComboBox4 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.rpReaders = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup15 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -127,7 +130,6 @@ namespace Library.WindowsClient
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.bbiRenewCard = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.gvApprovedRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRejectedRequests)).BeginInit();
@@ -137,6 +139,7 @@ namespace Library.WindowsClient
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.libraryGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcReportBooks)).BeginInit();
@@ -244,7 +247,7 @@ namespace Library.WindowsClient
             this.gcRequests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcRequests.MenuManager = this.rcPages;
             this.gcRequests.Name = "gcRequests";
-            this.gcRequests.Size = new System.Drawing.Size(1194, 438);
+            this.gcRequests.Size = new System.Drawing.Size(1023, 340);
             this.gcRequests.TabIndex = 0;
             this.gcRequests.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvRejectedRequests,
@@ -361,10 +364,11 @@ namespace Library.WindowsClient
             this.bciObligators,
             this.beiCard,
             this.bbiSendNotifications,
-            this.bbiRenewCard});
+            this.bbiRenewCard,
+            this.beiAuthor});
             this.rcPages.Location = new System.Drawing.Point(0, 0);
             this.rcPages.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rcPages.MaxItemId = 17;
+            this.rcPages.MaxItemId = 18;
             this.rcPages.Name = "rcPages";
             this.rcPages.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpReaders,
@@ -379,11 +383,12 @@ namespace Library.WindowsClient
             this.repositoryItemComboBox2,
             this.repositoryItemTextEdit1,
             this.repositoryItemComboBox3,
-            this.repositoryItemTextEdit2});
+            this.repositoryItemTextEdit2,
+            this.repositoryItemComboBox4});
             this.rcPages.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.rcPages.ShowExpandCollapseButton = DevExpress.Utils.DefaultBoolean.False;
             this.rcPages.ShowToolbarCustomizeItem = false;
-            this.rcPages.Size = new System.Drawing.Size(1200, 128);
+            this.rcPages.Size = new System.Drawing.Size(1029, 117);
             this.rcPages.Toolbar.ShowCustomizeItem = false;
             this.rcPages.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -508,6 +513,28 @@ namespace Library.WindowsClient
             this.bbiSendNotifications.LargeGlyph = global::Library.WindowsClient.Properties.Resources.sound;
             this.bbiSendNotifications.Name = "bbiSendNotifications";
             // 
+            // bbiRenewCard
+            // 
+            this.bbiRenewCard.Caption = "Продлить билет";
+            this.bbiRenewCard.Id = 16;
+            this.bbiRenewCard.LargeGlyph = global::Library.WindowsClient.Properties.Resources.book_go;
+            this.bbiRenewCard.Name = "bbiRenewCard";
+            // 
+            // beiAuthor
+            // 
+            this.beiAuthor.Caption = "Автор";
+            this.beiAuthor.Edit = this.repositoryItemComboBox4;
+            this.beiAuthor.Id = 17;
+            this.beiAuthor.Name = "beiAuthor";
+            this.beiAuthor.Width = 150;
+            // 
+            // repositoryItemComboBox4
+            // 
+            this.repositoryItemComboBox4.AutoHeight = false;
+            this.repositoryItemComboBox4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBox4.Name = "repositoryItemComboBox4";
+            // 
             // rpReaders
             // 
             this.rpReaders.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -563,6 +590,7 @@ namespace Library.WindowsClient
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.beiRubric);
             this.ribbonPageGroup4.ItemLinks.Add(this.beiPublisher);
+            this.ribbonPageGroup4.ItemLinks.Add(this.beiAuthor, true);
             this.ribbonPageGroup4.ItemLinks.Add(this.beiSearch);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.ShowCaptionButton = false;
@@ -798,7 +826,7 @@ namespace Library.WindowsClient
             this.gcReportBooks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcReportBooks.MenuManager = this.rcPages;
             this.gcReportBooks.Name = "gcReportBooks";
-            this.gcReportBooks.Size = new System.Drawing.Size(1194, 438);
+            this.gcReportBooks.Size = new System.Drawing.Size(1023, 340);
             this.gcReportBooks.TabIndex = 1;
             this.gcReportBooks.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.libraryGridView5,
@@ -943,17 +971,15 @@ namespace Library.WindowsClient
             // gcReaders
             // 
             this.gcReaders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcReaders.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             gridLevelNode4.LevelTemplate = this.libraryGridView8;
             gridLevelNode4.RelationName = "Cards";
             this.gcReaders.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode4});
             this.gcReaders.Location = new System.Drawing.Point(0, 0);
             this.gcReaders.MainView = this.libraryGridView7;
-            this.gcReaders.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gcReaders.MenuManager = this.rcPages;
             this.gcReaders.Name = "gcReaders";
-            this.gcReaders.Size = new System.Drawing.Size(1194, 438);
+            this.gcReaders.Size = new System.Drawing.Size(1023, 340);
             this.gcReaders.TabIndex = 0;
             this.gcReaders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.libraryGridView7,
@@ -1048,11 +1074,11 @@ namespace Library.WindowsClient
             // xtcPages
             // 
             this.xtcPages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtcPages.Location = new System.Drawing.Point(0, 128);
+            this.xtcPages.Location = new System.Drawing.Point(0, 117);
             this.xtcPages.Margin = new System.Windows.Forms.Padding(0);
             this.xtcPages.Name = "xtcPages";
             this.xtcPages.SelectedTabPage = this.xtpReaders;
-            this.xtcPages.Size = new System.Drawing.Size(1200, 469);
+            this.xtcPages.Size = new System.Drawing.Size(1029, 368);
             this.xtcPages.TabIndex = 1;
             this.xtcPages.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtpReaders,
@@ -1068,7 +1094,7 @@ namespace Library.WindowsClient
             this.xtpReaders.Controls.Add(this.gcReaders);
             this.xtpReaders.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.xtpReaders.Name = "xtpReaders";
-            this.xtpReaders.Size = new System.Drawing.Size(1194, 438);
+            this.xtpReaders.Size = new System.Drawing.Size(1023, 340);
             this.xtpReaders.Text = "Читатели";
             // 
             // xtpBooks
@@ -1076,7 +1102,7 @@ namespace Library.WindowsClient
             this.xtpBooks.Controls.Add(this.gcBooks);
             this.xtpBooks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.xtpBooks.Name = "xtpBooks";
-            this.xtpBooks.Size = new System.Drawing.Size(1194, 438);
+            this.xtpBooks.Size = new System.Drawing.Size(1023, 340);
             this.xtpBooks.Text = "Книги";
             // 
             // gcBooks
@@ -1088,7 +1114,7 @@ namespace Library.WindowsClient
             this.gcBooks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcBooks.MenuManager = this.rcPages;
             this.gcBooks.Name = "gcBooks";
-            this.gcBooks.Size = new System.Drawing.Size(1194, 438);
+            this.gcBooks.Size = new System.Drawing.Size(1023, 340);
             this.gcBooks.TabIndex = 0;
             this.gcBooks.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.libraryGridView3});
@@ -1176,7 +1202,7 @@ namespace Library.WindowsClient
             this.xtpPublishers.Controls.Add(this.gcPublishers);
             this.xtpPublishers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.xtpPublishers.Name = "xtpPublishers";
-            this.xtpPublishers.Size = new System.Drawing.Size(1194, 438);
+            this.xtpPublishers.Size = new System.Drawing.Size(1023, 340);
             this.xtpPublishers.Text = "Издатели";
             // 
             // gcPublishers
@@ -1188,7 +1214,7 @@ namespace Library.WindowsClient
             this.gcPublishers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcPublishers.MenuManager = this.rcPages;
             this.gcPublishers.Name = "gcPublishers";
-            this.gcPublishers.Size = new System.Drawing.Size(1194, 438);
+            this.gcPublishers.Size = new System.Drawing.Size(1023, 340);
             this.gcPublishers.TabIndex = 0;
             this.gcPublishers.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.libraryGridView1});
@@ -1238,7 +1264,7 @@ namespace Library.WindowsClient
             this.xtpRubrics.Controls.Add(this.gcRubrics);
             this.xtpRubrics.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.xtpRubrics.Name = "xtpRubrics";
-            this.xtpRubrics.Size = new System.Drawing.Size(1194, 438);
+            this.xtpRubrics.Size = new System.Drawing.Size(1023, 340);
             this.xtpRubrics.Text = "Рубрики";
             // 
             // gcRubrics
@@ -1250,7 +1276,7 @@ namespace Library.WindowsClient
             this.gcRubrics.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcRubrics.MenuManager = this.rcPages;
             this.gcRubrics.Name = "gcRubrics";
-            this.gcRubrics.Size = new System.Drawing.Size(1194, 438);
+            this.gcRubrics.Size = new System.Drawing.Size(1023, 340);
             this.gcRubrics.TabIndex = 0;
             this.gcRubrics.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.libraryGridView2});
@@ -1291,7 +1317,7 @@ namespace Library.WindowsClient
             this.xtpRequests.Controls.Add(this.gcRequests);
             this.xtpRequests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.xtpRequests.Name = "xtpRequests";
-            this.xtpRequests.Size = new System.Drawing.Size(1194, 438);
+            this.xtpRequests.Size = new System.Drawing.Size(1023, 340);
             this.xtpRequests.Text = "Работа с читателями";
             // 
             // xtpReportBooks
@@ -1299,27 +1325,24 @@ namespace Library.WindowsClient
             this.xtpReportBooks.Controls.Add(this.gcReportBooks);
             this.xtpReportBooks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.xtpReportBooks.Name = "xtpReportBooks";
-            this.xtpReportBooks.Size = new System.Drawing.Size(1194, 438);
+            this.xtpReportBooks.Size = new System.Drawing.Size(1023, 340);
             this.xtpReportBooks.Text = "Сводка по книгам";
             // 
             // xtpAuthors
             // 
             this.xtpAuthors.Controls.Add(this.gcAuthors);
-            this.xtpAuthors.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.xtpAuthors.Name = "xtpAuthors";
-            this.xtpAuthors.Size = new System.Drawing.Size(1194, 438);
+            this.xtpAuthors.Size = new System.Drawing.Size(1023, 340);
             this.xtpAuthors.Text = "Авторы";
             // 
             // gcAuthors
             // 
             this.gcAuthors.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcAuthors.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gcAuthors.Location = new System.Drawing.Point(0, 0);
             this.gcAuthors.MainView = this.libraryGridView9;
-            this.gcAuthors.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gcAuthors.MenuManager = this.rcPages;
             this.gcAuthors.Name = "gcAuthors";
-            this.gcAuthors.Size = new System.Drawing.Size(1194, 438);
+            this.gcAuthors.Size = new System.Drawing.Size(1023, 340);
             this.gcAuthors.TabIndex = 0;
             this.gcAuthors.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.libraryGridView9});
@@ -1373,20 +1396,13 @@ namespace Library.WindowsClient
             this.gridColumn45.Visible = true;
             this.gridColumn45.VisibleIndex = 2;
             // 
-            // bbiRenewCard
-            // 
-            this.bbiRenewCard.Caption = "Продлить билет";
-            this.bbiRenewCard.Id = 16;
-            this.bbiRenewCard.LargeGlyph = global::Library.WindowsClient.Properties.Resources.book_go;
-            this.bbiRenewCard.Name = "bbiRenewCard";
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
-            this.ClientSize = new System.Drawing.Size(1200, 597);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.ClientSize = new System.Drawing.Size(1029, 485);
             this.Controls.Add(this.xtcPages);
             this.Controls.Add(this.rcPages);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(3);
             this.Name = "MainForm";
             this.Text = "Система \"Библиотека\"";
             ((System.ComponentModel.ISupportInitialize)(this.gvApprovedRequests)).EndInit();
@@ -1398,6 +1414,7 @@ namespace Library.WindowsClient
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.libraryGridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcReportBooks)).EndInit();
@@ -1542,5 +1559,7 @@ namespace Library.WindowsClient
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn40;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn41;
         private DevExpress.XtraBars.BarButtonItem bbiRenewCard;
+        private DevExpress.XtraBars.BarEditItem beiAuthor;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox4;
     }
 }

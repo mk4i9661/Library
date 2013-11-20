@@ -88,7 +88,7 @@ namespace Library.Services
             return rubric;
         }
 
-        public IEnumerable<Book> GetBooks(Rubric rubric = null, Publisher publisher = null, string search = "") {
+        public IEnumerable<Book> GetBooks(Rubric rubric = null, Publisher publisher = null, Author author = null, string search = "") {
             var books = Ninject.Get<GetBooksQuery>().Execute();
 
             if (rubric != null) {
@@ -100,6 +100,15 @@ namespace Library.Services
                             where b.Rubric.Id == rubric.Id || dictionary.ContainsKey(b.Rubric.Id) && Rubric.IsChildOf(rubrics, dictionary[b.Rubric.Id], rubric)
                             select b;
                 }
+            }
+            if (author != null)
+            {
+                var query = Ninject.Get<GetAuthorBooksQuery>();
+                query.Author = author;
+                var authorBooks = query.Execute();
+                books = from b in books
+                        join ab in authorBooks on b.Id equals ab.Id
+                        select b;
             }
             books = publisher.Return(p => books.Where(b => b.Publisher.Id == p.Id), books);
             books = string.IsNullOrEmpty(search) ? books : from b in books

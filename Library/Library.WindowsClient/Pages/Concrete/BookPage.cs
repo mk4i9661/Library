@@ -28,6 +28,12 @@ namespace Library.WindowsClient.Pages.Concrete
             set;
         }
 
+        IEnumerable<Author> Authors
+        {
+            get;
+            set;
+        }
+
         LibraryRibbonTextEdit SearchItem {
             get;
             set;
@@ -43,18 +49,32 @@ namespace Library.WindowsClient.Pages.Concrete
             set;
         }
 
+        LibraryRibbonComboBox AuthorItem
+        {
+            get;
+            set;
+        }
+
         public BookPage(BookPageParameters parameters)
             : base(parameters) {
             Publishers = new List<Publisher>();
             Rubrics = new List<Rubric>();
+            Authors = new List<Author>();
             SearchItem = new LibraryRibbonTextEdit(parameters.SearchItem);
             PublisherItem = new LibraryRibbonComboBox(parameters.PublisherItem);
             RubricItem = new LibraryRibbonComboBox(parameters.RubricItem);
+            AuthorItem = new LibraryRibbonComboBox(parameters.AuthorItem);
 
             SearchItem.KeyDown += SearchItem_KeyDown;
             PublisherItem.EditValueChanged += PublisherItem_EditValueChanged;
             RubricItem.EditValueChanged += RubricItem_EditValueChanged;
+            AuthorItem.EditValueChanged += AuthorItem_EditValueChanged;
             parameters.AuthorsButton.ItemClick += AuthorsButton_ItemClick;
+        }
+
+        void AuthorItem_EditValueChanged(object sender, EventArgs e)
+        {
+            OnLoadData();
         }
 
         void AuthorsButton_ItemClick(object sender, ItemClickEventArgs e) {
@@ -106,10 +126,12 @@ namespace Library.WindowsClient.Pages.Concrete
             var proxy = GetProxy();
             var publishers = Task.Factory.StartNew(() => proxy.GetPublishers());
             var rubrics = Task.Factory.StartNew(() => proxy.GetRubrics());
-            Task.WaitAll(publishers, rubrics);
+            var authors = Task.Factory.StartNew(() => proxy.GetAuthors());
+            Task.WaitAll(publishers, rubrics, authors);
             return new LoadNecessaryData() {
                 Publishers = publishers.Result,
-                Rubrics = rubrics.Result
+                Rubrics = rubrics.Result,
+                Authors = authors.Result
             };
         }
 
@@ -123,6 +145,7 @@ namespace Library.WindowsClient.Pages.Concrete
 
             Rubrics = result.Rubrics;
             Publishers = result.Publishers;
+            Authors = result.Authors;
 
             var rubrics = result.Rubrics.ToList();
             rubrics.Insert(0, new Rubric() {
@@ -135,12 +158,22 @@ namespace Library.WindowsClient.Pages.Concrete
                 Name = "Все"
             });
 
+            var authors = result.Authors.ToList();
+            authors.Insert(0, new Author()
+            {
+                Id = -1,
+                FirstName = "Все",
+                LastName = "",
+                MiddleName = ""
+            });
+
             RubricItem.Bind(rubrics, r => r.Name, Rubric);
             PublisherItem.Bind(publishers, p => p.Name, Publisher);
+            AuthorItem.Bind(authors, a => string.Format("{0} {1} {2}", a.LastName, a.FirstName, a.MiddleName), Author);
         }
 
         protected override IEnumerable<Book> LoadDataOperation() {
-            return GetProxy().GetBooks(Rubric, Publisher, Search);
+            return GetProxy().GetBooks(Rubric, Publisher, Author, Search);
         }
 
         protected override Book CreateDefaultRow() {
@@ -172,6 +205,13 @@ namespace Library.WindowsClient.Pages.Concrete
             }
         }
 
+        Author Author {
+            get
+            {
+                return AuthorItem.GetSelectedElement<Author>().IfNot(p => p.Id == -1);
+            }
+        }
+
         string Search {
             get {
                 return SearchItem.Text.Trim().ToLower();
@@ -189,6 +229,12 @@ namespace Library.WindowsClient.Pages.Concrete
                 get;
                 set;
             }
+
+            public IEnumerable<Author> Authors
+            {
+                get;
+                set;
+            }
         }
 
         internal class BookPageParameters : PageParameters
@@ -199,6 +245,12 @@ namespace Library.WindowsClient.Pages.Concrete
             }
 
             public BarEditItem PublisherItem {
+                get;
+                set;
+            }
+
+            public BarEditItem AuthorItem
+            {
                 get;
                 set;
             }
