@@ -78,7 +78,8 @@ namespace Library.WindowsClient
                     RubricItem = beiRubric,
                     PublisherItem = beiPublisher,
                     SearchItem = beiSearch,
-                    AuthorsButton = bbiAuthors
+                    AuthorsButton = bbiAuthors,
+                    AuthorItem = beiAuthor
                 }));
 
                 Ninject.Bind<AuthorPage>().ToMethod(method => new AuthorPage(new PageParameters() {

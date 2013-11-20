@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\OracleConnectionSection.cs" />
-    <Compile Include="DBInterop\Accessors\Abstract\AbstractAccessor.cs" />
     <Compile Include="DBInterop\ConnectionProvider.cs" />
     <Compile Include="DBInterop\ConnectionProviderFactory.cs" />
     <Compile Include="DBInterop\Executors\Executor.cs" />
@@ -54,6 +53,7 @@
     <Compile Include="DBInterop\Queries\Concrete\CardQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GenerateRequestIdQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetApprovedRequestsQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\GetAuthorBooksQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetAuthorsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetBookReadersQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetBooksQuery.cs" />
@@ -71,16 +71,13 @@
     <Compile Include="DBInterop\Queries\Concrete\RequestQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\RubricQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\SendNotificationsQuery.cs" />
-    <Compile Include="DBInterop\Queries\Concrete\UniqueObjectRequest.cs" />
     <Compile Include="OracleCustomTypes\Factories\NotificationObjectFactory.cs" />
     <Compile Include="OracleCustomTypes\Factories\SendedNotificationsFactory.cs" />
     <Compile Include="OracleCustomTypes\NotificationObject.cs" />
     <Compile Include="OracleCustomTypes\SendedNotifications.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DBInterop\Accessors\Concrete\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Library.DataContracts\Library.DataContracts.csproj">
       <Project>{b743226b-1ed7-44ae-b01e-be0245f2c368}</Project>

@@ -32,7 +32,7 @@ namespace Library.Contracts
         Rubric DeleteRubric(Rubric rubric);
 
         [OperationContract]
-        IEnumerable<Book> GetBooks(Rubric rubric = null, Publisher publisher = null, string search = "");
+        IEnumerable<Book> GetBooks(Rubric rubric = null, Publisher publisher = null, Author author = null, string search = "");
         [OperationContract]
         Book AddBook(Book book);
         [OperationContract]
