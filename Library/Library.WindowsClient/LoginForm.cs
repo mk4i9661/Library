@@ -22,8 +22,8 @@ namespace Library.WindowsClient
         public LoginForm() {
             InitializeComponent();
             InitHandlers();
-            teLogin.Text = "Администратор";
-            tePassword.Text = "Администратор";
+       //     teLogin.Text = "Администратор";
+       //     tePassword.Text = "Администратор";
         }
 
         void InitHandlers() {

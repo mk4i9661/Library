@@ -88,11 +88,11 @@
             this.layoutControl1.Controls.Add(this.gcResult);
             this.layoutControl1.Controls.Add(this.cbReader);
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(682, 446, 362, 350);
-            this.layoutControl1.Size = new System.Drawing.Size(829, 480);
+            this.layoutControl1.Size = new System.Drawing.Size(725, 373);
             // 
             // layoutControl2
             // 
-            this.layoutControl2.Size = new System.Drawing.Size(829, 68);
+            this.layoutControl2.Size = new System.Drawing.Size(725, 53);
             // 
             // layoutControlGroup1
             // 
@@ -105,7 +105,7 @@
             this.layoutControlItem2,
             this.layoutControlItem7});
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(829, 480);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(725, 373);
             this.layoutControlGroup1.Text = "Root";
             // 
             // libraryGridView1
@@ -159,14 +159,16 @@
             // 
             // gcBooks
             // 
+            this.gcBooks.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             gridLevelNode1.LevelTemplate = this.libraryGridView1;
             gridLevelNode1.RelationName = "Authors";
             this.gcBooks.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode1});
-            this.gcBooks.Location = new System.Drawing.Point(2, 51);
+            this.gcBooks.Location = new System.Drawing.Point(2, 43);
             this.gcBooks.MainView = this.gvBooks;
+            this.gcBooks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcBooks.Name = "gcBooks";
-            this.gcBooks.Size = new System.Drawing.Size(355, 371);
+            this.gcBooks.Size = new System.Drawing.Size(308, 276);
             this.gcBooks.TabIndex = 4;
             this.gcBooks.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvBooks,
@@ -206,7 +208,8 @@
             // 
             // cbReader
             // 
-            this.cbReader.Location = new System.Drawing.Point(162, 12);
+            this.cbReader.Location = new System.Drawing.Point(137, 12);
+            this.cbReader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbReader.Name = "cbReader";
             this.cbReader.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
             this.cbReader.Properties.Appearance.Options.UseFont = true;
@@ -214,7 +217,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbReader.Properties.DropDownRows = 15;
             this.cbReader.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbReader.Size = new System.Drawing.Size(655, 24);
+            this.cbReader.Size = new System.Drawing.Size(576, 20);
             this.cbReader.StyleController = this.layoutControl1;
             this.cbReader.TabIndex = 4;
             // 
@@ -224,16 +227,18 @@
             this.layoutControlItem1.CustomizationFormText = "Читательский билет:";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(809, 28);
+            this.layoutControlItem1.Size = new System.Drawing.Size(705, 24);
             this.layoutControlItem1.Text = "Читательский билет:";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(146, 18);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(121, 14);
             // 
             // gcResult
             // 
-            this.gcResult.Location = new System.Drawing.Point(494, 60);
+            this.gcResult.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcResult.Location = new System.Drawing.Point(436, 56);
             this.gcResult.MainView = this.gvResult;
+            this.gcResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcResult.Name = "gcResult";
-            this.gcResult.Size = new System.Drawing.Size(323, 408);
+            this.gcResult.Size = new System.Drawing.Size(277, 305);
             this.gcResult.TabIndex = 6;
             this.gcResult.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvResult});
@@ -286,9 +291,9 @@
             this.layoutControlItem3.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem3.Control = this.gcResult;
             this.layoutControlItem3.CustomizationFormText = "Корзина";
-            this.layoutControlItem3.Location = new System.Drawing.Point(482, 48);
+            this.layoutControlItem3.Location = new System.Drawing.Point(424, 44);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(327, 412);
+            this.layoutControlItem3.Size = new System.Drawing.Size(281, 309);
             this.layoutControlItem3.Text = "Корзина";
             this.layoutControlItem3.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -298,9 +303,10 @@
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.layoutControl3);
-            this.panelControl1.Location = new System.Drawing.Point(12, 40);
+            this.panelControl1.Location = new System.Drawing.Point(12, 36);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(363, 428);
+            this.panelControl1.Size = new System.Drawing.Size(316, 325);
             this.panelControl1.TabIndex = 7;
             // 
             // layoutControl3
@@ -309,20 +315,22 @@
             this.layoutControl3.Controls.Add(this.gcBooks);
             this.layoutControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl3.Location = new System.Drawing.Point(2, 2);
+            this.layoutControl3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.Root = this.layoutControlGroup2;
-            this.layoutControl3.Size = new System.Drawing.Size(359, 424);
+            this.layoutControl3.Size = new System.Drawing.Size(312, 321);
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl3";
             // 
             // teFilter
             // 
-            this.teFilter.Location = new System.Drawing.Point(54, 2);
+            this.teFilter.Location = new System.Drawing.Point(47, 2);
+            this.teFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.teFilter.Name = "teFilter";
             this.teFilter.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
             this.teFilter.Properties.Appearance.Options.UseFont = true;
             this.teFilter.Properties.MaxLength = 255;
-            this.teFilter.Size = new System.Drawing.Size(303, 24);
+            this.teFilter.Size = new System.Drawing.Size(263, 20);
             this.teFilter.StyleController = this.layoutControl3;
             this.teFilter.TabIndex = 5;
             // 
@@ -337,7 +345,7 @@
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup2.Size = new System.Drawing.Size(359, 424);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(312, 321);
             this.layoutControlGroup2.Text = "layoutControlGroup2";
             this.layoutControlGroup2.TextVisible = false;
             // 
@@ -347,12 +355,12 @@
             this.layoutControlItem5.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem5.Control = this.gcBooks;
             this.layoutControlItem5.CustomizationFormText = "Книги";
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 28);
+            this.layoutControlItem5.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(359, 396);
+            this.layoutControlItem5.Size = new System.Drawing.Size(312, 297);
             this.layoutControlItem5.Text = "Книги";
             this.layoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(49, 18);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(42, 14);
             // 
             // layoutControlItem6
             // 
@@ -360,17 +368,17 @@
             this.layoutControlItem6.CustomizationFormText = "Фильтр:";
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(359, 28);
+            this.layoutControlItem6.Size = new System.Drawing.Size(312, 24);
             this.layoutControlItem6.Text = "Фильтр:";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(49, 16);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(42, 13);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.panelControl1;
             this.layoutControlItem4.CustomizationFormText = "layoutControlItem4";
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 28);
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(367, 432);
+            this.layoutControlItem4.Size = new System.Drawing.Size(320, 329);
             this.layoutControlItem4.Text = "layoutControlItem4";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextToControlDistance = 0;
@@ -380,9 +388,10 @@
             // 
             this.panelControl2.Controls.Add(this.bRemove);
             this.panelControl2.Controls.Add(this.bAdd);
-            this.panelControl2.Location = new System.Drawing.Point(379, 40);
+            this.panelControl2.Location = new System.Drawing.Point(332, 36);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(111, 428);
+            this.panelControl2.Size = new System.Drawing.Size(100, 325);
             this.panelControl2.TabIndex = 8;
             // 
             // bRemove
@@ -391,9 +400,10 @@
             this.bRemove.Appearance.Options.UseFont = true;
             this.bRemove.Image = global::Library.WindowsClient.Properties.Resources.bullet_arrow_left;
             this.bRemove.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.bRemove.Location = new System.Drawing.Point(5, 194);
+            this.bRemove.Location = new System.Drawing.Point(4, 151);
+            this.bRemove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bRemove.Name = "bRemove";
-            this.bRemove.Size = new System.Drawing.Size(101, 33);
+            this.bRemove.Size = new System.Drawing.Size(88, 26);
             this.bRemove.TabIndex = 1;
             // 
             // bAdd
@@ -402,18 +412,19 @@
             this.bAdd.Appearance.Options.UseFont = true;
             this.bAdd.Image = global::Library.WindowsClient.Properties.Resources.bullet_arrow_right;
             this.bAdd.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.bAdd.Location = new System.Drawing.Point(5, 155);
+            this.bAdd.Location = new System.Drawing.Point(4, 121);
+            this.bAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bAdd.Name = "bAdd";
-            this.bAdd.Size = new System.Drawing.Size(101, 33);
+            this.bAdd.Size = new System.Drawing.Size(88, 26);
             this.bAdd.TabIndex = 0;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.panelControl2;
             this.layoutControlItem2.CustomizationFormText = "layoutControlItem2";
-            this.layoutControlItem2.Location = new System.Drawing.Point(367, 28);
+            this.layoutControlItem2.Location = new System.Drawing.Point(320, 24);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(115, 432);
+            this.layoutControlItem2.Size = new System.Drawing.Size(104, 329);
             this.layoutControlItem2.Text = "layoutControlItem2";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextToControlDistance = 0;
@@ -422,9 +433,10 @@
             // lcRequests
             // 
             this.lcRequests.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lcRequests.Location = new System.Drawing.Point(494, 40);
+            this.lcRequests.Location = new System.Drawing.Point(436, 36);
+            this.lcRequests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lcRequests.Name = "lcRequests";
-            this.lcRequests.Size = new System.Drawing.Size(323, 16);
+            this.lcRequests.Size = new System.Drawing.Size(277, 16);
             this.lcRequests.StyleController = this.layoutControl1;
             this.lcRequests.TabIndex = 9;
             this.lcRequests.Text = "Корзина";
@@ -433,10 +445,10 @@
             // 
             this.layoutControlItem7.Control = this.lcRequests;
             this.layoutControlItem7.CustomizationFormText = "layoutControlItem7";
-            this.layoutControlItem7.Location = new System.Drawing.Point(482, 28);
+            this.layoutControlItem7.Location = new System.Drawing.Point(424, 24);
             this.layoutControlItem7.MinSize = new System.Drawing.Size(79, 20);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(327, 20);
+            this.layoutControlItem7.Size = new System.Drawing.Size(281, 20);
             this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem7.Text = "layoutControlItem7";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
@@ -447,9 +459,9 @@
             // 
             this.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 548);
+            this.ClientSize = new System.Drawing.Size(725, 426);
             this.Name = "RequestEditForm";
             this.Text = "Запрос";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();

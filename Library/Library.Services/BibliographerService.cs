@@ -113,7 +113,7 @@ namespace Library.Services
             books = publisher.Return(p => books.Where(b => b.Publisher.Id == p.Id), books);
             books = string.IsNullOrEmpty(search) ? books : from b in books
                                                            let s = search.ToLower()
-                                                           where b.Name.ToLower().Contains(s) || (b.Annotation ?? string.Empty).ToLower().Contains(s)
+                                                            where b.Name.ToLower().Contains(s) || (b.Annotation ?? string.Empty).ToLower().Contains(s)
                                                            select b;
             return books.ToArray();
         }
