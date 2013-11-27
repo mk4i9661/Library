@@ -70,6 +70,60 @@ namespace Library.WindowsClient.Pages.Concrete
             RubricItem.EditValueChanged += RubricItem_EditValueChanged;
             AuthorItem.EditValueChanged += AuthorItem_EditValueChanged;
             parameters.AuthorsButton.ItemClick += AuthorsButton_ItemClick;
+            GridControl.GridView.MasterRowGetRelationCount += GridView_MasterRowGetRelationCount;
+            GridControl.GridView.MasterRowGetRelationName += GridView_MasterRowGetRelationName;
+            GridControl.GridView.MasterRowEmpty += GridView_MasterRowEmpty;
+            GridControl.GridView.MasterRowExpanding += GridView_MasterRowExpanding;
+            GridControl.GridView.MasterRowGetChildList += GridView_MasterRowGetChildList;
+            GridControl.GridView.OptionsDetail.AllowExpandEmptyDetails = true;
+        }
+
+        async void GridView_MasterRowGetChildList(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventArgs e)
+        {
+            var book = GetRow(e.RowHandle);
+            if (book != null)
+            {
+                try
+                {
+                    var authors = new List<Author>();
+                    e.ChildList = authors;
+                    authors.AddRange(await GetBookAuthors(book));
+                    var view = GridControl.GridView.GetDetailView(e.RowHandle, 0);
+                    view.BeginDataUpdate();
+                    view.EndDataUpdate();
+                }
+                catch (Exception exc)
+                {
+                    DialogMessages.Error(exc.Message);
+                }
+            }
+        }
+
+        Task<IEnumerable<Author>> GetBookAuthors(Book book)
+        {
+            return Task.Factory.StartNew(() => GetProxy().GetBookAuthors(book));
+        }
+
+        void GridView_MasterRowExpanding(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowCanExpandEventArgs e)
+        {
+            var book = GetRow(e.RowHandle);
+            e.Allow = book != null && book.HasAuthors;
+        }
+
+        void GridView_MasterRowEmpty(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventArgs e)
+        {
+            var book = GetRow(e.RowHandle);
+            e.IsEmpty = book == null || !book.HasAuthors;
+        }
+
+        void GridView_MasterRowGetRelationName(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationNameEventArgs e)
+        {
+            e.RelationName = "Authors";
+        }
+
+        void GridView_MasterRowGetRelationCount(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationCountEventArgs e)
+        {
+            e.RelationCount = 1;
         }
 
         void AuthorItem_EditValueChanged(object sender, EventArgs e)

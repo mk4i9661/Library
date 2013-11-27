@@ -11,7 +11,7 @@ create or replace PACKAGE Request_State AS
   empty requests;
 END;
 
-create or replace package return_types as
-  type sended_notifications is table of Notification%ROWTYPE;
-  type notification_cursor is ref cursor return Notification%ROWTYPE;
-end;
+--create or replace package return_types as
+-- type sended_notifications is table of Notification%ROWTYPE;
+-- type notification_cursor is ref cursor return Notification%ROWTYPE;
+--end;
