@@ -63,6 +63,7 @@
     <Compile Include="DBInterop\Queries\Concrete\GetReadersQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetRejectedRequestsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetReportBooksQuery.cs" />
+    <Compile Include="DBInterop\Queries\Concrete\GetRequestCreatorsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetRequestHeadersQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\GetRubricsQuery.cs" />
     <Compile Include="DBInterop\Queries\Concrete\PublisherQuery.cs" />

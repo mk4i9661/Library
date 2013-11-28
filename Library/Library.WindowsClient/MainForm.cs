@@ -105,7 +105,6 @@ namespace Library.WindowsClient
                     SendNotificationsItem = bbiSendNotifications,
                     GridViewApprovedRequests = gvApprovedRequests,
                     GridViewRejectedRequests = gvRejectedRequests,
-                    ReaderItem = beiCard,
                     SearchItem = beiSearch
                 }));
 

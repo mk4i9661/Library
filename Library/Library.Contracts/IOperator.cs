@@ -23,13 +23,13 @@ namespace Library.Contracts
         Reader RenewCard(Reader reader);
 
         [OperationContract]
-        IEnumerable<RequestHeader> GetRequestHeaders(Reader reader = null, string search = "");
+        IEnumerable<RequestCreator> GetRequestCreators(string search = "");
         [OperationContract]
-        RequestHeader CreateRequest(Reader reader, IEnumerable<Request> requests);
+        IEnumerable<RequestApproved> GetApprovedRequests(Card card);
         [OperationContract]
-        IEnumerable<RequestApproved> GetApprovedRequests(RequestHeader request);
+        IEnumerable<RequestRejected> GetRejectedRequests(Card card);
         [OperationContract]
-        IEnumerable<RequestRejected> GetRejectedRequests(RequestHeader request);
+        RequestCreator CreateRequest(Reader reader, IEnumerable<Request> requests);
         [OperationContract]
         //продлить книгу
         RequestApproved RenewRequest(RequestApproved request);

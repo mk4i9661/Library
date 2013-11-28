@@ -18,6 +18,7 @@ namespace Library.WindowsClient
 {
     partial class LoginForm : LibraryForm
     {
+        bool _blocked;
 
         public LoginForm() {
             InitializeComponent();
@@ -53,6 +54,9 @@ namespace Library.WindowsClient
         }
 
         async void LogIn() {
+            if (_blocked)
+                return;
+            _blocked = true;
             try {
                 var result = await LogIn(Login, Password);
                 if (result != null) {
@@ -64,6 +68,7 @@ namespace Library.WindowsClient
             } catch (Exception exc) {
                 DialogMessages.Error(exc.Message);
             }
+            _blocked = false;
         }
 
         string Login {

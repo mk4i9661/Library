@@ -22,14 +22,14 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
                             inner join card c on r.request_card_id = c.card_id
                             inner join reader re on c.card_reader_id = re.reader_id
                             inner join book b on r.request_book_id = b.book_id
-                            where r.request_id = :id
+                            where r.request_card_id = :id
                             order by b.book_name";
 
         public GetApprovedRequestsQuery(ConnectionProvider provider)
             : base(provider) {
         }
 
-        public RequestHeader Request {
+        public Card Card {
             get;
             set;
         }
@@ -65,7 +65,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
 
         public override OracleCommand CreateOracleCommand() {
             var command = new OracleCommand(Query);
-            command.Parameters.Add(":id", Request.Id);
+            command.Parameters.Add(":id", Card.Id);
             return command;
         }
     }

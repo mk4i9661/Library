@@ -34,20 +34,8 @@ namespace Library.Proxies
             return ExecuteScoped(() => Channel.RenewCard(reader));
         }
 
-        public IEnumerable<RequestHeader> GetRequestHeaders(Reader reader = null, string search = "") {
-            return ExecuteScoped(() => Channel.GetRequestHeaders(reader, search));
-        }
-
-        public RequestHeader CreateRequest(Reader reader, IEnumerable<Request> requests) {
+        public RequestCreator CreateRequest(Reader reader, IEnumerable<Request> requests) {
             return ExecuteScoped(() => Channel.CreateRequest(reader, requests));
-        }
-
-        public IEnumerable<RequestApproved> GetApprovedRequests(RequestHeader request) {
-            return ExecuteScoped(() => Channel.GetApprovedRequests(request));
-        }
-
-        public IEnumerable<RequestRejected> GetRejectedRequests(RequestHeader request) {
-            return ExecuteScoped(() => Channel.GetRejectedRequests(request));
         }
 
         public RequestApproved RenewRequest(RequestApproved request) {
@@ -68,6 +56,19 @@ namespace Library.Proxies
 
         public IEnumerable<Author> GetBookAuthors(Book book) {
             return ExecuteScoped(() => Channel.GetBookAuthors(book));
+        }
+
+
+        public IEnumerable<RequestCreator> GetRequestCreators(string search = "") {
+            return ExecuteScoped(() => Channel.GetRequestCreators(search));
+        }
+
+        public IEnumerable<RequestApproved> GetApprovedRequests(Card card) {
+            return ExecuteScoped(() => Channel.GetApprovedRequests(card));
+        }
+
+        public IEnumerable<RequestRejected> GetRejectedRequests(Card card) {
+            return ExecuteScoped(() => Channel.GetRejectedRequests(card));
         }
     }
 }

@@ -19,7 +19,7 @@ using Library.WindowsClient.InformationForms;
 
 namespace Library.WindowsClient.Pages.Concrete
 {
-    class RequestPage : Page<IOperator, RequestPage.LoadNecessaryDataWrap, RequestHeader>
+    class RequestPage : Page<IOperator, RequestPage.LoadNecessaryDataWrap, RequestCreator>
     {
         IEnumerable<Book> Books {
             get;
@@ -61,11 +61,6 @@ namespace Library.WindowsClient.Pages.Concrete
             set;
         }
 
-        LibraryRibbonComboBox ReaderItem {
-            get;
-            set;
-        }
-
         public RequestPage(RequestPageParameters parameters)
             : base(parameters) {
             Books = new List<Book>();
@@ -77,7 +72,6 @@ namespace Library.WindowsClient.Pages.Concrete
             RenewItem = parameters.RenewItem;
             SendNotificationsItem = parameters.SendNotificationsItem;
             SearchItem = new LibraryRibbonTextEdit(parameters.SearchItem);
-            ReaderItem = new LibraryRibbonComboBox(parameters.ReaderItem);
 
             GridControl.GridView.OptionsDetail.AllowExpandEmptyDetails = true;
             GridControl.GridView.OptionsDetail.ShowDetailTabs = true;
@@ -96,7 +90,6 @@ namespace Library.WindowsClient.Pages.Concrete
             GridControl.GridView.MasterRowEmpty += GridView_MasterRowEmpty;
             GridControl.GridView.CustomUnboundColumnData += GridView_CustomUnboundColumnData;
             SearchItem.KeyDown += SearchItem_KeyDown;
-            ReaderItem.EditValueChanged += CardItem_EditValueChanged;
         }
 
         async void SendNotificationsItem_ItemClick(object sender, ItemClickEventArgs e) {
@@ -120,10 +113,6 @@ namespace Library.WindowsClient.Pages.Concrete
                     row.Reader.MiddleName,
                     row.Reader.Card.Id);
             }
-        }
-
-        void CardItem_EditValueChanged(object sender, EventArgs e) {
-            OnLoadData();
         }
 
         void SearchItem_KeyDown(object sender, KeyEventArgs e) {
@@ -186,35 +175,35 @@ namespace Library.WindowsClient.Pages.Concrete
             e.RelationName = GetRelationName(GetRow(e.RowHandle), e.RelationIndex);
         }
 
-        string GetRelationName(RequestHeader request, int relation) {
-            if (request == null)
+        string GetRelationName(RequestCreator creator, int relation) {
+            if (creator == null)
                 return string.Empty;
             if (relation == 0) {
-                return request.HasApprovedRequests ? "RequestApproved" : request.HasRejectedRequests ? "RequestRejected" : string.Empty;
+                return creator.HasApprovedRequests ? "RequestApproved" : creator.HasRejectedRequests ? "RequestRejected" : string.Empty;
             }
             if (relation == 1) {
-                return request.HasRejectedRequests ? "RequestRejected" : string.Empty;
+                return creator.HasRejectedRequests ? "RequestRejected" : string.Empty;
             }
             return string.Empty;
         }
 
         async void GridView_MasterRowGetChildList(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventArgs e) {
-            var request = GetRow(e.RowHandle);
-            if (request != null) {
+            var creator = GetRow(e.RowHandle);
+            if (creator != null) {
                 var view = (LibraryGridView)null;
                 try {
-                    switch (GetRelationName(request, e.RelationIndex)) {
+                    switch (GetRelationName(creator, e.RelationIndex)) {
                         case "RequestApproved":
                             var approved = new List<RequestApprovedWrap>();
                             e.ChildList = approved;
-                            approved.AddRange((await GetApprovedRequests(request)).Select(r => new RequestApprovedWrap(r)));
+                            approved.AddRange((await GetApprovedRequests(creator.Card)).Select(r => new RequestApprovedWrap(r)));
                             view = GetChildView(e.RowHandle, e.RelationIndex);
                             view.Do(v => v.BeginDataUpdate());
                             break;
                         case "RequestRejected":
                             var rejected = new List<RequestRejectedWrap>();
                             e.ChildList = rejected;
-                            rejected.AddRange((await GetRejectedRequests(request)).Select(r => new RequestRejectedWrap(r)));
+                            rejected.AddRange((await GetRejectedRequests(creator.Card)).Select(r => new RequestRejectedWrap(r)));
                             view = GetChildView(e.RowHandle, e.RelationIndex);
                             view.Do(v => v.BeginDataUpdate());
                             break;
@@ -243,12 +232,12 @@ namespace Library.WindowsClient.Pages.Concrete
             return null;
         }
 
-        Task<IEnumerable<RequestApproved>> GetApprovedRequests(RequestHeader request) {
-            return Task.Factory.StartNew(() => GetProxy().GetApprovedRequests(request));
+        Task<IEnumerable<RequestApproved>> GetApprovedRequests(Card card) {
+            return Task.Factory.StartNew(() => GetProxy().GetApprovedRequests(card));
         }
 
-        Task<IEnumerable<RequestRejected>> GetRejectedRequests(RequestHeader request) {
-            return Task.Factory.StartNew(() => GetProxy().GetRejectedRequests(request));
+        Task<IEnumerable<RequestRejected>> GetRejectedRequests(Card card) {
+            return Task.Factory.StartNew(() => GetProxy().GetRejectedRequests(card));
         }
 
         Task<RequestApproved> RenewalRequest(RequestApproved request) {
@@ -272,13 +261,13 @@ namespace Library.WindowsClient.Pages.Concrete
             }
         }
 
-        protected override void AfterModifyDataOperation(RequestHeader data) {
+        protected override void AfterModifyDataOperation(RequestCreator data) {
             base.AfterModifyDataOperation(data);
             GridControl.GridView.ExpandMasterRow(GridControl.GridView.FocusedRowHandle);
         }
 
-        protected override IEnumerable<RequestHeader> LoadDataOperation() {
-            return GetProxy().GetRequestHeaders(Reader, Search);
+        protected override IEnumerable<RequestCreator> LoadDataOperation() {
+            return GetProxy().GetRequestCreators(Search);
         }
 
         protected override RequestPage.LoadNecessaryDataWrap LoadNecessaryDataOperation() {
@@ -295,35 +284,27 @@ namespace Library.WindowsClient.Pages.Concrete
             base.OnEndLoadNecessaryData(result);
             Readers = result.Readers;
             Books = result.Books;
-
-            var readers = result.Readers.ToList();
-            readers.Insert(0, new Reader() {
-                Id = -1
-            });
-            ReaderItem.Bind(readers, r => r.Id == -1 ? "Все" : string.Format("{0} {1} {2} ({3})", r.LastName, r.FirstName, r.MiddleName, r.Card.Id), Reader);
-        }
-
-        protected override RequestHeader CreateDefaultRow() {
-            return new RequestHeader();
-        }
-
-        protected override TypedEditForm<RequestHeader> CreateEditForm() {
-            return Ninject.Get<RequestEditForm>();
         }
 
         public override void EditClick() {
 
         }
 
+        protected override TypedEditForm<RequestCreator> CreateEditForm() {
+            return Ninject.Get<RequestEditForm>();
+        }
+
+        protected override RequestCreator CreateDefaultRow() {
+            var reader = GetSelectedRow();
+            return new RequestCreator() {
+                Id = reader.Id,
+                Card = reader.Card
+            };
+        }
+
         string Search {
             get {
                 return SearchItem.Text.Trim().ToLower();
-            }
-        }
-
-        Reader Reader {
-            get {
-                return ReaderItem.GetSelectedElement<Reader>().IfNot(p => p.Id == -1);
             }
         }
 
@@ -430,11 +411,6 @@ namespace Library.WindowsClient.Pages.Concrete
             }
 
             public LibraryGridView GridViewApprovedRequests {
-                get;
-                set;
-            }
-
-            public BarEditItem ReaderItem {
                 get;
                 set;
             }

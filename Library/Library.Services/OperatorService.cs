@@ -78,14 +78,31 @@ namespace Library.Services
             return reader;
         }
 
-        public IEnumerable<RequestHeader> GetRequestHeaders(Reader reader = null, string search = "") {
-            var query = Ninject.Get<GetRequestHeadersQuery>();
-            query.Reader = reader;
-            query.Search = (search ?? string.Empty).Trim();
-            return query.Execute();
+        public IEnumerable<RequestCreator> GetRequestCreators(string search = "") {
+            search = (search ?? string.Empty).Trim().ToLower();
+            return
+                Ninject.Get<GetRequestCreatorsQuery>()
+                .Execute()
+                .Where(r =>
+                    r.FirstName.ToLower().Contains(search) ||
+                    r.LastName.ToLower().Contains(search) ||
+                    r.MiddleName.ToLower().Contains(search) ||
+                    r.Card.Id.ToString().Contains(search));
         }
 
-        public RequestHeader CreateRequest(Reader reader, IEnumerable<Request> requests) {
+        public IEnumerable<RequestApproved> GetApprovedRequests(Card card) {
+            var query = Ninject.Get<GetApprovedRequestsQuery>();
+            query.Card = card;
+            return query.Execute().OrderByDescending(r => r.Id.Id.CreateDate);
+        }
+
+        public IEnumerable<RequestRejected> GetRejectedRequests(Card card) {
+            var query = Ninject.Get<GetRejectedRequestsQuery>();
+            query.Card = card;
+            return query.Execute().OrderByDescending(r => r.Id.Id.CreateDate);
+        }
+
+        public RequestCreator CreateRequest(Reader reader, IEnumerable<Request> requests) {
             if (requests == null || !requests.Any()) {
                 throw new Exception("Для создания запроса необходимо выбрать хотя бы одну книгу");
             }
@@ -114,24 +131,20 @@ namespace Library.Services
                                            Request = r
                                        });
 
-            return new RequestHeader() {
-                Id = id,
-                Reader = reader,
-                CreateDate = DateTime.Now
-            };
+            return GetRequestCreators().FirstOrDefault(c => c.Card.Id == reader.Card.Id);
         }
 
-        public IEnumerable<RequestApproved> GetApprovedRequests(RequestHeader request) {
-            var query = Ninject.Get<GetApprovedRequestsQuery>();
-            query.Request = request;
-            return query.Execute();
-        }
+        //public IEnumerable<RequestApproved> GetApprovedRequests(RequestHeader request) {
+        //    var query = Ninject.Get<GetApprovedRequestsQuery>();
+        //    query.Request = request;
+        //    return query.Execute();
+        //}
 
-        public IEnumerable<RequestRejected> GetRejectedRequests(RequestHeader request) {
-            var query = Ninject.Get<GetRejectedRequestsQuery>();
-            query.Request = request;
-            return query.Execute();
-        }
+        //public IEnumerable<RequestRejected> GetRejectedRequests(RequestHeader request) {
+        //    var query = Ninject.Get<GetRejectedRequestsQuery>();
+        //    query.Request = request;
+        //    return query.Execute();
+        //}
 
         public RequestApproved RenewRequest(RequestApproved request) {
             request = GetRequestApproved(request);
@@ -151,7 +164,7 @@ namespace Library.Services
             } catch (DbException exc) {
                 throw new Exception("Достигнут предел числа продлений. Дальнейшее продление невозможно");
             }
-            return GetApprovedRequests(request.Id.Id).FirstOrDefault(r => r.Id.Equals(request.Id));
+            return request;
         }
 
         public RequestApproved CloseRequest(RequestApproved request) {
@@ -203,7 +216,7 @@ namespace Library.Services
         }
 
         protected RequestApproved GetRequestApproved(RequestApproved source) {
-            return GetApprovedRequests(source.Id.Id).FirstOrDefault(s => s.Id.Equals(source.Id));
+            return GetApprovedRequests(source.Id.Id.Reader.Card).FirstOrDefault(s => s.Id.Equals(source.Id));
         }
 
         public IEnumerable<Book> GetBooks() {

@@ -89,8 +89,8 @@ namespace Library.WindowsClient.EditForms
             e.RelationCount = 1;
         }
 
-        protected override void OnInitFormFields(RequestHeader data) {
-            cbReader.Bind(Readers, r => string.Format("{0} {1} {2} ({3})", r.LastName, r.FirstName, r.MiddleName, r.Card.Id), data.Reader);
+        protected override void OnInitFormFields(RequestCreator data) {
+            cbReader.Bind(Readers, r => string.Format("{0} {1} {2} ({3})", r.LastName, r.FirstName, r.MiddleName, r.Card.Id), data);
             FilterBooks();
         }
 
@@ -166,7 +166,7 @@ namespace Library.WindowsClient.EditForms
             gcResult.Bind(Requests);
         }
 
-        protected override RequestHeader InsertOperation(RequestHeader data) {
+        protected override RequestCreator InsertOperation(RequestCreator data) {
             return GetProxy().CreateRequest(Reader, Requests);
         }
 
@@ -187,7 +187,7 @@ namespace Library.WindowsClient.EditForms
         }
     }
 
-    class RequestEditFormMock : LibraryEditForm<IOperator, RequestHeader>
+    class RequestEditFormMock : LibraryEditForm<IOperator, RequestCreator>
     {
 
     }

@@ -13,7 +13,7 @@ namespace Library.DataAccess.DBInterop.Queries.Concrete
 {
     public abstract class RubricQuery : NoValueQuery
     {
-        public RubricQuery(ConnectionProvider provider)
+        protected RubricQuery(ConnectionProvider provider)
             : base(provider) {
 
         }

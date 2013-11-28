@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace Library.DataContracts.Concrete
 {
     [DataContract]
+    [KnownType(typeof(RequestCreator))]
     public class Reader : UniqueObjectInt<Reader>
     {
         [DataMember]
