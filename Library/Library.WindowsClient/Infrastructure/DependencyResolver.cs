@@ -60,7 +60,10 @@ namespace Library.WindowsClient.Infrastructure
         }
 
         public TContract Get() {
-            if (Proxy == null || Proxy.State != CommunicationState.Opened) {
+            if (Proxy == null) {
+                Proxy = Factory();
+            } else if (Proxy.State != CommunicationState.Opened) {
+                Proxy.Dispose();
                 Proxy = Factory();
             }
             return Proxy;

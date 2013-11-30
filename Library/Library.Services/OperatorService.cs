@@ -25,8 +25,8 @@ namespace Library.Services
         }
 
         public Reader AddReader(Reader reader) {
-            if (GetReaders().Any(r => r.Id == reader.Id)) {
-                throw new Exception("Читатель с таким номером паспорта уже существует!");
+            if (GetReaders().Any(r => r.PassportNumber == reader.PassportNumber && r.Card.ExpiryDate.Date > DateTime.Now.Date)) {
+                throw new Exception("Читатель с таким номером паспорта уже существует и его читательский билет не истек! Добавление читателя невозможно");
             }
 
             var executor = Ninject.Get<Executor>();
