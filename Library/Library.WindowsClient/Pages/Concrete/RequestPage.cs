@@ -88,7 +88,6 @@ namespace Library.WindowsClient.Pages.Concrete
             GridControl.GridView.MasterRowGetRelationName += GridView_MasterRowGetRelationName;
             GridControl.GridView.MasterRowGetRelationDisplayCaption += GridView_MasterRowGetRelationDisplayCaption;
             GridControl.GridView.MasterRowEmpty += GridView_MasterRowEmpty;
-            GridControl.GridView.CustomUnboundColumnData += GridView_CustomUnboundColumnData;
             SearchItem.KeyDown += SearchItem_KeyDown;
         }
 
@@ -101,17 +100,6 @@ namespace Library.WindowsClient.Pages.Concrete
                 }
             } else {
                 DialogMessages.Inform("Нет уведомлений для отправки");
-            }
-        }
-
-        void GridView_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e) {
-            if (e.Column.FieldName == "ReaderUnbound") {
-                var row = e.Row as RequestHeader;
-                e.Value = string.Format("{0} {1} {2} ({3})",
-                    row.Reader.LastName,
-                    row.Reader.FirstName,
-                    row.Reader.MiddleName,
-                    row.Reader.Card.Id);
             }
         }
 

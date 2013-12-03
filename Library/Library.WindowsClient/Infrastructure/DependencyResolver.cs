@@ -63,7 +63,7 @@ namespace Library.WindowsClient.Infrastructure
             if (Proxy == null) {
                 return Proxy = Factory();
             }
-            if (Proxy.State != CommunicationState.Opened) {
+            if (Proxy.State == CommunicationState.Faulted) {
                 Proxy.Dispose();
                 return Proxy = Factory();
             }
